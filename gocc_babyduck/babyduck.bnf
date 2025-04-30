@@ -1,0 +1,231 @@
+/* Lexical Items */
+//Palabras reservadas
+program    : 'p' 'r' 'o' 'g' 'r' 'a' 'm';
+main       : 'm' 'a' 'i' 'n';
+end        : 'e' 'n' 'd';
+var        : 'v' 'a' 'r';
+int        : 'i' 'n' 't';
+float      : 'f' 'l' 'o' 'a' 't';
+print      : 'p' 'r' 'i' 'n' 't';
+while      : 'w' 'h' 'i' 'l' 'e';
+do         : 'd' 'o';
+if         : 'i' 'f';   
+else       : 'e' 'l' 's' 'e';
+void       : 'v' 'o' 'i' 'd';
+plus       : '+';
+minus      : '-';
+multiply   : '*';
+divide     : '/';
+assign     : '=';
+gt         : '>';
+lt         : '<';
+neq        : '!' '=';
+lparen     : '(';
+rparen     : ')';
+lbrace     : '{';
+rbrace     : '}';
+lbraket    : '[';
+rbraket    : ']';
+comma      : ',';
+semicolon  : ';'; 
+colon      : ':';
+
+//Tokens
+id         : ('a'-'z' | 'A'-'Z') {( 'a'-'z' | 'A'-'Z' | '0'-'9' )} ;
+cte_int : '0' | ['-'] '1'-'9' {'0'-'9'} ;
+cte_float  : ['-'] '0'-'9' { '0'-'9' } '.' '0'-'9' { '0'-'9' } ;
+cte_string : '"' { _char } '"' ;
+_char: 'a'-'z' | 'A'-'Z' | '0'-'9' | '!' | '#' | '$' | '%' | '&' | '\'' | '(' | ')' | '*' | '+' | ',' | '-' | '.' | '/' | ':' | ';' | '<' | '=' | '>' | '?' | '@' | '[' | '\\' | ']' | '^' | '_' | '`' | '{' | '|' | '}' | '~' | ' ' ;
+!whitespace: ' '|'\t'|'\n'|'\r';
+
+
+/* Syntax Part */
+
+Programa:
+    program id semicolon VARS_PROG FUNCS_PROG main Body end    ;
+
+VARS_PROG:
+    VARS   ;
+
+VARS_PROG:
+    empty   ;
+
+FUNCS_PROG:
+    FUNCS FUNCS_PROG    ;
+
+FUNCS_PROG:
+    empty       ;
+
+VARS:
+    var VARIABLES      ;
+
+VARIABLES:
+    ID_LIST colon TYPE semicolon MAS_VARIABLES      ;
+
+MAS_VARIABLES:
+    VARIABLES       ;
+
+MAS_VARIABLES:
+    empty       ;
+
+ID_LIST:
+    id MAS_IDS      ;
+
+MAS_IDS:
+    comma ID_LIST       ;
+
+MAS_IDS:
+    empty       ;
+
+TYPE:
+    int     ;
+
+TYPE:
+    float   ;
+
+FUNCS:
+    void id lparen ID_LIST_FUNCS rparen lbraket VARS_PROG Body rbraket semicolon     ;
+
+ID_LIST_FUNCS:
+    ID_FUNCS MAS_ID_FUNCS       ;
+
+ID_LIST_FUNCS:   
+    empty       ;
+
+MAS_ID_FUNCS:
+    comma ID_FUNCS MAS_ID_FUNCS         ;
+
+MAS_ID_FUNCS:
+    empty       ;
+
+ID_FUNCS:
+    id colon TYPE       ;
+
+Body:
+    lbrace STATEMENT_PROG rbrace        ;
+
+STATEMENT_PROG:
+    STATEMENT STATEMENT_PROG        ;
+
+STATEMENT_PROG:  
+    empty       ;
+
+STATEMENT:
+    ASSIGN     ;
+
+STATEMENT:
+    CONDITION   ;
+
+STATEMENT:
+    CYCLE       ;
+
+STATEMENT:
+    F_CALL      ;
+
+STATEMENT:
+    PRINT       ;
+
+ASSIGN:
+    id assign EXPRESION semicolon       ;
+
+EXPRESION:
+    EXP         ;
+
+EXPRESION:
+    EXP gt EXP        ;
+
+EXPRESION:
+    EXP lt EXP    ;
+
+EXPRESION:
+    EXP neq EXP    ;
+
+EXP:
+    TERMINO        ;
+
+EXP:
+    TERMINO plus TERMINO      ;
+
+EXP:
+    TERMINO minus TERMINO     ;
+
+TERMINO:
+    FACTOR   ;
+
+TERMINO:
+    FACTOR multiply FACTOR    ;
+
+TERMINO:
+    FACTOR divide FACTOR     ;
+
+FACTOR:
+    lparen EXPRESION rparen    ;
+
+FACTOR:
+    FACTOR_OPERADOR ID_CTE    ;
+
+FACTOR_OPERADOR:
+    plus      ;
+
+FACTOR_OPERADOR:
+    minus     ;
+    
+FACTOR_OPERADOR:
+    empty      ;
+
+ID_CTE:
+    id      ;
+
+ID_CTE:
+    CTE  ;
+
+CTE:
+    cte_int     ;
+
+CTE:
+    cte_float   ;
+
+CONDITION:
+    if lparen EXPRESION rparen Body ELSE_BODY semicolon        ;
+
+ELSE_BODY:
+    else Body  ;
+
+ELSE_BODY:
+    empty      ;
+
+CYCLE:
+    while lparen EXPRESION rparen do Body semicolon               ;
+
+F_CALL:
+    id lparen EXPRESION_STATEMENT rparen semicolon                ;
+
+EXPRESION_STATEMENT:
+    EXPRESION MAS_EXPRESIONES     ;
+
+EXPRESION_STATEMENT:  
+    empty      ;
+
+MAS_EXPRESIONES:
+    comma EXPRESION MAS_EXPRESIONES     ;
+
+MAS_EXPRESIONES:   
+    empty       ;
+
+PRINT:
+    print lparen LISTA_PRINT rparen semicolon      ;
+
+LISTA_PRINT:
+    EXPRESION_PRINT EXPRESIONES_PRINT     ;
+
+EXPRESION_PRINT:
+    EXPRESION          ;
+
+EXPRESION_PRINT:
+    cte_string          ;
+
+EXPRESIONES_PRINT:
+    comma EXPRESION_PRINT EXPRESIONES_PRINT         ;
+
+EXPRESIONES_PRINT:
+    empty      ;
