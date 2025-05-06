@@ -3,6 +3,7 @@ package main
 import (
 	"testing"
 
+	"gocc_babyduck/ast"
 	"gocc_babyduck/lexer"
 	"gocc_babyduck/parser"
 )
@@ -13,14 +14,22 @@ type TI struct {
 }
 
 var testData = []*TI{
+	//VARIABLE DOBLEMENTE DECLARADA A NIVEL GLOBAL
+	{"program A1; var x: int; x: float; main { x = 5; } end", -1},
+
+	//VARIABLE DOBLEMENTE DECLARADA GLOBAL Y LOCAL
+	//{"program A1; var a,b: int; void fun1 (s : int) [ var a: int; { x = 2; }]; main { x = 5; } end", 0}, //Ok: funcion con asignación sencilla en el cuerpo, //MAL: 2 funciones con el mismo nombre
+
+	//FUNCION DOBLEMENTE DECLARADA
+	{"program A1; var a,b: int; void fun1 (z : int) [{}]; void fun1 (z : int) [{}]; main { x = 5; } end", -1},
+
 	{"program A1; var x: int; main { x = 5; } end", 0}, // Caso ok
 	// Cambios en ID
-	{"program 1aS; var x: int; main { x = 5; } end", -1}, //Bad: ID no puede empezar con num
-	{"program s1A; var x: int; main { x = 5; } end", 0},  //Ok: ID puede empezar con letra minuscula
-	{"program saa; var x: int; main { x = 5; } end", 0},  //Ok: ID puede tener solo letras minusculas
-	{"program SAA; var x: int; main { x = 5; } end", 0},  //Ok: ID puede tener solo letras mayusculas
-	{"program S22; var x: int; main { x = 5; } end", 0},  //Ok: ID puede tener numeros seguidos despues de que empieza con letra
-	{"program S; var x: int; main { x = 5; } end", 0},    //Ok: ID puede ser una sola letra
+	{"program s1A; var x: int; main { x = 5; } end", 0}, //Ok: ID puede empezar con letra minuscula
+	{"program saa; var x: int; main { x = 5; } end", 0}, //Ok: ID puede tener solo letras minusculas
+	{"program SAA; var x: int; main { x = 5; } end", 0}, //Ok: ID puede tener solo letras mayusculas
+	{"program S22; var x: int; main { x = 5; } end", 0}, //Ok: ID puede tener numeros seguidos despues de que empieza con letra
+	{"program S; var x: int; main { x = 5; } end", 0},   //Ok: ID puede ser una sola letra
 	// Cambios en var
 	{"program A1; main { } end", 0},                                //Ok: si var es vacia
 	{"program A1; var a,b: int; main { x = 5; } end", 0},           //Ok: var puede tener varios ID separados por coma
@@ -64,6 +73,9 @@ func TestParser(t *testing.T) {
 	p := parser.NewParser()
 
 	for _, ts := range testData {
+		// Resetear el estado semantico antes de cada prueba
+		ast.ResetSemanticState()
+
 		s := lexer.NewLexer([]byte(ts.src))
 		_, err := p.Parse(s)
 

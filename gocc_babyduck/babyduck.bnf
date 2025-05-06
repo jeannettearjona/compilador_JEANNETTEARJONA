@@ -45,10 +45,10 @@ Programa:
     program id semicolon VARS_PROG FUNCS_PROG main Body end    ;
 
 VARS_PROG:
-    VARS   ;
+    VARS   <<$0, nil>>;
 
 VARS_PROG:
-    empty   ;
+    empty   <<ast.NewHashMap(), nil>>;
 
 FUNCS_PROG:
     FUNCS FUNCS_PROG    ;
@@ -57,49 +57,51 @@ FUNCS_PROG:
     empty       ;
 
 VARS:
-    var VARIABLES      ;
+    var VARIABLES    <<$1, nil>> ;
 
 VARIABLES:
-    ID_LIST colon TYPE semicolon MAS_VARIABLES      ;
+    ID_LIST colon TYPE semicolon MAS_VARIABLES          
+    << ast.DeclaracionVar($0.([]string), $2.(string)) >>;
 
 MAS_VARIABLES:
-    VARIABLES       ;
+    VARIABLES      ;
 
 MAS_VARIABLES:
     empty       ;
 
 ID_LIST:
-    id MAS_IDS      ;
+    id MAS_IDS     <<append([]string{string($0.(*token.Token).Lit)}, $1.([]string)...), nil>> ;                  
 
 MAS_IDS:
-    comma ID_LIST       ;
+    comma ID_LIST           <<$1, nil>>;
 
 MAS_IDS:
-    empty       ;
+    empty      << []string{}, nil >>  ;
 
 TYPE:
-    int     ;
+    int         <<"int", nil>>;
 
 TYPE:
-    float   ;
+    float       <<"float", nil>>;
 
 FUNCS:
-    void id lparen ID_LIST_FUNCS rparen lbraket VARS_PROG Body rbraket semicolon     ;
+    void id lparen ID_LIST_FUNCS rparen lbraket VARS_PROG Body rbraket semicolon     
+    <<ast.ProcessFuncDecl (string($1.(*token.Token).Lit), $3.([]ast.VariableInfo), $6.(*ast.HashMap)) >>;
 
 ID_LIST_FUNCS:
-    ID_FUNCS MAS_ID_FUNCS       ;
+    ID_FUNCS MAS_ID_FUNCS      <<append([]ast.VariableInfo{$0.(ast.VariableInfo)}, $1.([]ast.VariableInfo)...), nil>> ;
 
 ID_LIST_FUNCS:   
-    empty       ;
+    empty               <<[]ast.VariableInfo{}, nil>>;
 
 MAS_ID_FUNCS:
-    comma ID_FUNCS MAS_ID_FUNCS         ;
+    comma ID_FUNCS MAS_ID_FUNCS         <<append([]ast.VariableInfo{$1.(ast.VariableInfo)}, $2.([]ast.VariableInfo)...), nil>>;
 
 MAS_ID_FUNCS:
-    empty       ;
+    empty       <<[]ast.VariableInfo{}, nil>>;
 
 ID_FUNCS:
-    id colon TYPE       ;
+    id colon TYPE    << ast.VariableInfo{Name: string($0.(*token.Token).Lit), Type: $2.(string)}, nil >>   ;
 
 Body:
     lbrace STATEMENT_PROG rbrace        ;

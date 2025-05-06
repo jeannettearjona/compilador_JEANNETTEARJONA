@@ -2,6 +2,11 @@
 
 package parser
 
+import (
+	"gocc_babyduck/ast"
+	"gocc_babyduck/token"
+)
+
 type (
 	ProdTab      [numProductions]ProdTabEntry
 	ProdTabEntry struct {
@@ -38,7 +43,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `VARS_PROG : VARS	<<  >>`,
+		String: `VARS_PROG : VARS	<< X[0], nil >>`,
 		Id:         "VARS_PROG",
 		NTType:     2,
 		Index:      2,
@@ -48,13 +53,13 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `VARS_PROG : empty	<<  >>`,
+		String: `VARS_PROG : empty	<< ast.NewHashMap(), nil >>`,
 		Id:         "VARS_PROG",
 		NTType:     2,
 		Index:      3,
 		NumSymbols: 0,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
-			return nil, nil
+			return ast.NewHashMap(), nil
 		},
 	},
 	ProdTabEntry{
@@ -78,23 +83,23 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `VARS : var VARIABLES	<<  >>`,
+		String: `VARS : var VARIABLES	<< X[1], nil >>`,
 		Id:         "VARS",
 		NTType:     4,
 		Index:      6,
 		NumSymbols: 2,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
-			return X[0], nil
+			return X[1], nil
 		},
 	},
 	ProdTabEntry{
-		String: `VARIABLES : ID_LIST colon TYPE semicolon MAS_VARIABLES	<<  >>`,
+		String: `VARIABLES : ID_LIST colon TYPE semicolon MAS_VARIABLES	<< ast.DeclaracionVar(X[0].([]string), X[2].(string)) >>`,
 		Id:         "VARIABLES",
 		NTType:     5,
 		Index:      7,
 		NumSymbols: 5,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
-			return X[0], nil
+			return ast.DeclaracionVar(X[0].([]string), X[2].(string))
 		},
 	},
 	ProdTabEntry{
@@ -118,113 +123,113 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `ID_LIST : id MAS_IDS	<<  >>`,
+		String: `ID_LIST : id MAS_IDS	<< append([]string{string(X[0].(*token.Token).Lit)}, X[1].([]string)...), nil >>`,
 		Id:         "ID_LIST",
 		NTType:     7,
 		Index:      10,
 		NumSymbols: 2,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
-			return X[0], nil
+			return append([]string{string(X[0].(*token.Token).Lit)}, X[1].([]string)...), nil
 		},
 	},
 	ProdTabEntry{
-		String: `MAS_IDS : comma ID_LIST	<<  >>`,
+		String: `MAS_IDS : comma ID_LIST	<< X[1], nil >>`,
 		Id:         "MAS_IDS",
 		NTType:     8,
 		Index:      11,
 		NumSymbols: 2,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
-			return X[0], nil
+			return X[1], nil
 		},
 	},
 	ProdTabEntry{
-		String: `MAS_IDS : empty	<<  >>`,
+		String: `MAS_IDS : empty	<< []string{}, nil >>`,
 		Id:         "MAS_IDS",
 		NTType:     8,
 		Index:      12,
 		NumSymbols: 0,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
-			return nil, nil
+			return []string{}, nil
 		},
 	},
 	ProdTabEntry{
-		String: `TYPE : int	<<  >>`,
+		String: `TYPE : int	<< "int", nil >>`,
 		Id:         "TYPE",
 		NTType:     9,
 		Index:      13,
 		NumSymbols: 1,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
-			return X[0], nil
+			return "int", nil
 		},
 	},
 	ProdTabEntry{
-		String: `TYPE : float	<<  >>`,
+		String: `TYPE : float	<< "float", nil >>`,
 		Id:         "TYPE",
 		NTType:     9,
 		Index:      14,
 		NumSymbols: 1,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
-			return X[0], nil
+			return "float", nil
 		},
 	},
 	ProdTabEntry{
-		String: `FUNCS : void id lparen ID_LIST_FUNCS rparen lbraket VARS_PROG Body rbraket semicolon	<<  >>`,
+		String: `FUNCS : void id lparen ID_LIST_FUNCS rparen lbraket VARS_PROG Body rbraket semicolon	<< ast.ProcessFuncDecl (string(X[1].(*token.Token).Lit), X[3].([]ast.VariableInfo), X[6].(*ast.HashMap)) >>`,
 		Id:         "FUNCS",
 		NTType:     10,
 		Index:      15,
 		NumSymbols: 10,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
-			return X[0], nil
+			return ast.ProcessFuncDecl (string(X[1].(*token.Token).Lit), X[3].([]ast.VariableInfo), X[6].(*ast.HashMap))
 		},
 	},
 	ProdTabEntry{
-		String: `ID_LIST_FUNCS : ID_FUNCS MAS_ID_FUNCS	<<  >>`,
+		String: `ID_LIST_FUNCS : ID_FUNCS MAS_ID_FUNCS	<< append([]ast.VariableInfo{X[0].(ast.VariableInfo)}, X[1].([]ast.VariableInfo)...), nil >>`,
 		Id:         "ID_LIST_FUNCS",
 		NTType:     11,
 		Index:      16,
 		NumSymbols: 2,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
-			return X[0], nil
+			return append([]ast.VariableInfo{X[0].(ast.VariableInfo)}, X[1].([]ast.VariableInfo)...), nil
 		},
 	},
 	ProdTabEntry{
-		String: `ID_LIST_FUNCS : empty	<<  >>`,
+		String: `ID_LIST_FUNCS : empty	<< []ast.VariableInfo{}, nil >>`,
 		Id:         "ID_LIST_FUNCS",
 		NTType:     11,
 		Index:      17,
 		NumSymbols: 0,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
-			return nil, nil
+			return []ast.VariableInfo{}, nil
 		},
 	},
 	ProdTabEntry{
-		String: `MAS_ID_FUNCS : comma ID_FUNCS MAS_ID_FUNCS	<<  >>`,
+		String: `MAS_ID_FUNCS : comma ID_FUNCS MAS_ID_FUNCS	<< append([]ast.VariableInfo{X[1].(ast.VariableInfo)}, X[2].([]ast.VariableInfo)...), nil >>`,
 		Id:         "MAS_ID_FUNCS",
 		NTType:     12,
 		Index:      18,
 		NumSymbols: 3,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
-			return X[0], nil
+			return append([]ast.VariableInfo{X[1].(ast.VariableInfo)}, X[2].([]ast.VariableInfo)...), nil
 		},
 	},
 	ProdTabEntry{
-		String: `MAS_ID_FUNCS : empty	<<  >>`,
+		String: `MAS_ID_FUNCS : empty	<< []ast.VariableInfo{}, nil >>`,
 		Id:         "MAS_ID_FUNCS",
 		NTType:     12,
 		Index:      19,
 		NumSymbols: 0,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
-			return nil, nil
+			return []ast.VariableInfo{}, nil
 		},
 	},
 	ProdTabEntry{
-		String: `ID_FUNCS : id colon TYPE	<<  >>`,
+		String: `ID_FUNCS : id colon TYPE	<< ast.VariableInfo{Name: string(X[0].(*token.Token).Lit), Type: X[2].(string)}, nil >>`,
 		Id:         "ID_FUNCS",
 		NTType:     13,
 		Index:      20,
 		NumSymbols: 3,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
-			return X[0], nil
+			return ast.VariableInfo{Name: string(X[0].(*token.Token).Lit), Type: X[2].(string)}, nil
 		},
 	},
 	ProdTabEntry{
