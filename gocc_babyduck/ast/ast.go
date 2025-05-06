@@ -18,53 +18,43 @@ var GlobalVarTable = NewHashMap()
 var FunctionDirectory = NewHashMap()
 var CurrentFunction *FunctionInfo
 
-//var funcionActual string = ""
+func DeclaracionVar(variables []VariableInfo) (*HashMap, error) {
+	//mapaVar := NewHashMap()
 
-//tabla puede ser local o global, dependiendo de donde se declare la variable
-func DeclaracionVar(ids []string, tipo string) (interface{}, error) {
-	var targetTable *HashMap
-
-	if CurrentFunction == nil {
-		targetTable = GlobalVarTable
-	} else {
-		targetTable = CurrentFunction.VarTable
-	}
-
-	for _, id := range ids {
-		if targetTable.Contains(id) {
-			return nil, fmt.Errorf("variable '%s' ya declarada", id)
+	for _, variable := range variables {
+		if GlobalVarTable.Contains(variable.Name) {
+			return nil, fmt.Errorf("variable '%s' ya declarada", variable.Name)
 		}
-		targetTable.Add(id, VariableInfo{Name: id, Type: tipo})
+		GlobalVarTable.Add(variable.Name, variable)
 	}
-	return targetTable, nil
+	return GlobalVarTable, nil
 }
 
-func ValidateParams(params []VariableInfo) error {
-	paramSet := NewHashMap()
-	for _, param := range params {
-		if paramSet.Contains(param.Name) {
-			return fmt.Errorf("error: parámetro '%s' duplicado en la función", param.Name)
+func DeclaracionVarLocal(variables []VariableInfo) (*HashMap, error) {
+	mapaVarLocal := NewHashMap()
+
+	for _, variable := range variables {
+		if mapaVarLocal.Contains(variable.Name) {
+			return nil, fmt.Errorf("variable '%s' ya declarada en la funcion '%s'", variable.Name, CurrentFunction.Name)
 		}
-		paramSet.Add(param.Name, param)
+		mapaVarLocal.Add(variable.Name, variable)
 	}
-	return nil
+	return mapaVarLocal, nil
 }
 
-func ProcessFuncDecl(name string, params []VariableInfo, localVars *HashMap) (interface{}, error) {
-	if FunctionDirectory.Contains(name) {
-		return nil, fmt.Errorf("error: función '%s' ya declarada", name)
-	}
+/*func DeclararFuncion(name string, params []VariableInfo, localVars *HashMap) (*HashMap, error) { //NO PASAR LOCAL VARS COMO HASHMAP
 
-	if err := ValidateParams(params); err != nil {
-		return nil, err
-	}
-
-	// Agregar los parámetros a la tabla de variables locales
+	//Registrar parametros en la tabla local (porque parametros son variables locales)
 	for _, param := range params {
 		if localVars.Contains(param.Name) {
-			return nil, fmt.Errorf("variable '%s' ya declarada en función '%s'", param.Name, name)
+			return nil, fmt.Errorf("error: parámetro '%s' duplicado en la función", param.Name)
 		}
 		localVars.Add(param.Name, param)
+	}
+
+	//Registrar funcion en la tabla de funciones
+	if FunctionDirectory.Contains(name) {
+		return nil, fmt.Errorf("error: función '%s' ya declarada", name)
 	}
 
 	CurrentFunction = &FunctionInfo{
@@ -72,42 +62,43 @@ func ProcessFuncDecl(name string, params []VariableInfo, localVars *HashMap) (in
 		Parameters: params,
 		VarTable:   localVars,
 	}
-
 	FunctionDirectory.Add(name, *CurrentFunction)
 
 	// Ya no la necesitas después
 	CurrentFunction = nil
 
+	return localVars, nil
+}*/
+func DeclararFuncion(name string, params []VariableInfo, localVars *HashMap) (*HashMap, error) {
+	// Verificar si la función ya está declarada
+	if FunctionDirectory.Contains(name) {
+		return nil, fmt.Errorf("la función '%s' ya está declarada", name)
+	}
+
+	// Inicializar la función actual
+	CurrentFunction = &FunctionInfo{
+		Name:       name,
+		Parameters: params,
+		VarTable:   localVars,
+	}
+
+	// Registrar la función en el directorio de funciones
+	FunctionDirectory.Add(name, *CurrentFunction)
+
+	// Devolver el mapa de variables locales
 	return nil, nil
 }
 
-func DeclaracionVarFromTable(ids []string, tipo string, table *HashMap) (interface{}, error) {
+/*func DeclaracionVarOLD(ids []string, tipo string) (*HashMap, error) {
+	mapaVar := NewHashMap()
+
 	for _, id := range ids {
-		if table.Contains(id) {
+		if mapaVar.Contains(id) {
 			return nil, fmt.Errorf("variable '%s' ya declarada", id)
 		}
-		table.Add(id, VariableInfo{Name: id, Type: tipo})
+		mapaVar.Add(id, VariableInfo{Name: id, Type: tipo})
 	}
-	return table, nil
-}
-
-/*func IniciarFuncion(nombre string, parametros []VariableInfo, localVars *HashMap) error {
-	// Verificar si la función ya está declarada
-	if FunctionDirectory.Contains(nombre) {
-		return fmt.Errorf("función '%s' ya declarada", nombre)
-	}
-
-	if err := ValidateParams(parametros); err != nil {
-		return err
-	}
-
-	CurrentFunction = &FunctionInfo{
-		Name:       nombre,
-		Parameters: parametros,
-		VarTable:   NewHashMap(), // Nueva tabla para variables locales
-	}
-	FunctionDirectory.Add(nombre, CurrentFunction)
-	return nil
+	return mapaVar, nil
 }*/
 
 func FinalizarFuncion() {

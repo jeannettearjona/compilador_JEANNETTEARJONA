@@ -18,7 +18,7 @@ var testData = []*TI{
 	{"program A1; var x: int; x: float; main { x = 5; } end", -1},
 
 	//VARIABLE DOBLEMENTE DECLARADA GLOBAL Y LOCAL
-	//{"program A1; var a,b: int; void fun1 (s : int) [ var a: int; { x = 2; }]; main { x = 5; } end", 0}, //Ok: funcion con asignación sencilla en el cuerpo, //MAL: 2 funciones con el mismo nombre
+	{"program A1; var a,b: int; void fun1 (s : int) [ var a: int; { x = 2; }]; main { x = 5; } end", 0}, //Ok: funcion con asignación sencilla en el cuerpo, //MAL: 2 funciones con el mismo nombre
 
 	//FUNCION DOBLEMENTE DECLARADA
 	{"program A1; var a,b: int; void fun1 (z : int) [{}]; void fun1 (z : int) [{}]; main { x = 5; } end", -1},

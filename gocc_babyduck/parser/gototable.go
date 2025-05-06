@@ -2,7 +2,7 @@
 
 package parser
 
-const numNTSymbols = 35
+const numNTSymbols = 36
 
 type (
 	gotoTable [numStates]gotoRow
@@ -22,6 +22,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -59,6 +60,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -96,6 +98,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -133,6 +136,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -170,6 +174,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -207,6 +212,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		9,  // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -244,6 +250,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -281,6 +288,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -318,6 +326,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -355,6 +364,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		9,  // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -392,6 +402,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -429,6 +440,7 @@ var gotoTab = gotoTable{
 		17, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -466,6 +478,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -503,6 +516,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -540,6 +554,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -577,6 +592,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -614,6 +630,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -651,6 +668,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -688,6 +706,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -725,6 +744,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		24, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -762,6 +782,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -799,6 +820,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -836,6 +858,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		40, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		41, // ID_FUNCS
@@ -873,6 +896,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -910,6 +934,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -947,6 +972,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -984,6 +1010,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -1021,6 +1048,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -1058,6 +1086,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -1095,6 +1124,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -1132,6 +1162,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -1169,6 +1200,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -1206,6 +1238,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -1243,6 +1276,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -1280,6 +1314,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -1317,6 +1352,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -1354,6 +1390,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -1391,6 +1428,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -1428,6 +1466,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -1465,6 +1504,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -1502,6 +1542,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -1539,6 +1580,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		53, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -1576,6 +1618,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -1613,6 +1656,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -1650,6 +1694,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -1687,6 +1732,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -1724,6 +1770,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -1761,6 +1808,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -1798,6 +1846,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -1835,6 +1884,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -1872,6 +1922,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		82, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -1909,6 +1960,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -1946,6 +1998,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		86, // ID_FUNCS
@@ -1983,6 +2036,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -2020,6 +2074,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -2057,6 +2112,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -2094,6 +2150,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -2131,6 +2188,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -2168,6 +2226,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -2205,6 +2264,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -2242,6 +2302,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -2279,6 +2340,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -2316,6 +2378,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -2353,6 +2416,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -2390,6 +2454,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -2427,6 +2492,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -2464,6 +2530,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -2501,6 +2568,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -2538,6 +2606,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -2575,6 +2644,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -2612,6 +2682,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -2649,6 +2720,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -2686,6 +2758,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -2723,6 +2796,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -2760,6 +2834,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -2797,6 +2872,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -2834,6 +2910,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -2871,6 +2948,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -2908,6 +2986,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -2945,6 +3024,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -2982,6 +3062,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -3019,6 +3100,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -3056,6 +3138,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -3093,6 +3176,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -3130,6 +3214,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -3158,15 +3243,16 @@ var gotoTab = gotoTable{
 	gotoRow{ // S85
 		-1,  // S'
 		-1,  // Programa
-		135, // VARS_PROG
+		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
-		136, // VARS
+		135, // VARS
 		-1,  // VARIABLES
 		-1,  // MAS_VARIABLES
 		-1,  // ID_LIST
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		137, // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -3204,6 +3290,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		138, // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -3241,6 +3328,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -3278,6 +3366,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -3315,6 +3404,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -3352,6 +3442,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -3389,6 +3480,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -3426,6 +3518,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -3463,6 +3556,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -3500,6 +3594,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -3537,6 +3632,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -3574,6 +3670,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -3611,6 +3708,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -3648,6 +3746,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -3685,6 +3784,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -3722,6 +3822,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -3759,6 +3860,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -3796,6 +3898,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -3833,6 +3936,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -3870,6 +3974,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -3907,6 +4012,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -3944,6 +4050,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -3981,6 +4088,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -4018,6 +4126,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -4055,6 +4164,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -4092,6 +4202,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -4129,6 +4240,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -4166,6 +4278,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -4203,6 +4316,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -4240,6 +4354,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -4277,6 +4392,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -4314,6 +4430,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -4351,6 +4468,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -4388,6 +4506,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -4425,6 +4544,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -4462,6 +4582,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -4499,6 +4620,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -4536,6 +4658,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -4573,6 +4696,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -4610,6 +4734,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -4647,6 +4772,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -4684,6 +4810,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -4721,6 +4848,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -4758,6 +4886,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -4795,6 +4924,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -4832,6 +4962,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -4869,6 +5000,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -4906,6 +5038,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -4943,6 +5076,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -4980,6 +5114,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -5006,43 +5141,6 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S135
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // ID_LIST_FUNCS
-		-1,  // MAS_ID_FUNCS
-		-1,  // ID_FUNCS
-		197, // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // EXP
-		-1,  // TERMINO
-		-1,  // FACTOR
-		-1,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S136
 		-1, // S'
 		-1, // Programa
 		-1, // VARS_PROG
@@ -5054,6 +5152,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -5079,22 +5178,61 @@ var gotoTab = gotoTable{
 		-1, // EXPRESION_PRINT
 		-1, // EXPRESIONES_PRINT
 	},
+	gotoRow{ // S136
+		-1,  // S'
+		-1,  // Programa
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		197, // VARIABLES
+		-1,  // MAS_VARIABLES
+		198, // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_FUNCS
+		-1,  // MAS_ID_FUNCS
+		-1,  // ID_FUNCS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // EXP
+		-1,  // TERMINO
+		-1,  // FACTOR
+		-1,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // CYCLE
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
 	gotoRow{ // S137
 		-1,  // S'
 		-1,  // Programa
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
-		199, // VARIABLES
+		-1,  // VARIABLES
 		-1,  // MAS_VARIABLES
-		200, // ID_LIST
+		-1,  // ID_LIST
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
-		-1,  // Body
+		199, // Body
 		-1,  // STATEMENT_PROG
 		-1,  // STATEMENT
 		-1,  // ASSIGN
@@ -5128,6 +5266,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -5165,6 +5304,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -5202,6 +5342,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -5239,6 +5380,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -5276,6 +5418,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -5313,6 +5456,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -5350,6 +5494,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -5387,6 +5532,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -5424,6 +5570,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -5461,6 +5608,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -5498,6 +5646,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -5535,6 +5684,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -5572,6 +5722,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -5609,6 +5760,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -5646,6 +5798,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -5683,6 +5836,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -5720,6 +5874,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -5757,6 +5912,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -5794,6 +5950,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -5831,6 +5988,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -5868,6 +6026,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -5905,6 +6064,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -5942,6 +6102,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -5979,6 +6140,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -6016,6 +6178,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -6053,6 +6216,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -6090,6 +6254,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -6127,6 +6292,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -6164,6 +6330,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -6201,6 +6368,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -6238,6 +6406,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -6275,6 +6444,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -6312,6 +6482,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -6349,6 +6520,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -6386,6 +6558,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -6423,6 +6596,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -6460,6 +6634,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -6497,6 +6672,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -6534,6 +6710,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -6571,6 +6748,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -6608,6 +6786,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -6645,6 +6824,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -6682,6 +6862,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -6719,6 +6900,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -6756,6 +6938,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -6793,6 +6976,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -6830,6 +7014,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -6867,6 +7052,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -6904,6 +7090,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -6941,6 +7128,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -6978,6 +7166,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -7015,6 +7204,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -7052,6 +7242,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -7089,6 +7280,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -7126,6 +7318,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -7163,6 +7356,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -7200,6 +7394,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -7237,6 +7432,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -7274,6 +7470,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -7311,6 +7508,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -7337,41 +7535,42 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S198
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // ID_LIST_FUNCS
-		-1,  // MAS_ID_FUNCS
-		-1,  // ID_FUNCS
-		-1,  // Body
-		281, // STATEMENT_PROG
-		30,  // STATEMENT
-		31,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // EXP
-		-1,  // TERMINO
-		-1,  // FACTOR
-		-1,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		32,  // CONDITION
-		-1,  // ELSE_BODY
-		33,  // CYCLE
-		34,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		35,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
+		-1, // S'
+		-1, // Programa
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // VARS_FUNC
+		-1, // ID_LIST_FUNCS
+		-1, // MAS_ID_FUNCS
+		-1, // ID_FUNCS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // EXP
+		-1, // TERMINO
+		-1, // FACTOR
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // CYCLE
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S199
 		-1, // S'
@@ -7385,6 +7584,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -7411,41 +7611,42 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S200
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // ID_LIST_FUNCS
-		-1, // MAS_ID_FUNCS
-		-1, // ID_FUNCS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // EXP
-		-1, // TERMINO
-		-1, // FACTOR
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
+		-1,  // S'
+		-1,  // Programa
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_FUNCS
+		-1,  // MAS_ID_FUNCS
+		-1,  // ID_FUNCS
+		-1,  // Body
+		282, // STATEMENT_PROG
+		30,  // STATEMENT
+		31,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // EXP
+		-1,  // TERMINO
+		-1,  // FACTOR
+		-1,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		32,  // CONDITION
+		-1,  // ELSE_BODY
+		33,  // CYCLE
+		34,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		35,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S201
 		-1, // S'
@@ -7459,6 +7660,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -7496,6 +7698,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -7533,6 +7736,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -7570,6 +7774,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -7607,6 +7812,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -7644,6 +7850,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -7681,6 +7888,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -7718,6 +7926,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -7755,6 +7964,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -7792,6 +8002,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -7829,6 +8040,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -7866,6 +8078,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -7903,6 +8116,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -7940,6 +8154,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -7977,6 +8192,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -8014,6 +8230,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -8051,6 +8268,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -8088,6 +8306,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -8125,6 +8344,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -8162,6 +8382,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -8199,6 +8420,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -8236,6 +8458,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -8273,6 +8496,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -8310,6 +8534,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -8347,6 +8572,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -8384,6 +8610,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -8421,6 +8648,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -8458,6 +8686,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -8495,6 +8724,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -8532,6 +8762,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -8569,6 +8800,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -8606,6 +8838,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -8643,6 +8876,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -8680,6 +8914,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -8717,6 +8952,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -8754,6 +8990,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -8791,6 +9028,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -8828,6 +9066,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -8865,6 +9104,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -8902,6 +9142,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -8939,6 +9180,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -8976,6 +9218,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -9013,6 +9256,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -9050,6 +9294,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -9087,6 +9332,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -9124,6 +9370,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -9161,6 +9408,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -9198,6 +9446,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -9235,6 +9484,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -9272,6 +9522,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -9309,6 +9560,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -9346,6 +9598,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -9383,6 +9636,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -9420,6 +9674,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -9457,6 +9712,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -9494,6 +9750,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -9531,6 +9788,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -9568,6 +9826,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -9605,6 +9864,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -9642,6 +9902,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -9679,6 +9940,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -9716,6 +9978,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -9753,6 +10016,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -9790,6 +10054,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -9827,6 +10092,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -9864,6 +10130,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -9901,6 +10168,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -9938,6 +10206,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -9975,6 +10244,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -10012,6 +10282,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -10049,6 +10320,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -10086,6 +10358,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -10123,6 +10396,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -10160,6 +10434,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -10197,6 +10472,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -10234,6 +10510,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -10271,6 +10548,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -10308,6 +10586,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -10345,6 +10624,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -10371,41 +10651,42 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S280
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // ID_LIST_FUNCS
-		-1, // MAS_ID_FUNCS
-		-1, // ID_FUNCS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // EXP
-		-1, // TERMINO
-		-1, // FACTOR
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
+		-1,  // S'
+		-1,  // Programa
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		336, // TYPE
+		-1,  // FUNCS
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_FUNCS
+		-1,  // MAS_ID_FUNCS
+		-1,  // ID_FUNCS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // EXP
+		-1,  // TERMINO
+		-1,  // FACTOR
+		-1,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // CYCLE
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S281
 		-1, // S'
@@ -10419,6 +10700,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -10445,41 +10727,42 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S282
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		338, // TYPE
-		-1,  // FUNCS
-		-1,  // ID_LIST_FUNCS
-		-1,  // MAS_ID_FUNCS
-		-1,  // ID_FUNCS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // EXP
-		-1,  // TERMINO
-		-1,  // FACTOR
-		-1,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
+		-1, // S'
+		-1, // Programa
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // VARS_FUNC
+		-1, // ID_LIST_FUNCS
+		-1, // MAS_ID_FUNCS
+		-1, // ID_FUNCS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // EXP
+		-1, // TERMINO
+		-1, // FACTOR
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // CYCLE
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S283
 		-1, // S'
@@ -10493,6 +10776,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -10530,6 +10814,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -10567,6 +10852,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -10604,6 +10890,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -10641,6 +10928,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -10678,6 +10966,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -10715,6 +11004,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -10752,6 +11042,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -10789,6 +11080,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -10826,6 +11118,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -10863,6 +11156,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -10900,6 +11194,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -10937,6 +11232,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -10974,6 +11270,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -11011,6 +11308,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -11048,6 +11346,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -11085,6 +11384,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -11122,6 +11422,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -11159,6 +11460,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -11196,6 +11498,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -11233,6 +11536,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -11270,6 +11574,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -11307,6 +11612,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -11344,6 +11650,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -11381,6 +11688,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -11418,6 +11726,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -11455,6 +11764,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -11492,6 +11802,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -11529,6 +11840,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -11566,6 +11878,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -11603,6 +11916,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -11640,6 +11954,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -11677,6 +11992,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -11714,6 +12030,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -11751,6 +12068,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -11788,6 +12106,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -11825,6 +12144,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -11862,6 +12182,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -11899,6 +12220,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -11936,6 +12258,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -11973,6 +12296,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -12010,6 +12334,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -12047,6 +12372,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -12084,6 +12410,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -12121,6 +12448,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -12158,6 +12486,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -12195,6 +12524,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -12232,6 +12562,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -12269,6 +12600,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -12306,6 +12638,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -12343,6 +12676,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -12380,6 +12714,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -12417,6 +12752,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -12454,6 +12790,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -12491,6 +12828,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -12528,6 +12866,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -12565,6 +12904,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -12602,6 +12942,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -12639,6 +12980,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -12676,6 +13018,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -12713,6 +13056,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -12750,6 +13094,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -12787,6 +13132,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -12824,6 +13170,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -12861,6 +13208,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -12898,6 +13246,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -12935,6 +13284,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -12972,6 +13322,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -13009,6 +13360,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -13046,6 +13398,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -13083,6 +13436,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -13120,6 +13474,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -13157,6 +13512,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -13194,6 +13550,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -13231,6 +13588,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -13268,6 +13626,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -13305,6 +13664,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -13342,6 +13702,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -13379,6 +13740,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -13416,6 +13778,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -13453,6 +13816,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -13490,6 +13854,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -13527,6 +13892,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -13564,6 +13930,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -13601,6 +13968,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -13638,6 +14006,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -13675,6 +14044,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -13712,6 +14082,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -13749,6 +14120,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -13786,6 +14158,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -13823,6 +14196,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -13860,6 +14234,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -13897,6 +14272,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -13934,6 +14310,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -13971,6 +14348,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -14008,6 +14386,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -14045,6 +14424,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -14082,6 +14462,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -14119,6 +14500,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -14156,6 +14538,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -14193,6 +14576,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -14230,6 +14614,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -14267,6 +14652,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -14304,6 +14690,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -14341,6 +14728,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -14378,6 +14766,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -14415,6 +14804,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -14452,6 +14842,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -14489,6 +14880,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -14526,6 +14918,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -14563,6 +14956,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -14600,6 +14994,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -14637,6 +15032,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -14674,6 +15070,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -14711,6 +15108,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -14748,6 +15146,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -14785,6 +15184,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -14818,10 +15218,11 @@ var gotoTab = gotoTable{
 		-1,  // VARS
 		422, // VARIABLES
 		423, // MAS_VARIABLES
-		200, // ID_LIST
+		198, // ID_LIST
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -14859,6 +15260,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -14896,6 +15298,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -14933,6 +15336,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -14970,6 +15374,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -15007,6 +15412,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -15044,6 +15450,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -15081,6 +15488,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -15118,6 +15526,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -15155,6 +15564,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -15192,6 +15602,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -15229,6 +15640,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -15266,6 +15678,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -15303,6 +15716,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -15340,6 +15754,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -15377,6 +15792,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -15414,6 +15830,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -15451,6 +15868,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -15488,6 +15906,7 @@ var gotoTab = gotoTable{
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
+		-1,  // VARS_FUNC
 		-1,  // ID_LIST_FUNCS
 		-1,  // MAS_ID_FUNCS
 		-1,  // ID_FUNCS
@@ -15525,6 +15944,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -15562,6 +15982,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -15599,6 +16020,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -15636,6 +16058,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -15673,6 +16096,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -15710,6 +16134,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -15747,6 +16172,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -15784,6 +16210,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -15821,6 +16248,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -15858,6 +16286,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -15895,6 +16324,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -15932,6 +16362,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -15969,6 +16400,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -16006,6 +16438,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -16043,6 +16476,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -16080,6 +16514,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -16117,6 +16552,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -16154,6 +16590,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -16191,6 +16628,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -16228,6 +16666,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -16265,6 +16704,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -16302,6 +16742,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -16339,6 +16780,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -16376,6 +16818,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -16413,6 +16856,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS
@@ -16450,6 +16894,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
+		-1, // VARS_FUNC
 		-1, // ID_LIST_FUNCS
 		-1, // MAS_ID_FUNCS
 		-1, // ID_FUNCS

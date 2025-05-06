@@ -44,8 +44,21 @@ _char: 'a'-'z' | 'A'-'Z' | '0'-'9' | '!' | '#' | '$' | '%' | '&' | '\'' | '(' | 
 Programa:
     program id semicolon VARS_PROG FUNCS_PROG main Body end    ;
 
-VARS_PROG:
-    VARS   <<$0, nil>>;
+VARS_PROG: //ESTAS SON VARS GLOBALES //TENGO QUE REPETIR LA MISMA REGLA CON VARS_FUNC
+    VARS   
+    <<
+    func() (Attrib, error) {
+        // Obtener la lista de variables desde VARIABLES
+        variables := $0.([]ast.VariableInfo)
+
+        globalVarsMap, err := ast.DeclaracionVar(variables)
+        if err != nil {
+            return nil, err
+        }
+
+        return globalVarsMap, nil
+    }()
+    >>;
 
 VARS_PROG:
     empty   <<ast.NewHashMap(), nil>>;
@@ -61,16 +74,37 @@ VARS:
 
 VARIABLES:
     ID_LIST colon TYPE semicolon MAS_VARIABLES          
-    << ast.DeclaracionVar($0.([]string), $2.(string)) >>;
+   <<
+   func() (Attrib, error) {
+        //Crear la lista inicial con identificadores y tipo
+        variables := []ast.VariableInfo{}
+        
+        for _, id := range $0.([]string) {
+            variables = append(variables, ast.VariableInfo{Name: id, Type: $2.(string)})
+        }
+
+        // Agregar las variables adicionales de MAS_VARIABLES
+        additionalVars := $4.([]ast.VariableInfo)
+        variables = append(variables, additionalVars...)
+
+        return variables, nil
+   }()
+   >>;
 
 MAS_VARIABLES:
-    VARIABLES      ;
+    VARIABLES     <<$0, nil>> ;
 
 MAS_VARIABLES:
-    empty       ;
+    empty       <<[]ast.VariableInfo{}, nil>>;
 
 ID_LIST:
-    id MAS_IDS     <<append([]string{string($0.(*token.Token).Lit)}, $1.([]string)...), nil>> ;                  
+    id MAS_IDS     
+    <<
+    func() (Attrib, error){
+        ids := append([]string{string($0.(*token.Token).Lit)}, $1.([]string)...)
+        return ids, nil
+    }()
+    >>;      
 
 MAS_IDS:
     comma ID_LIST           <<$1, nil>>;
@@ -85,23 +119,81 @@ TYPE:
     float       <<"float", nil>>;
 
 FUNCS:
-    void id lparen ID_LIST_FUNCS rparen lbraket VARS_PROG Body rbraket semicolon     
-    <<ast.ProcessFuncDecl (string($1.(*token.Token).Lit), $3.([]ast.VariableInfo), $6.(*ast.HashMap)) >>;
+    void id lparen ID_LIST_FUNCS rparen lbraket VARS_FUNC Body rbraket semicolon     
+    <<
+        func() (Attrib, error){
+            // Llamar a la función DeclararFuncion para agregar una nueva funcion
+            _, err := ast.DeclararFuncion(
+            string($1.(*token.Token).Lit), // Nombre de la función
+            $3.([]ast.VariableInfo),      // Parámetros
+            $6.(*ast.HashMap),            // Variables locales
+            )
+
+            if err != nil {
+                return nil, err
+            }
+
+            // Procesar el cuerpo de la función (si es necesario)
+            // Aquí puedes agregar lógica adicional para manejar el cuerpo de la función
+
+            // Finalizar la función actual
+            ast.FinalizarFuncion()
+
+            return nil, nil
+        }()
+    >>;
+
+VARS_FUNC:
+    VARS    
+    <<
+    func() (Attrib, error){
+        //Obtener la lista de variables desde VARIABLES
+        variables := $0.([]ast.VariableInfo)
+
+        // Registrar las variables en la tabla local de la función actual
+        localVarsMap, err := ast.DeclaracionVarLocal(variables)
+        if err != nil {
+            return nil, err
+        }
+
+        return localVarsMap, nil
+    }()
+    >>;
+
+VARS_FUNC:
+empty       <<ast.NewHashMap(), nil>>;
 
 ID_LIST_FUNCS:
-    ID_FUNCS MAS_ID_FUNCS      <<append([]ast.VariableInfo{$0.(ast.VariableInfo)}, $1.([]ast.VariableInfo)...), nil>> ;
+    ID_FUNCS MAS_ID_FUNCS      
+    <<
+    func() (Attrib, error){
+        params := append([]ast.VariableInfo{$0.(ast.VariableInfo)}, $1.([]ast.VariableInfo)...)
+        return params, nil
+    }()
+    >>;
 
 ID_LIST_FUNCS:   
     empty               <<[]ast.VariableInfo{}, nil>>;
 
 MAS_ID_FUNCS:
-    comma ID_FUNCS MAS_ID_FUNCS         <<append([]ast.VariableInfo{$1.(ast.VariableInfo)}, $2.([]ast.VariableInfo)...), nil>>;
+    comma ID_FUNCS MAS_ID_FUNCS         
+    <<
+    func() (Attrib, error){
+        params := append([]ast.VariableInfo{$1.(ast.VariableInfo)}, $2.([]ast.VariableInfo)...)
+        return params, nil
+    }()
+    >>;
 
 MAS_ID_FUNCS:
     empty       <<[]ast.VariableInfo{}, nil>>;
 
 ID_FUNCS:
-    id colon TYPE    << ast.VariableInfo{Name: string($0.(*token.Token).Lit), Type: $2.(string)}, nil >>   ;
+    id colon TYPE    
+    <<
+    func() (Attrib, error) {
+        return ast.VariableInfo{Name: string($0.(*token.Token).Lit), Type: $2.(string)}, nil
+    }()
+    >>;
 
 Body:
     lbrace STATEMENT_PROG rbrace        ;
