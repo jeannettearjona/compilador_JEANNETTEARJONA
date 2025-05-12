@@ -42,13 +42,31 @@ _char: 'a'-'z' | 'A'-'Z' | '0'-'9' | '!' | '#' | '$' | '%' | '&' | '\'' | '(' | 
 /* Syntax Part */
 
 Programa:
-    program id semicolon VARS_PROG FUNCS_PROG main Body end    ;
+    program id semicolon VARS_PROG FUNCS_PROG main Body end    
+    <<
+    func() (Attrib, error){
+        nombrePrograma := "program" + string($1.(*token.Token).Lit)
+
+        //agregar "program xyz" a directorio de funciones
+        _, err := ast.DeclararFuncion(
+            nombrePrograma,             // Nombre de la función
+            []ast.VariableInfo{},       // Parámetros vacios
+            $3.(*ast.HashMap),          // Variables locales
+        )
+
+        if err != nil {
+            return nil, err
+        }
+
+        return nil, nil
+    }()
+    >>;
 
 VARS_PROG: //ESTAS SON VARS GLOBALES //TENGO QUE REPETIR LA MISMA REGLA CON VARS_FUNC
     VARS   
     <<
     func() (Attrib, error) {
-        // Obtener la lista de variables desde VARIABLES
+        //lista de variables desde VARIABLES
         variables := $0.([]ast.VariableInfo)
 
         globalVarsMap, err := ast.DeclaracionVar(variables)
@@ -76,14 +94,14 @@ VARIABLES:
     ID_LIST colon TYPE semicolon MAS_VARIABLES          
    <<
    func() (Attrib, error) {
-        //Crear la lista inicial con identificadores y tipo
+        //crear la lista inicial con identificadores y tipo
         variables := []ast.VariableInfo{}
         
         for _, id := range $0.([]string) {
             variables = append(variables, ast.VariableInfo{Name: id, Type: $2.(string)})
         }
 
-        // Agregar las variables adicionales de MAS_VARIABLES
+        //agregar las variables adicionales de MAS_VARIABLES
         additionalVars := $4.([]ast.VariableInfo)
         variables = append(variables, additionalVars...)
 
@@ -119,29 +137,39 @@ TYPE:
     float       <<"float", nil>>;
 
 FUNCS:
-    void id lparen ID_LIST_FUNCS rparen lbraket VARS_FUNC Body rbraket semicolon     
+    FUNC_PRIMERA_PARTE lbraket VARS_FUNC CUERPO_FUNC     
+    <<
+        func() (Attrib, error){
+            ast.CurrentFunction = nil
+            return nil, nil
+        }()
+    >>;
+
+FUNC_PRIMERA_PARTE:
+    void id lparen ID_LIST_PARAMS rparen
     <<
         func() (Attrib, error){
             // Llamar a la función DeclararFuncion para agregar una nueva funcion
-            _, err := ast.DeclararFuncion(
+            fun, err := ast.DeclararFuncion(
             string($1.(*token.Token).Lit), // Nombre de la función
             $3.([]ast.VariableInfo),      // Parámetros
-            $6.(*ast.HashMap),            // Variables locales
+            //$6.(*ast.HashMap),            // Variables locales
+            ast.NewHashMap(),                //tabla de variables temporalmente vacia
             )
 
             if err != nil {
                 return nil, err
             }
 
-            // Procesar el cuerpo de la función (si es necesario)
-            // Aquí puedes agregar lógica adicional para manejar el cuerpo de la función
-
-            // Finalizar la función actual
-            ast.FinalizarFuncion()
+            ast.CurrentFunction = fun
 
             return nil, nil
         }()
     >>;
+
+CUERPO_FUNC:
+    Body rbraket semicolon      
+    <<$0, nil>>;
 
 VARS_FUNC:
     VARS    
@@ -151,20 +179,24 @@ VARS_FUNC:
         variables := $0.([]ast.VariableInfo)
 
         // Registrar las variables en la tabla local de la función actual
-        localVarsMap, err := ast.DeclaracionVarLocal(variables)
+        //localVarsMap, err := ast.DeclaracionVarLocal(variables)
+
+        err := ast.InsertarVariableLocal(variables)
+
         if err != nil {
             return nil, err
         }
 
-        return localVarsMap, nil
+        //return localVarsMap, nil
+        return nil, nil
     }()
     >>;
 
 VARS_FUNC:
-empty       <<ast.NewHashMap(), nil>>;
+empty       <<nil, nil>>;
 
-ID_LIST_FUNCS:
-    ID_FUNCS MAS_ID_FUNCS      
+ID_LIST_PARAMS:
+    PARAMS MAS_PARAMS      
     <<
     func() (Attrib, error){
         params := append([]ast.VariableInfo{$0.(ast.VariableInfo)}, $1.([]ast.VariableInfo)...)
@@ -172,11 +204,11 @@ ID_LIST_FUNCS:
     }()
     >>;
 
-ID_LIST_FUNCS:   
+ID_LIST_PARAMS:   
     empty               <<[]ast.VariableInfo{}, nil>>;
 
-MAS_ID_FUNCS:
-    comma ID_FUNCS MAS_ID_FUNCS         
+MAS_PARAMS:
+    comma PARAMS MAS_PARAMS         
     <<
     func() (Attrib, error){
         params := append([]ast.VariableInfo{$1.(ast.VariableInfo)}, $2.([]ast.VariableInfo)...)
@@ -184,10 +216,10 @@ MAS_ID_FUNCS:
     }()
     >>;
 
-MAS_ID_FUNCS:
+MAS_PARAMS:
     empty       <<[]ast.VariableInfo{}, nil>>;
 
-ID_FUNCS:
+PARAMS:
     id colon TYPE    
     <<
     func() (Attrib, error) {
@@ -220,64 +252,270 @@ STATEMENT:
     PRINT       ;
 
 ASSIGN:
-    id assign EXPRESION semicolon       ;
+    id assign EXPRESION semicolon       
+    <<
+    func() (Attrib, error){
+        //Verificacion de variable no declarada
+        nombre := string($0.(*token.Token).Lit)
+
+        varInfo, err := ast.BuscarVariable(nombre)
+        if (err != nil){
+            return nil, err
+        }
+
+        //asignacion
+        err = ast.GenerateQuadrupleForAssign(varInfo)
+        
+        if err != nil {
+            return nil, err
+        }
+        return nil, nil
+    }()
+    >>;
 
 EXPRESION:
     EXP         ;
 
 EXPRESION:
-    EXP gt EXP        ;
+    EXP OP_REL EXP
+    <<
+    func() (Attrib, error){
 
-EXPRESION:
-    EXP lt EXP    ;
+        err := ast.GenerateQuadrupleForExp()
+        
+        if err != nil {
+            return nil, err
+        }
+        return nil, nil
+    }()
+    >>;
 
-EXPRESION:
-    EXP neq EXP    ;
+OP_REL:
+    gt
+    <<func() (Attrib, error){
+        ast.Operadores.Push(">")
+        return nil, nil
+    }()
+    >>;
+
+OP_REL:
+    lt
+    <<func() (Attrib, error){
+        ast.Operadores.Push("<")
+        return nil, nil
+    }()
+    >>;
+
+OP_REL:
+    neq
+    <<func() (Attrib, error){
+        ast.Operadores.Push("!=")
+        return nil, nil
+    }()
+    >>;
 
 EXP:
-    TERMINO        ;
+    TERMINO        <<$0, nil>>;
 
 EXP:
-    TERMINO plus TERMINO      ;
+    TERMINO PLUS_OP TERMINO     
+    <<
+    func() (Attrib, error){
+        operador := ast.Operadores.Top()
+
+        if(operador == "+" || operador == "-") {
+            err := ast.GenerateQuadrupleForExp()
+            if err != nil {
+                return nil, err
+            }
+            return nil, nil
+        }
+        return nil, nil 
+    }()
+    >>;
+
+PLUS_OP:
+    plus
+    <<func() (Attrib, error){
+        ast.Operadores.Push("+")
+        return nil, nil
+    }()
+    >>;
 
 EXP:
-    TERMINO minus TERMINO     ;
+    TERMINO MINUS_OP TERMINO  
+    <<
+    func() (Attrib, error){
+        operador := ast.Operadores.Top()
+
+        if(operador == "+" || operador == "-") {
+            err := ast.GenerateQuadrupleForExp()
+            if err != nil {
+                return nil, err
+            }
+            return nil, nil
+        }
+        return nil, nil 
+    }()
+    >>;
+
+MINUS_OP:
+    minus
+    <<func() (Attrib, error){
+        ast.Operadores.Push("-")
+        return nil, nil
+    }()
+    >>;
 
 TERMINO:
-    FACTOR   ;
+    FACTOR   <<$0, nil>>;
 
 TERMINO:
-    FACTOR multiply FACTOR    ;
+    FACTOR MULT_OP FACTOR      
+    <<
+    func() (Attrib, error){
+        operador := ast.Operadores.Top()
+
+        if(operador == "*" || operador == "/") {
+            err := ast.GenerateQuadrupleForExp()
+            if err != nil {
+                return nil, err
+            }
+            return nil, nil
+        }
+        return nil, nil 
+    }()
+    >>;
+
+MULT_OP:
+    multiply
+    <<func() (Attrib, error){
+        ast.Operadores.Push("*")
+        return nil, nil
+    }()
+    >>;
 
 TERMINO:
-    FACTOR divide FACTOR     ;
+    FACTOR DIV_OP FACTOR    
+    <<
+    func() (Attrib, error){
+        operador := ast.Operadores.Top()
+
+        if(operador == "*" || operador == "/") {
+            err := ast.GenerateQuadrupleForExp()
+            if err != nil {
+                return nil, err
+            }
+            return nil, nil
+        }
+        return nil, nil 
+    }()
+    >>;
+
+DIV_OP:
+    divide
+    <<func() (Attrib, error){
+        ast.Operadores.Push("/")
+        return nil, nil
+    }()
+    >>;
+
 
 FACTOR:
-    lparen EXPRESION rparen    ;
+    FONDO_FALSO EXPRESION rparen   
+    <<
+    func() (Attrib, error){
+
+        for !ast.Operadores.IsEmpty(){
+
+            top := ast.Operadores.Top()
+            if top == "(" {
+                ast.Operadores.Pop()
+                break
+            }
+            err := ast.GenerateQuadrupleForExp()
+            if err != nil {
+                return nil, err
+            }
+        }
+        return nil, nil
+    }()
+    >>;
+
+FONDO_FALSO:
+    lparen
+    <<
+    func() (Attrib, error){
+        ast.Operadores.Push("(")
+        return nil, nil
+    }()
+    >>;
 
 FACTOR:
-    FACTOR_OPERADOR ID_CTE    ;
+    FACTOR_OPERADOR ID_CTE   <<$1,nil>>;
 
 FACTOR_OPERADOR:
-    plus      ;
+    PLUS_OP      <<$0, nil>>;
 
 FACTOR_OPERADOR:
-    minus     ;
+    MINUS_OP     <<$0, nil>>;
     
 FACTOR_OPERADOR:
     empty      ;
 
 ID_CTE:
-    id      ;
+    id      
+    <<
+    func() (Attrib, error){
+        //Verificacion de variable no declarada
+        nombre := string($0.(*token.Token).Lit)
+
+        //Buscar variable
+        varInfo, error := ast.BuscarVariable(nombre)
+        if (error != nil){
+            return nil, error
+        }
+
+        //Agregar a pila de Operandos
+        ast.Operandos.Push(varInfo.Name)
+        ast.Tipos.Push(varInfo.Type)
+        
+        return nil, nil
+    }()
+    >>;
 
 ID_CTE:
-    CTE  ;
+    CTE  
+    <<
+    func() (Attrib, error){
+        cte := $0.([]string) // Obtener la lista devuelta por CTE
+        valor := cte[0]
+        tipo := cte[1]
+
+        ast.Operandos.Push(valor)
+        ast.Tipos.Push(tipo)
+
+        return nil, nil
+    }()
+    >>;
 
 CTE:
-    cte_int     ;
+    cte_int     
+    <<
+    func() (Attrib, error) {
+        valor := string($0.(*token.Token).Lit)
+        return []string{valor, "int"}, nil
+    }()
+    >>;
 
 CTE:
-    cte_float   ;
+    cte_float   
+    <<
+    func() (Attrib, error) {
+        valor := string($0.(*token.Token).Lit)
+        return []string{valor, "float"}, nil
+    }()
+    >>;
 
 CONDITION:
     if lparen EXPRESION rparen Body ELSE_BODY semicolon        ;

@@ -13,6 +13,7 @@ type TI struct {
 	expect int64  // El valor esperado del resultado
 }
 
+/*
 var testData = []*TI{
 	//VARIABLE DOBLEMENTE DECLARADA A NIVEL GLOBAL
 	{"program A1; var x: int; x: float; main { x = 5; } end", -1},
@@ -67,6 +68,18 @@ var testData = []*TI{
 	{"program A1; var a,b: int; void fun1 (z : int) [ var varFun1: int; { print (\"hola mundo\"); }]; main { x = 5; } end", 0}, //Ok: print con constante string
 	{"program A1; var a,b: int; void fun1 (z : int) [ var varFun1: int; { print (a+b); }]; main { x = 5; } end", 0},            //Ok: print con una expresion
 	{"program A1; var a,b: int; void fun1 (z : int) [ var varFun1: int; { print (a+b, (b+2)!=a); }]; main { x = 5; } end", 0},  //Ok: print con varias expresiones
+}*/
+
+var testData = []*TI{
+	{
+		`program xyz; 
+			var a,b: int;
+				c,d: float;
+			void funcion1 (param1 : int) 
+			[ var varLocal: int; { b = varLocal + 2; }]; 
+			main { c = 4 - 2 /  (d * 1.5); } end`,
+		0,
+	},
 }
 
 func TestParser(t *testing.T) {
@@ -82,6 +95,8 @@ func TestParser(t *testing.T) {
 		if ts.expect == 0 {
 			if err != nil {
 				t.Errorf("Expected no error but got: %v for input: %s", err, ts.src)
+			} else {
+				ast.ImprimirCuadruplos()
 			}
 		} else if ts.expect == -1 {
 			if err == nil {

@@ -1,11 +1,10 @@
 package ast
 
-//import "fmt"
+import "fmt"
 
 type SemanticCube map[string]map[string]map[string]string
 
-//esto no se si es necesario, pero lo dejo por si acaso
-/*func (cube SemanticCube) GetResultType(operator, leftType, rightType string) (string, error) {
+func (cube SemanticCube) GetResultType(leftType, rightType, operator string) (string, error) {
 	if op, ok := cube[operator]; ok {
 		if left, ok := op[leftType]; ok {
 			if result, ok := left[rightType]; ok {
@@ -13,8 +12,8 @@ type SemanticCube map[string]map[string]map[string]string
 			}
 		}
 	}
-	return "", fmt.Errorf("invalid operation: %s %s %s", leftType, operator, rightType)
-}*/
+	return "", fmt.Errorf("type mismatch: cannot apply operator '%s' between '%s' and '%s'", operator, leftType, rightType)
+}
 
 var DefaultSemanticCube = SemanticCube{
 	"=": {
@@ -67,42 +66,42 @@ var DefaultSemanticCube = SemanticCube{
 	},
 	">": {
 		"int": {
-			"int": "int",
+			"int": "bool",
 		},
 		"float": {
-			"float": "int",
+			"float": "bool",
 		},
 	},
 	"<": {
 		"int": {
-			"int": "int",
+			"int": "bool",
 		},
 		"float": {
-			"float": "int",
+			"float": "bool",
 		},
 	},
 	">=": {
 		"int": {
-			"int": "int",
+			"int": "bool",
 		},
 		"float": {
-			"float": "int",
+			"float": "bool",
 		},
 	},
 	"<=": {
 		"int": {
-			"int": "int",
+			"int": "bool",
 		},
 		"float": {
-			"float": "int",
+			"float": "bool",
 		},
 	},
 	"!=": {
 		"int": {
-			"int": "int",
+			"int": "bool",
 		},
 		"float": {
-			"float": "int",
+			"float": "bool",
 		},
 	},
 }
