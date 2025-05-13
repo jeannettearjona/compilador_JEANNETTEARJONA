@@ -1143,63 +1143,153 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `PRINT : print lparen LISTA_PRINT rparen semicolon	<<  >>`,
+		String: `PRINT : print lparen LISTA_PRINT rparen semicolon	<< func() (Attrib, error){
+
+        lista := X[2].([]string)
+
+        for valor := range lista {
+            err := ast.GenerateQuadrupleForPrint(lista[valor])
+            if (err !=nil){
+                return nil, err
+            }
+        } 
+        return nil, nil
+    }() >>`,
 		Id:         "PRINT",
 		NTType:     40,
 		Index:      68,
 		NumSymbols: 5,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
-			return X[0], nil
+			return func() (Attrib, error){
+
+        lista := X[2].([]string)
+
+        for valor := range lista {
+            err := ast.GenerateQuadrupleForPrint(lista[valor])
+            if (err !=nil){
+                return nil, err
+            }
+        } 
+        return nil, nil
+    }()
 		},
 	},
 	ProdTabEntry{
-		String: `LISTA_PRINT : EXPRESION_PRINT EXPRESIONES_PRINT	<<  >>`,
+		String: `LISTA_PRINT : EXPRESION_PRINT EXPRESIONES_PRINT	<< func() (Attrib, error){
+        // Obtener la primera expresión
+        primera := X[0].(string)
+
+        // Obtener la lista de expresiones adicionales
+        adicionales := X[1].([]string)
+
+        // Combinar en una sola lista
+        lista := append([]string{primera}, adicionales...)
+
+        return lista, nil
+    }() >>`,
 		Id:         "LISTA_PRINT",
 		NTType:     41,
 		Index:      69,
 		NumSymbols: 2,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
-			return X[0], nil
+			return func() (Attrib, error){
+        // Obtener la primera expresión
+        primera := X[0].(string)
+
+        // Obtener la lista de expresiones adicionales
+        adicionales := X[1].([]string)
+
+        // Combinar en una sola lista
+        lista := append([]string{primera}, adicionales...)
+
+        return lista, nil
+    }()
 		},
 	},
 	ProdTabEntry{
-		String: `EXPRESION_PRINT : EXPRESION	<<  >>`,
+		String: `EXPRESION_PRINT : EXPRESION	<< func() (Attrib, error){
+
+        //if ast.Operandos.IsEmpty() {
+        //    return nil, error
+        //}
+
+        // Hacer Pop del resultado de la pila de operandos
+        resultado := ast.Operandos.Pop()
+        return resultado, nil
+    }() >>`,
 		Id:         "EXPRESION_PRINT",
 		NTType:     42,
 		Index:      70,
 		NumSymbols: 1,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
-			return X[0], nil
+			return func() (Attrib, error){
+
+        //if ast.Operandos.IsEmpty() {
+        //    return nil, error
+        //}
+
+        // Hacer Pop del resultado de la pila de operandos
+        resultado := ast.Operandos.Pop()
+        return resultado, nil
+    }()
 		},
 	},
 	ProdTabEntry{
-		String: `EXPRESION_PRINT : cte_string	<<  >>`,
+		String: `EXPRESION_PRINT : cte_string	<< func() (Attrib, error){
+        valor := string(X[0].(*token.Token).Lit)
+        //ast.Operandos.Push(valor)
+        return valor,nil
+    }() >>`,
 		Id:         "EXPRESION_PRINT",
 		NTType:     42,
 		Index:      71,
 		NumSymbols: 1,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
-			return X[0], nil
+			return func() (Attrib, error){
+        valor := string(X[0].(*token.Token).Lit)
+        //ast.Operandos.Push(valor)
+        return valor,nil
+    }()
 		},
 	},
 	ProdTabEntry{
-		String: `EXPRESIONES_PRINT : comma EXPRESION_PRINT EXPRESIONES_PRINT	<<  >>`,
+		String: `EXPRESIONES_PRINT : comma EXPRESION_PRINT EXPRESIONES_PRINT	<< func() (Attrib, error) {
+        // Agregar la expresión actual al inicio de la lista
+        valor := X[1].(string)
+        lista := X[2].([]string)
+
+        lista = append([]string{valor}, lista...)
+
+        return lista, nil
+    }() >>`,
 		Id:         "EXPRESIONES_PRINT",
 		NTType:     43,
 		Index:      72,
 		NumSymbols: 3,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
-			return X[0], nil
+			return func() (Attrib, error) {
+        // Agregar la expresión actual al inicio de la lista
+        valor := X[1].(string)
+        lista := X[2].([]string)
+
+        lista = append([]string{valor}, lista...)
+
+        return lista, nil
+    }()
 		},
 	},
 	ProdTabEntry{
-		String: `EXPRESIONES_PRINT : empty	<<  >>`,
+		String: `EXPRESIONES_PRINT : empty	<< func() (Attrib, error) {
+        return []string{}, nil
+    }() >>`,
 		Id:         "EXPRESIONES_PRINT",
 		NTType:     43,
 		Index:      73,
 		NumSymbols: 0,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
-			return nil, nil
+			return func() (Attrib, error) {
+        return []string{}, nil
+    }()
 		},
 	},
 }

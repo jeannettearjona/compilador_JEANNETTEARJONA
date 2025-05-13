@@ -545,19 +545,82 @@ MAS_EXPRESIONES:
     empty       ;
 
 PRINT:
-    print lparen LISTA_PRINT rparen semicolon      ;
+    print lparen LISTA_PRINT rparen semicolon      
+    <<
+    func() (Attrib, error){
+
+        lista := $2.([]string)
+
+        for valor := range lista {
+            err := ast.GenerateQuadrupleForPrint(lista[valor])
+            if (err !=nil){
+                return nil, err
+            }
+        } 
+        return nil, nil
+    }()
+    >>;
 
 LISTA_PRINT:
-    EXPRESION_PRINT EXPRESIONES_PRINT     ;
+    EXPRESION_PRINT EXPRESIONES_PRINT     
+    <<
+    func() (Attrib, error){
+        // Obtener la primera expresión
+        primera := $0.(string)
+
+        // Obtener la lista de expresiones adicionales
+        adicionales := $1.([]string)
+
+        // Combinar en una sola lista
+        lista := append([]string{primera}, adicionales...)
+
+        return lista, nil
+    }()
+    >>;
 
 EXPRESION_PRINT:
-    EXPRESION          ;
+    EXPRESION          
+    <<
+    func() (Attrib, error){
+
+        //if ast.Operandos.IsEmpty() {
+        //    return nil, error
+        //}
+
+        // Hacer Pop del resultado de la pila de operandos
+        resultado := ast.Operandos.Pop()
+        return resultado, nil
+    }()
+    >>;
 
 EXPRESION_PRINT:
-    cte_string          ;
+    cte_string          
+    <<
+    func() (Attrib, error){
+        valor := string($0.(*token.Token).Lit)
+        //ast.Operandos.Push(valor)
+        return valor,nil
+    }()
+    >>;
 
 EXPRESIONES_PRINT:
-    comma EXPRESION_PRINT EXPRESIONES_PRINT         ;
+    comma EXPRESION_PRINT EXPRESIONES_PRINT         
+    <<
+    func() (Attrib, error) {
+        // Agregar la expresión actual al inicio de la lista
+        valor := $1.(string)
+        lista := $2.([]string)
+
+        lista = append([]string{valor}, lista...)
+
+        return lista, nil
+    }()
+    >>;
 
 EXPRESIONES_PRINT:
-    empty      ;
+    empty      
+    <<
+    func() (Attrib, error) {
+        return []string{}, nil
+    }()
+    >>;

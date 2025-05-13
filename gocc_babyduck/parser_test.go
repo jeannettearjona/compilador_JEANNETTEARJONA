@@ -73,11 +73,11 @@ var testData = []*TI{
 var testData = []*TI{
 	{
 		`program xyz; 
-			var a,b: int;
+			var a,b,z: int;
 				c,d: float;
 			void funcion1 (param1 : int) 
 			[ var varLocal: int; { b = varLocal + 2; }]; 
-			main { c = 4 - 2 /  (d * 1.5); } end`,
+			main { print("Hello", 42, c + d); c = 4 - 2 /  (d * 1.5); } end`,
 		0,
 	},
 }

@@ -191,6 +191,18 @@ func GenerateQuadrupleForAssign(variable VariableInfo) error {
 	return nil
 }
 
+func GenerateQuadrupleForPrint(valor string) error {
+	/*if Operandos.IsEmpty() {
+		return fmt.Errorf("error: no hay operandos para generar el cuadruplo")
+	}*/
+	// Obtener el operando
+	//op := Operandos.Pop()
+	//Generar el cuadruplo
+	quad := NewQuadruple("print", valor, "", "")
+	Cuadruplos.Enqueue(quad)
+	return nil
+}
+
 func VerificarCondicion() error {
 	tipoVerificacion := Tipos.Pop()
 	if tipoVerificacion != "bool" {
