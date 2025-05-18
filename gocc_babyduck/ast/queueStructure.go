@@ -2,12 +2,15 @@ package ast
 
 type Quadruple struct {
 	Operador string
-	Izq      string
-	Der      string
-	Res      string
+	Izq      int
+	Der      int
+	Res      int
+	//Izq      string
+	//Der      string
+	//Res      string
 }
 
-func NewQuadruple(op, izq, der, res string) Quadruple {
+func NewQuadruple(op string, izq int, der int, res int) Quadruple {
 	return Quadruple{
 		Operador: op,
 		Izq:      izq,
@@ -58,7 +61,7 @@ func (q *Queue) Print() []Quadruple {
 	return q.items
 }
 
-/*func (q *Queue) GetItem(index int) Quadruple {
+func (q *Queue) GetItem(index int) Quadruple {
 	if index < 0 || index >= len(q.items) {
 		return Quadruple{}
 	}
@@ -71,4 +74,3 @@ func (q *Queue) Update(index int, value Quadruple) {
 	}
 	q.items[index] = value
 }
-*/

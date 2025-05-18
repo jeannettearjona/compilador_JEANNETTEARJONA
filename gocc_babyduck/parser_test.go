@@ -70,14 +70,75 @@ var testData = []*TI{
 	{"program A1; var a,b: int; void fun1 (z : int) [ var varFun1: int; { print (a+b, (b+2)!=a); }]; main { x = 5; } end", 0},  //Ok: print con varias expresiones
 }*/
 
-var testData = []*TI{
+/*var testData = []*TI{
 	{
-		`program xyz; 
+		`program xyz;
 			var a,b,z: int;
 				c,d: float;
-			void funcion1 (param1 : int) 
-			[ var varLocal: int; { b = varLocal + 2; }]; 
+			void funcion1 (param1 : int)
+			[ var varLocal: int; { b = varLocal + 2; }];
 			main { print("Hello", 42, c + d); c = 4 - 2 /  (d * 1.5); } end`,
+		0,
+	},
+}*/
+
+/*var testData = []*TI{
+	{
+		`program xyz;
+			var a,b: int;
+			void funcion1 (param1 : int)
+			[ var varLocal: int; { b = varLocal + 2; }];
+			main {
+				if (a < b)
+				{
+        			print("a es menor que b");
+    			}
+    			else
+    			{
+					print("a no es menor que b");
+    			};
+
+    			print("Fin del ifelse");
+			} end`,
+		0,
+	},
+}*/
+
+/*var testData = []*TI{
+	{
+		`program xyz;
+			var a,b: int;
+			void funcion1 (param1 : int)
+			[ var varLocal: int; { b = varLocal + 2; }];
+			main {
+				if (a < b)
+				{
+        			print("a es menor que b");
+    			};
+    			print("Fin del ifelse");
+			} end`,
+		0,
+	},
+}*/
+
+var testData = []*TI{
+	{
+		`program xyz;
+    var a, b: int;
+
+    main {
+        a = 0;
+        b = 3;
+
+        while (a < b) do {
+            print("a es", a);
+            a = a + 1;
+        };
+
+        print("Fin del ciclo");
+    }
+end
+`,
 		0,
 	},
 }

@@ -42,7 +42,10 @@ _char: 'a'-'z' | 'A'-'Z' | '0'-'9' | '!' | '#' | '$' | '%' | '&' | '\'' | '(' | 
 /* Syntax Part */
 
 Programa:
-    program id semicolon VARS_PROG FUNCS_PROG main Body end    
+    DECLARAR_PROGRAMA FUNCS_PROG main Body end    ;
+
+DECLARAR_PROGRAMA:
+    program id semicolon VARS_PROG
     <<
     func() (Attrib, error){
         nombrePrograma := "program" + string($1.(*token.Token).Lit)
@@ -61,6 +64,7 @@ Programa:
         return nil, nil
     }()
     >>;
+
 
 VARS_PROG: //ESTAS SON VARS GLOBALES //TENGO QUE REPETIR LA MISMA REGLA CON VARS_FUNC
     VARS   
@@ -240,7 +244,7 @@ STATEMENT:
     ASSIGN     ;
 
 STATEMENT:
-    CONDITION   ;
+    IF   ;
 
 STATEMENT:
     CYCLE       ;
@@ -477,7 +481,8 @@ ID_CTE:
         }
 
         //Agregar a pila de Operandos
-        ast.Operandos.Push(varInfo.Name)
+        //ast.Operandos.Push(varInfo.Name)
+        ast.Operandos.Push(varInfo.Address)
         ast.Tipos.Push(varInfo.Type)
         
         return nil, nil
@@ -489,10 +494,13 @@ ID_CTE:
     <<
     func() (Attrib, error){
         cte := $0.([]string) // Obtener la lista devuelta por CTE
-        valor := cte[0]
+        //valor := cte[0]
         tipo := cte[1]
 
-        ast.Operandos.Push(valor)
+        direccion := ast.Prog_MemoryManager.GetConstVarMem(tipo)
+
+        //ast.Operandos.Push(valor)
+        ast.Operandos.Push(direccion)
         ast.Tipos.Push(tipo)
 
         return nil, nil
@@ -517,17 +525,124 @@ CTE:
     }()
     >>;
 
+IF:
+    if CONDITION Body ELSE_BODY semicolon        
+    <<
+    func() (Attrib, error){
+        //hay else o no
+        hayElse := $2.(bool)
+
+        if(hayElse){
+            endJump := ast.PJumps.Pop()
+            falseJump := ast.PJumps.Pop()
+
+            // Backpatch para el GOTO: apunta al final del if-else
+            quadGoto := ast.Cuadruplos.GetItem(endJump)
+            quadGoto.Res = ast.Cuadruplos.Size()
+            ast.Cuadruplos.Update(endJump, quadGoto)
+
+            // Backpatch para el GOTOF: apunta al inicio del else (o al final si no hay else)
+            quadGoToF := ast.Cuadruplos.GetItem(falseJump)
+            quadGoToF.Res = endJump // O ast.Cuadruplos.Size() si no hay else
+            ast.Cuadruplos.Update(falseJump, quadGoToF)
+        } else {
+            // Solo Pop del GOTOF (condición)
+            falseJump := ast.PJumps.Pop()
+            quadGoToF := ast.Cuadruplos.GetItem(falseJump)
+            quadGoToF.Res = ast.Cuadruplos.Size()
+            ast.Cuadruplos.Update(falseJump, quadGoToF)
+        }
+        
+        return nil, nil
+    }()
+    >>;
+
 CONDITION:
-    if lparen EXPRESION rparen Body ELSE_BODY semicolon        ;
+    lparen EXPRESION rparen 
+    <<
+    func() (Attrib, error){
+        //validar condiction
+        cond := ast.Operandos.Pop()
+        tipo := ast.Tipos.Pop()
+
+        err := ast.VerificarCondicion(tipo)
+        if(err != nil){
+            return nil, err
+        }
+
+        //Generar cuadruplo GoToF
+        quad := ast.NewQuadruple("GOTOF", cond, 0, 0)
+        ast.Cuadruplos.Enqueue(quad)
+
+        //Guardar el indice del cuadruplo para regresar a llenarlo
+        ast.PJumps.Push(ast.Cuadruplos.Size() - 1)
+
+        return nil, nil
+    }()
+    >>;
 
 ELSE_BODY:
-    else Body  ;
+    else ELSE_JUMP Body  
+    <<
+    func() (Attrib, error){
+        return true, nil
+    }()
+    >>;
 
 ELSE_BODY:
-    empty      ;
+    empty      
+    <<
+    func() (Attrib, error){
+        return false, nil
+    }()
+    >>;
+
+ELSE_JUMP:
+    empty   
+    <<
+    func() (Attrib, error){
+        quad := ast.NewQuadruple("GOTO", 0, 0, 0)
+        ast.Cuadruplos.Enqueue(quad)
+        ast.PJumps.Push(ast.Cuadruplos.Size() - 1)
+        return nil, nil
+    }()
+    >>;
+
 
 CYCLE:
-    while lparen EXPRESION rparen do Body semicolon               ;
+    WHILE_START CONDITION do WHILE_END Body semicolon               ;
+
+WHILE_START:
+    while   
+    <<
+    func() (Attrib, error){
+        //guarda la posicion de inicio del ciclo
+        ast.PJumps.Push(ast.Cuadruplos.Size())
+        return nil, nil
+    }()
+    >>;
+
+WHILE_END:
+    empty   
+    <<
+    func()(Attrib, error){
+        returnJump := ast.PJumps.Pop()
+        falseJump := ast.PJumps.Pop()
+
+        quadGoTo := ast.NewQuadruple("GOTO", 0, 0, returnJump)
+        ast.Cuadruplos.Enqueue(quadGoTo)
+
+        //quadGoToF := ast.Cuadruplos.GetItem(falseJump)
+        //quadGoToF.Res = ast.Cuadruplos.Size()
+        //ast.Cuadruplos.Update(falseJump, quadGoToF)
+
+        quadGoToF := ast.Cuadruplos.GetItem(falseJump)
+        quadGoToF.Res = falseJump // O ast.Cuadruplos.Size() si no hay else
+        ast.Cuadruplos.Update(falseJump, quadGoToF)
+
+        return nil, nil
+    }()
+    >>;
 
 F_CALL:
     id lparen EXPRESION_STATEMENT rparen semicolon                ;
@@ -549,10 +664,10 @@ PRINT:
     <<
     func() (Attrib, error){
 
-        lista := $2.([]string)
+        lista := $2.([]int)
 
-        for valor := range lista {
-            err := ast.GenerateQuadrupleForPrint(lista[valor])
+        for dir := range lista {
+            err := ast.GenerateQuadrupleForPrint(lista[dir])
             if (err !=nil){
                 return nil, err
             }
@@ -566,13 +681,13 @@ LISTA_PRINT:
     <<
     func() (Attrib, error){
         // Obtener la primera expresión
-        primera := $0.(string)
+        primera := $0.(int)
 
         // Obtener la lista de expresiones adicionales
-        adicionales := $1.([]string)
+        adicionales := $1.([]int)
 
         // Combinar en una sola lista
-        lista := append([]string{primera}, adicionales...)
+        lista := append([]int{primera}, adicionales...)
 
         return lista, nil
     }()
@@ -588,8 +703,10 @@ EXPRESION_PRINT:
         //}
 
         // Hacer Pop del resultado de la pila de operandos
-        resultado := ast.Operandos.Pop()
-        return resultado, nil
+        direccion := ast.Operandos.Pop()
+        ast.Tipos.Pop()  // descartar el tipo
+
+        return direccion, nil
     }()
     >>;
 
@@ -597,9 +714,11 @@ EXPRESION_PRINT:
     cte_string          
     <<
     func() (Attrib, error){
-        valor := string($0.(*token.Token).Lit)
+       // valor := string($0.(*token.Token).Lit)
         //ast.Operandos.Push(valor)
-        return valor,nil
+
+        direccion := ast.Prog_MemoryManager.GetStringConstMem()
+        return direccion,nil
     }()
     >>;
 
@@ -608,10 +727,10 @@ EXPRESIONES_PRINT:
     <<
     func() (Attrib, error) {
         // Agregar la expresión actual al inicio de la lista
-        valor := $1.(string)
-        lista := $2.([]string)
+        valor := $1.(int)
+        lista := $2.([]int)
 
-        lista = append([]string{valor}, lista...)
+        lista = append([]int{valor}, lista...)
 
         return lista, nil
     }()
@@ -621,6 +740,6 @@ EXPRESIONES_PRINT:
     empty      
     <<
     func() (Attrib, error) {
-        return []string{}, nil
+        return []int{}, nil
     }()
     >>;

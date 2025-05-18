@@ -5,6 +5,8 @@ import "fmt"
 type VariableInfo struct {
 	Name string
 	Type string
+	//nuevo campo entrega 4
+	Address int
 }
 
 type FunctionInfo struct {
@@ -17,6 +19,7 @@ var GlobalVarTable = NewHashMap()    //tabla de variables globales ya esta dispo
 var FunctionDirectory = NewHashMap() //tabla de funciones ya esta disponible desde el inicio
 //var CurrentFunction *FunctionInfo
 var CurrentFunction *FunctionInfo = nil
+var Prog_MemoryManager = NewMemoryManager()
 
 func DeclaracionVar(variables []VariableInfo) (*HashMap, error) {
 	//mapaVar := NewHashMap()
@@ -25,11 +28,18 @@ func DeclaracionVar(variables []VariableInfo) (*HashMap, error) {
 		if GlobalVarTable.Contains(variable.Name) {
 			return nil, fmt.Errorf("variable '%s' ya declarada", variable.Name)
 		}
+
+		//obtener la dirección de memoria
+		direccion := Prog_MemoryManager.GetGlobalVarMem(variable.Type)
+		variable.Address = direccion
+
 		GlobalVarTable.Add(variable.Name, variable)
+		//GlobalVarTable.Add(variable.Name, variable)
 	}
 	return GlobalVarTable, nil
 }
 
+//YA NO SE UTILIZA
 func DeclaracionVarLocal(variables []VariableInfo) (*HashMap, error) {
 	mapaVarLocal := NewHashMap()
 
@@ -51,6 +61,11 @@ func InsertarVariableLocal(variables []VariableInfo) error {
 		if CurrentFunction.VarTable.Contains(variable.Name) {
 			return fmt.Errorf("variable '%s' ya declarada en la funcion '%s'", variable.Name, CurrentFunction.Name)
 		}
+
+		//obtener la dirección de memoria
+		direccion := Prog_MemoryManager.GetLocalVarMem(variable.Type)
+		variable.Address = direccion
+
 		CurrentFunction.VarTable.Add(variable.Name, variable)
 	}
 	return nil
@@ -95,7 +110,7 @@ func ResetSemanticState() {
 
 //Avance 3
 var Operadores Stack
-var Operandos Stack
+var Operandos StackInt
 var Tipos Stack
 
 var Cuadruplos Queue
@@ -154,7 +169,8 @@ func GenerateQuadrupleForExp() error {
 		return fmt.Errorf("error: %s", err)
 	}
 
-	temp := GetTemp()
+	//temp := GetTemp()
+	temp := Prog_MemoryManager.GetTempVarMem(resultType)
 
 	// Generar el cuadruplo
 	quad := NewQuadruple(op, left_operand, right_operand, temp)
@@ -185,33 +201,25 @@ func GenerateQuadrupleForAssign(variable VariableInfo) error {
 	}
 
 	// Generar el cuadruplo
-	quad := NewQuadruple("=", right, "", variable.Name)
+	quad := NewQuadruple("=", right, 0, variable.Address)
 	Cuadruplos.Enqueue(quad)
 
 	return nil
 }
 
-func GenerateQuadrupleForPrint(valor string) error {
+func GenerateQuadrupleForPrint(valor int) error {
 	/*if Operandos.IsEmpty() {
 		return fmt.Errorf("error: no hay operandos para generar el cuadruplo")
 	}*/
 	// Obtener el operando
 	//op := Operandos.Pop()
 	//Generar el cuadruplo
-	quad := NewQuadruple("print", valor, "", "")
+	quad := NewQuadruple("print", valor, 0, 0)
 	Cuadruplos.Enqueue(quad)
 	return nil
 }
 
-func VerificarCondicion() error {
-	tipoVerificacion := Tipos.Pop()
-	if tipoVerificacion != "bool" {
-		return fmt.Errorf("error: la condicion no es de tipo booleano")
-	}
-	return nil
-}
-
-func GoToF_IF() error {
+/*func GoToF_IF() error {
 	condicion := Operandos.Pop()
 	tipo := Tipos.Pop()
 
@@ -266,6 +274,13 @@ func ImprimirCuadruplos() {
 	// Imprimir los cuadruplos generados
 	fmt.Println("Cuadruplos generados:")
 	for _, quad := range Cuadruplos.Print() {
-		fmt.Printf("%s %s %s %s\n", quad.Operador, quad.Izq, quad.Der, quad.Res)
+		fmt.Printf("%s %d %d %d\n", quad.Operador, quad.Izq, quad.Der, quad.Res)
 	}
+}
+
+func VerificarCondicion(tipo string) error {
+	if tipo != "bool" {
+		return fmt.Errorf("error: la condicion no es de tipo booleano")
+	}
+	return nil
 }

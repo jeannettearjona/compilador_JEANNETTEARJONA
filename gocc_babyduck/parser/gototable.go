@@ -2,7 +2,7 @@
 
 package parser
 
-const numNTSymbols = 44
+const numNTSymbols = 49
 
 type (
 	gotoTable [numStates]gotoRow
@@ -13,6 +13,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S0
 		-1, // S'
 		1,  // Programa
+		2,  // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -45,9 +46,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -59,6 +64,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S1
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -91,9 +97,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -105,16 +115,17 @@ var gotoTab = gotoTable{
 	gotoRow{ // S2
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
-		-1, // FUNCS_PROG
+		4,  // FUNCS_PROG
 		-1, // VARS
 		-1, // VARIABLES
 		-1, // MAS_VARIABLES
 		-1, // ID_LIST
 		-1, // MAS_IDS
 		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
+		5,  // FUNCS
+		6,  // FUNC_PRIMERA_PARTE
 		-1, // CUERPO_FUNC
 		-1, // VARS_FUNC
 		-1, // ID_LIST_PARAMS
@@ -137,9 +148,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -151,6 +166,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S3
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -183,9 +199,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -197,9 +217,10 @@ var gotoTab = gotoTable{
 	gotoRow{ // S4
 		-1, // S'
 		-1, // Programa
-		5,  // VARS_PROG
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
 		-1, // FUNCS_PROG
-		6,  // VARS
+		-1, // VARS
 		-1, // VARIABLES
 		-1, // MAS_VARIABLES
 		-1, // ID_LIST
@@ -229,9 +250,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -243,16 +268,17 @@ var gotoTab = gotoTable{
 	gotoRow{ // S5
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
-		8,  // FUNCS_PROG
+		10, // FUNCS_PROG
 		-1, // VARS
 		-1, // VARIABLES
 		-1, // MAS_VARIABLES
 		-1, // ID_LIST
 		-1, // MAS_IDS
 		-1, // TYPE
-		9,  // FUNCS
-		10, // FUNC_PRIMERA_PARTE
+		5,  // FUNCS
+		6,  // FUNC_PRIMERA_PARTE
 		-1, // CUERPO_FUNC
 		-1, // VARS_FUNC
 		-1, // ID_LIST_PARAMS
@@ -275,9 +301,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -289,6 +319,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S6
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -321,9 +352,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -335,12 +370,13 @@ var gotoTab = gotoTable{
 	gotoRow{ // S7
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
-		13, // VARIABLES
+		-1, // VARIABLES
 		-1, // MAS_VARIABLES
-		14, // ID_LIST
+		-1, // ID_LIST
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
@@ -367,9 +403,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -381,6 +421,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S8
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -413,9 +454,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -427,22 +472,23 @@ var gotoTab = gotoTable{
 	gotoRow{ // S9
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
-		16, // FUNCS_PROG
+		-1, // FUNCS_PROG
 		-1, // VARS
 		-1, // VARIABLES
 		-1, // MAS_VARIABLES
 		-1, // ID_LIST
 		-1, // MAS_IDS
 		-1, // TYPE
-		9,  // FUNCS
-		10, // FUNC_PRIMERA_PARTE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
 		-1, // CUERPO_FUNC
 		-1, // VARS_FUNC
 		-1, // ID_LIST_PARAMS
 		-1, // MAS_PARAMS
 		-1, // PARAMS
-		-1, // Body
+		14, // Body
 		-1, // STATEMENT_PROG
 		-1, // STATEMENT
 		-1, // ASSIGN
@@ -459,9 +505,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -473,6 +523,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S10
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -505,9 +556,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -519,9 +574,10 @@ var gotoTab = gotoTable{
 	gotoRow{ // S11
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
-		-1, // VARS
+		16, // VARS
 		-1, // VARIABLES
 		-1, // MAS_VARIABLES
 		-1, // ID_LIST
@@ -530,7 +586,7 @@ var gotoTab = gotoTable{
 		-1, // FUNCS
 		-1, // FUNC_PRIMERA_PARTE
 		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
+		18, // VARS_FUNC
 		-1, // ID_LIST_PARAMS
 		-1, // MAS_PARAMS
 		-1, // PARAMS
@@ -551,9 +607,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -565,13 +625,14 @@ var gotoTab = gotoTable{
 	gotoRow{ // S12
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
 		-1, // VARIABLES
 		-1, // MAS_VARIABLES
 		-1, // ID_LIST
-		19, // MAS_IDS
+		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
 		-1, // FUNC_PRIMERA_PARTE
@@ -597,9 +658,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -611,9 +676,10 @@ var gotoTab = gotoTable{
 	gotoRow{ // S13
 		-1, // S'
 		-1, // Programa
-		-1, // VARS_PROG
+		-1, // DECLARAR_PROGRAMA
+		20, // VARS_PROG
 		-1, // FUNCS_PROG
-		-1, // VARS
+		21, // VARS
 		-1, // VARIABLES
 		-1, // MAS_VARIABLES
 		-1, // ID_LIST
@@ -643,9 +709,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -657,6 +727,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S14
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -689,9 +760,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -703,6 +778,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S15
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -718,10 +794,10 @@ var gotoTab = gotoTable{
 		-1, // ID_LIST_PARAMS
 		-1, // MAS_PARAMS
 		-1, // PARAMS
-		22, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
+		-1, // Body
+		25, // STATEMENT_PROG
+		26, // STATEMENT
+		27, // ASSIGN
 		-1, // EXPRESION
 		-1, // OP_REL
 		-1, // EXP
@@ -735,13 +811,17 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		28, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
+		-1, // ELSE_JUMP
+		29, // CYCLE
+		33, // WHILE_START
+		-1, // WHILE_END
+		30, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
-		-1, // PRINT
+		31, // PRINT
 		-1, // LISTA_PRINT
 		-1, // EXPRESION_PRINT
 		-1, // EXPRESIONES_PRINT
@@ -749,6 +829,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S16
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -781,9 +862,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -795,18 +880,19 @@ var gotoTab = gotoTable{
 	gotoRow{ // S17
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
-		24, // VARS
-		-1, // VARIABLES
+		-1, // VARS
+		37, // VARIABLES
 		-1, // MAS_VARIABLES
-		-1, // ID_LIST
+		38, // ID_LIST
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
 		-1, // FUNC_PRIMERA_PARTE
 		-1, // CUERPO_FUNC
-		26, // VARS_FUNC
+		-1, // VARS_FUNC
 		-1, // ID_LIST_PARAMS
 		-1, // MAS_PARAMS
 		-1, // PARAMS
@@ -827,9 +913,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -841,6 +931,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S18
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -851,12 +942,12 @@ var gotoTab = gotoTable{
 		-1, // TYPE
 		-1, // FUNCS
 		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
+		40, // CUERPO_FUNC
 		-1, // VARS_FUNC
 		-1, // ID_LIST_PARAMS
 		-1, // MAS_PARAMS
 		-1, // PARAMS
-		-1, // Body
+		39, // Body
 		-1, // STATEMENT_PROG
 		-1, // STATEMENT
 		-1, // ASSIGN
@@ -873,9 +964,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -887,6 +982,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S19
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -899,9 +995,9 @@ var gotoTab = gotoTable{
 		-1, // FUNC_PRIMERA_PARTE
 		-1, // CUERPO_FUNC
 		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
+		43, // ID_LIST_PARAMS
 		-1, // MAS_PARAMS
-		-1, // PARAMS
+		44, // PARAMS
 		-1, // Body
 		-1, // STATEMENT_PROG
 		-1, // STATEMENT
@@ -919,9 +1015,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -933,12 +1033,13 @@ var gotoTab = gotoTable{
 	gotoRow{ // S20
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
 		-1, // VARIABLES
 		-1, // MAS_VARIABLES
-		28, // ID_LIST
+		-1, // ID_LIST
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
@@ -965,9 +1066,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -979,6 +1084,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S21
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -986,7 +1092,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_VARIABLES
 		-1, // ID_LIST
 		-1, // MAS_IDS
-		29, // TYPE
+		-1, // TYPE
 		-1, // FUNCS
 		-1, // FUNC_PRIMERA_PARTE
 		-1, // CUERPO_FUNC
@@ -1011,9 +1117,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -1025,12 +1135,13 @@ var gotoTab = gotoTable{
 	gotoRow{ // S22
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
-		-1, // VARIABLES
+		45, // VARIABLES
 		-1, // MAS_VARIABLES
-		-1, // ID_LIST
+		46, // ID_LIST
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
@@ -1057,9 +1168,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -1071,52 +1186,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S23
 		-1, // S'
 		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		34, // STATEMENT_PROG
-		35, // STATEMENT
-		36, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		37, // CONDITION
-		-1, // ELSE_BODY
-		38, // CYCLE
-		39, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		40, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S24
-		-1, // S'
-		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -1149,9 +1219,64 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S24
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -1163,12 +1288,13 @@ var gotoTab = gotoTable{
 	gotoRow{ // S25
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
-		44, // VARIABLES
+		-1, // VARIABLES
 		-1, // MAS_VARIABLES
-		45, // ID_LIST
+		-1, // ID_LIST
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
@@ -1195,9 +1321,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -1209,6 +1339,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S26
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -1219,15 +1350,15 @@ var gotoTab = gotoTable{
 		-1, // TYPE
 		-1, // FUNCS
 		-1, // FUNC_PRIMERA_PARTE
-		47, // CUERPO_FUNC
+		-1, // CUERPO_FUNC
 		-1, // VARS_FUNC
 		-1, // ID_LIST_PARAMS
 		-1, // MAS_PARAMS
 		-1, // PARAMS
-		46, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
+		-1, // Body
+		50, // STATEMENT_PROG
+		26, // STATEMENT
+		27, // ASSIGN
 		-1, // EXPRESION
 		-1, // OP_REL
 		-1, // EXP
@@ -1241,13 +1372,17 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		28, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
+		-1, // ELSE_JUMP
+		29, // CYCLE
+		33, // WHILE_START
+		-1, // WHILE_END
+		30, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
-		-1, // PRINT
+		31, // PRINT
 		-1, // LISTA_PRINT
 		-1, // EXPRESION_PRINT
 		-1, // EXPRESIONES_PRINT
@@ -1255,6 +1390,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S27
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -1267,9 +1403,9 @@ var gotoTab = gotoTable{
 		-1, // FUNC_PRIMERA_PARTE
 		-1, // CUERPO_FUNC
 		-1, // VARS_FUNC
-		50, // ID_LIST_PARAMS
+		-1, // ID_LIST_PARAMS
 		-1, // MAS_PARAMS
-		51, // PARAMS
+		-1, // PARAMS
 		-1, // Body
 		-1, // STATEMENT_PROG
 		-1, // STATEMENT
@@ -1287,9 +1423,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -1301,6 +1441,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S28
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -1333,9 +1474,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -1347,6 +1492,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S29
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -1379,9 +1525,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -1393,6 +1543,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S30
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -1425,9 +1576,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -1439,6 +1594,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S31
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -1471,9 +1627,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -1485,6 +1645,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S32
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -1517,9 +1678,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
-		-1, // CONDITION
+		-1, // IF
+		52, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -1531,6 +1696,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S33
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -1563,9 +1729,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
-		-1, // CONDITION
+		-1, // IF
+		54, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -1577,6 +1747,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S34
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -1609,9 +1780,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -1623,52 +1798,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S35
 		-1, // S'
 		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		56, // STATEMENT_PROG
-		35, // STATEMENT
-		36, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		37, // CONDITION
-		-1, // ELSE_BODY
-		38, // CYCLE
-		39, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		40, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S36
-		-1, // S'
-		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -1701,9 +1831,64 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S36
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		56, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -1715,6 +1900,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S37
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -1747,9 +1933,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -1761,6 +1951,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S38
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -1793,9 +1984,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -1807,6 +2002,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S39
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -1839,9 +2035,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -1853,6 +2053,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S40
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -1885,9 +2086,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -1899,6 +2104,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S41
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -1915,9 +2121,9 @@ var gotoTab = gotoTable{
 		-1, // MAS_PARAMS
 		-1, // PARAMS
 		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
+		60, // STATEMENT_PROG
+		26, // STATEMENT
+		27, // ASSIGN
 		-1, // EXPRESION
 		-1, // OP_REL
 		-1, // EXP
@@ -1931,13 +2137,17 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		28, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
+		-1, // ELSE_JUMP
+		29, // CYCLE
+		33, // WHILE_START
+		-1, // WHILE_END
+		30, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
-		-1, // PRINT
+		31, // PRINT
 		-1, // LISTA_PRINT
 		-1, // EXPRESION_PRINT
 		-1, // EXPRESIONES_PRINT
@@ -1945,6 +2155,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S42
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -1977,9 +2188,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -1991,6 +2206,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S43
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -2023,9 +2239,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -2037,6 +2257,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S44
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -2050,7 +2271,7 @@ var gotoTab = gotoTable{
 		-1, // CUERPO_FUNC
 		-1, // VARS_FUNC
 		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
+		64, // MAS_PARAMS
 		-1, // PARAMS
 		-1, // Body
 		-1, // STATEMENT_PROG
@@ -2069,9 +2290,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -2083,6 +2308,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S45
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -2115,9 +2341,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -2129,6 +2359,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S46
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -2161,9 +2392,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -2175,6 +2410,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S47
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -2194,24 +2430,28 @@ var gotoTab = gotoTable{
 		-1, // STATEMENT_PROG
 		-1, // STATEMENT
 		-1, // ASSIGN
-		-1, // EXPRESION
+		67, // EXPRESION
 		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
+		68, // EXP
+		70, // PLUS_OP
+		72, // MINUS_OP
+		69, // TERMINO
 		-1, // MULT_OP
 		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
+		74, // FACTOR
+		75, // FONDO_FALSO
+		76, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
+		77, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
 		-1, // PRINT
 		-1, // LISTA_PRINT
@@ -2221,6 +2461,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S48
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -2237,29 +2478,33 @@ var gotoTab = gotoTable{
 		-1, // MAS_PARAMS
 		-1, // PARAMS
 		-1, // Body
-		62, // STATEMENT_PROG
-		35, // STATEMENT
-		36, // ASSIGN
-		-1, // EXPRESION
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		78, // EXPRESION
 		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
+		79, // EXP
+		70, // PLUS_OP
+		72, // MINUS_OP
+		80, // TERMINO
 		-1, // MULT_OP
 		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
+		81, // FACTOR
+		82, // FONDO_FALSO
+		83, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
-		37, // CONDITION
+		-1, // IF
+		-1, // CONDITION
 		-1, // ELSE_BODY
-		38, // CYCLE
-		39, // F_CALL
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
-		40, // PRINT
+		-1, // PRINT
 		-1, // LISTA_PRINT
 		-1, // EXPRESION_PRINT
 		-1, // EXPRESIONES_PRINT
@@ -2267,6 +2512,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S49
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -2299,9 +2545,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -2313,6 +2563,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S50
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -2345,9 +2596,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -2359,6 +2614,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S51
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -2372,28 +2628,32 @@ var gotoTab = gotoTable{
 		-1, // CUERPO_FUNC
 		-1, // VARS_FUNC
 		-1, // ID_LIST_PARAMS
-		66, // MAS_PARAMS
+		-1, // MAS_PARAMS
 		-1, // PARAMS
 		-1, // Body
 		-1, // STATEMENT_PROG
 		-1, // STATEMENT
 		-1, // ASSIGN
-		-1, // EXPRESION
+		84, // EXPRESION
 		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
+		85, // EXP
+		70, // PLUS_OP
+		72, // MINUS_OP
+		86, // TERMINO
 		-1, // MULT_OP
 		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
+		87, // FACTOR
+		88, // FONDO_FALSO
+		89, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -2405,12 +2665,13 @@ var gotoTab = gotoTable{
 	gotoRow{ // S52
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
-		67, // VARIABLES
-		68, // MAS_VARIABLES
-		14, // ID_LIST
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
 		-1, // MAS_IDS
 		-1, // TYPE
 		-1, // FUNCS
@@ -2420,7 +2681,7 @@ var gotoTab = gotoTable{
 		-1, // ID_LIST_PARAMS
 		-1, // MAS_PARAMS
 		-1, // PARAMS
-		-1, // Body
+		90, // Body
 		-1, // STATEMENT_PROG
 		-1, // STATEMENT
 		-1, // ASSIGN
@@ -2437,9 +2698,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -2451,6 +2716,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S53
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -2470,24 +2736,28 @@ var gotoTab = gotoTable{
 		-1, // STATEMENT_PROG
 		-1, // STATEMENT
 		-1, // ASSIGN
-		70, // EXPRESION
+		92, // EXPRESION
 		-1, // OP_REL
-		71, // EXP
-		73, // PLUS_OP
-		75, // MINUS_OP
-		72, // TERMINO
+		85, // EXP
+		70, // PLUS_OP
+		72, // MINUS_OP
+		86, // TERMINO
 		-1, // MULT_OP
 		-1, // DIV_OP
-		77, // FACTOR
-		78, // FONDO_FALSO
-		79, // FACTOR_OPERADOR
+		87, // FACTOR
+		88, // FONDO_FALSO
+		89, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
-		80, // EXPRESION_STATEMENT
+		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
 		-1, // PRINT
 		-1, // LISTA_PRINT
@@ -2497,6 +2767,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S54
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -2516,22 +2787,26 @@ var gotoTab = gotoTable{
 		-1, // STATEMENT_PROG
 		-1, // STATEMENT
 		-1, // ASSIGN
-		81, // EXPRESION
+		-1, // EXPRESION
 		-1, // OP_REL
-		82, // EXP
-		73, // PLUS_OP
-		75, // MINUS_OP
-		83, // TERMINO
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
 		-1, // MULT_OP
 		-1, // DIV_OP
-		84, // FACTOR
-		85, // FONDO_FALSO
-		86, // FACTOR_OPERADOR
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -2543,190 +2818,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S55
 		-1, // S'
 		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S56
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S57
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		87, // EXPRESION
-		-1, // OP_REL
-		88, // EXP
-		73, // PLUS_OP
-		75, // MINUS_OP
-		89, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		90, // FACTOR
-		91, // FONDO_FALSO
-		92, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S58
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		93, // EXPRESION
-		-1, // OP_REL
-		88, // EXP
-		73, // PLUS_OP
-		75, // MINUS_OP
-		89, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		90, // FACTOR
-		91, // FONDO_FALSO
-		92, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S59
-		-1, // S'
-		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -2748,20 +2840,24 @@ var gotoTab = gotoTable{
 		-1, // ASSIGN
 		94, // EXPRESION
 		-1, // OP_REL
-		71, // EXP
-		73, // PLUS_OP
-		75, // MINUS_OP
-		72, // TERMINO
+		68, // EXP
+		70, // PLUS_OP
+		72, // MINUS_OP
+		69, // TERMINO
 		-1, // MULT_OP
 		-1, // DIV_OP
-		77, // FACTOR
-		78, // FONDO_FALSO
-		79, // FACTOR_OPERADOR
+		74, // FACTOR
+		75, // FONDO_FALSO
+		76, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -2770,9 +2866,10 @@ var gotoTab = gotoTable{
 		96, // EXPRESION_PRINT
 		-1, // EXPRESIONES_PRINT
 	},
-	gotoRow{ // S60
+	gotoRow{ // S56
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -2780,7 +2877,7 @@ var gotoTab = gotoTable{
 		-1, // MAS_VARIABLES
 		-1, // ID_LIST
 		-1, // MAS_IDS
-		98, // TYPE
+		-1, // TYPE
 		-1, // FUNCS
 		-1, // FUNC_PRIMERA_PARTE
 		-1, // CUERPO_FUNC
@@ -2805,9 +2902,217 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S57
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		98, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S58
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		99, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S59
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S60
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -2817,54 +3122,60 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S61
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		104, // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		-1,  // PLUS_OP
+		-1,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S62
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -2897,9 +3208,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -2911,6 +3226,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S63
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -2918,14 +3234,14 @@ var gotoTab = gotoTable{
 		-1,  // MAS_VARIABLES
 		-1,  // ID_LIST
 		-1,  // MAS_IDS
-		101, // TYPE
+		-1,  // TYPE
 		-1,  // FUNCS
 		-1,  // FUNC_PRIMERA_PARTE
 		-1,  // CUERPO_FUNC
 		-1,  // VARS_FUNC
 		-1,  // ID_LIST_PARAMS
 		-1,  // MAS_PARAMS
-		-1,  // PARAMS
+		107, // PARAMS
 		-1,  // Body
 		-1,  // STATEMENT_PROG
 		-1,  // STATEMENT
@@ -2943,9 +3259,13 @@ var gotoTab = gotoTable{
 		-1,  // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -2957,6 +3277,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S64
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -2989,9 +3310,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -3003,6 +3328,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S65
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -3010,14 +3336,14 @@ var gotoTab = gotoTable{
 		-1,  // MAS_VARIABLES
 		-1,  // ID_LIST
 		-1,  // MAS_IDS
-		-1,  // TYPE
+		108, // TYPE
 		-1,  // FUNCS
 		-1,  // FUNC_PRIMERA_PARTE
 		-1,  // CUERPO_FUNC
 		-1,  // VARS_FUNC
 		-1,  // ID_LIST_PARAMS
 		-1,  // MAS_PARAMS
-		104, // PARAMS
+		-1,  // PARAMS
 		-1,  // Body
 		-1,  // STATEMENT_PROG
 		-1,  // STATEMENT
@@ -3035,9 +3361,13 @@ var gotoTab = gotoTable{
 		-1,  // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -3049,6 +3379,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S66
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -3081,9 +3412,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -3093,100 +3428,162 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S67
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		-1,  // PLUS_OP
+		-1,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		110, // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S68
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		111, // OP_REL
+		-1,  // EXP
+		-1,  // PLUS_OP
+		-1,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S69
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		115, // PLUS_OP
+		117, // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S70
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -3219,9 +3616,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -3230,147 +3631,112 @@ var gotoTab = gotoTable{
 		-1, // EXPRESION_PRINT
 		-1, // EXPRESIONES_PRINT
 	},
-	gotoRow{ // S70
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		-1,  // PLUS_OP
-		-1,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		-1,  // FACTOR
-		-1,  // FONDO_FALSO
-		-1,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		106, // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
 	gotoRow{ // S71
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		107, // OP_REL
-		-1,  // EXP
-		-1,  // PLUS_OP
-		-1,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		-1,  // FACTOR
-		-1,  // FONDO_FALSO
-		-1,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S72
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		111, // PLUS_OP
-		113, // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		-1,  // FACTOR
-		-1,  // FONDO_FALSO
-		-1,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S73
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -3403,9 +3769,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -3415,146 +3785,9 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S74
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S75
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S76
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S77
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -3580,16 +3813,20 @@ var gotoTab = gotoTable{
 		-1,  // PLUS_OP
 		-1,  // MINUS_OP
 		-1,  // TERMINO
-		115, // MULT_OP
-		117, // DIV_OP
+		119, // MULT_OP
+		121, // DIV_OP
 		-1,  // FACTOR
 		-1,  // FONDO_FALSO
 		-1,  // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -3598,9 +3835,10 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESION_PRINT
 		-1,  // EXPRESIONES_PRINT
 	},
-	gotoRow{ // S78
+	gotoRow{ // S75
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -3620,22 +3858,26 @@ var gotoTab = gotoTable{
 		-1,  // STATEMENT_PROG
 		-1,  // STATEMENT
 		-1,  // ASSIGN
-		119, // EXPRESION
+		123, // EXPRESION
 		-1,  // OP_REL
-		88,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		89,  // TERMINO
+		85,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		86,  // TERMINO
 		-1,  // MULT_OP
 		-1,  // DIV_OP
-		90,  // FACTOR
-		91,  // FONDO_FALSO
-		92,  // FACTOR_OPERADOR
+		87,  // FACTOR
+		88,  // FONDO_FALSO
+		89,  // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -3643,10 +3885,164 @@ var gotoTab = gotoTable{
 		-1,  // LISTA_PRINT
 		-1,  // EXPRESION_PRINT
 		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S76
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		-1,  // PLUS_OP
+		-1,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
+		125, // ID_CTE
+		126, // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S77
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S78
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S79
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -3667,7 +4063,7 @@ var gotoTab = gotoTable{
 		-1,  // STATEMENT
 		-1,  // ASSIGN
 		-1,  // EXPRESION
-		-1,  // OP_REL
+		131, // OP_REL
 		-1,  // EXP
 		-1,  // PLUS_OP
 		-1,  // MINUS_OP
@@ -3677,11 +4073,15 @@ var gotoTab = gotoTable{
 		-1,  // FACTOR
 		-1,  // FONDO_FALSO
 		-1,  // FACTOR_OPERADOR
-		121, // ID_CTE
-		122, // CTE
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -3691,100 +4091,9 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S80
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S81
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S82
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -3805,10 +4114,10 @@ var gotoTab = gotoTable{
 		-1,  // STATEMENT
 		-1,  // ASSIGN
 		-1,  // EXPRESION
-		127, // OP_REL
+		-1,  // OP_REL
 		-1,  // EXP
-		-1,  // PLUS_OP
-		-1,  // MINUS_OP
+		132, // PLUS_OP
+		133, // MINUS_OP
 		-1,  // TERMINO
 		-1,  // MULT_OP
 		-1,  // DIV_OP
@@ -3817,9 +4126,115 @@ var gotoTab = gotoTable{
 		-1,  // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S81
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		-1,  // PLUS_OP
+		-1,  // MINUS_OP
+		-1,  // TERMINO
+		134, // MULT_OP
+		135, // DIV_OP
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S82
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		136, // EXPRESION
+		-1,  // OP_REL
+		85,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		86,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		87,  // FACTOR
+		88,  // FONDO_FALSO
+		89,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -3831,52 +4246,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S83
 		-1,  // S'
 		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		128, // PLUS_OP
-		129, // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		-1,  // FACTOR
-		-1,  // FONDO_FALSO
-		-1,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S84
-		-1,  // S'
-		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -3902,16 +4272,20 @@ var gotoTab = gotoTable{
 		-1,  // PLUS_OP
 		-1,  // MINUS_OP
 		-1,  // TERMINO
-		130, // MULT_OP
-		131, // DIV_OP
+		-1,  // MULT_OP
+		-1,  // DIV_OP
 		-1,  // FACTOR
 		-1,  // FONDO_FALSO
 		-1,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
+		138, // ID_CTE
+		139, // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -3920,9 +4294,61 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESION_PRINT
 		-1,  // EXPRESIONES_PRINT
 	},
+	gotoRow{ // S84
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
 	gotoRow{ // S85
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -3942,22 +4368,26 @@ var gotoTab = gotoTable{
 		-1,  // STATEMENT_PROG
 		-1,  // STATEMENT
 		-1,  // ASSIGN
-		132, // EXPRESION
-		-1,  // OP_REL
-		88,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		89,  // TERMINO
+		-1,  // EXPRESION
+		143, // OP_REL
+		-1,  // EXP
+		-1,  // PLUS_OP
+		-1,  // MINUS_OP
+		-1,  // TERMINO
 		-1,  // MULT_OP
 		-1,  // DIV_OP
-		90,  // FACTOR
-		91,  // FONDO_FALSO
-		92,  // FACTOR_OPERADOR
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -3969,6 +4399,58 @@ var gotoTab = gotoTable{
 	gotoRow{ // S86
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		144, // PLUS_OP
+		145, // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S87
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -3994,16 +4476,20 @@ var gotoTab = gotoTable{
 		-1,  // PLUS_OP
 		-1,  // MINUS_OP
 		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
+		146, // MULT_OP
+		147, // DIV_OP
 		-1,  // FACTOR
 		-1,  // FONDO_FALSO
 		-1,  // FACTOR_OPERADOR
-		134, // ID_CTE
-		135, // CTE
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -4012,55 +4498,10 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESION_PRINT
 		-1,  // EXPRESIONES_PRINT
 	},
-	gotoRow{ // S87
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
 	gotoRow{ // S88
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -4080,22 +4521,26 @@ var gotoTab = gotoTable{
 		-1,  // STATEMENT_PROG
 		-1,  // STATEMENT
 		-1,  // ASSIGN
-		-1,  // EXPRESION
-		139, // OP_REL
-		-1,  // EXP
-		-1,  // PLUS_OP
-		-1,  // MINUS_OP
-		-1,  // TERMINO
+		148, // EXPRESION
+		-1,  // OP_REL
+		85,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		86,  // TERMINO
 		-1,  // MULT_OP
 		-1,  // DIV_OP
-		-1,  // FACTOR
-		-1,  // FONDO_FALSO
-		-1,  // FACTOR_OPERADOR
+		87,  // FACTOR
+		88,  // FONDO_FALSO
+		89,  // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -4107,6 +4552,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S89
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -4129,19 +4575,23 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESION
 		-1,  // OP_REL
 		-1,  // EXP
-		140, // PLUS_OP
-		141, // MINUS_OP
+		-1,  // PLUS_OP
+		-1,  // MINUS_OP
 		-1,  // TERMINO
 		-1,  // MULT_OP
 		-1,  // DIV_OP
 		-1,  // FACTOR
 		-1,  // FONDO_FALSO
 		-1,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
+		150, // ID_CTE
+		151, // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -4153,6 +4603,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S90
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -4178,16 +4629,20 @@ var gotoTab = gotoTable{
 		-1,  // PLUS_OP
 		-1,  // MINUS_OP
 		-1,  // TERMINO
-		142, // MULT_OP
-		143, // DIV_OP
+		-1,  // MULT_OP
+		-1,  // DIV_OP
 		-1,  // FACTOR
 		-1,  // FONDO_FALSO
 		-1,  // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
-		-1,  // ELSE_BODY
+		154, // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -4199,6 +4654,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S91
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -4215,36 +4671,92 @@ var gotoTab = gotoTable{
 		-1,  // MAS_PARAMS
 		-1,  // PARAMS
 		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		144, // EXPRESION
+		156, // STATEMENT_PROG
+		26,  // STATEMENT
+		27,  // ASSIGN
+		-1,  // EXPRESION
 		-1,  // OP_REL
-		88,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		89,  // TERMINO
+		-1,  // EXP
+		-1,  // PLUS_OP
+		-1,  // MINUS_OP
+		-1,  // TERMINO
 		-1,  // MULT_OP
 		-1,  // DIV_OP
-		90,  // FACTOR
-		91,  // FONDO_FALSO
-		92,  // FACTOR_OPERADOR
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		28,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
+		-1,  // ELSE_JUMP
+		29,  // CYCLE
+		33,  // WHILE_START
+		-1,  // WHILE_END
+		30,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
+		31,  // PRINT
 		-1,  // LISTA_PRINT
 		-1,  // EXPRESION_PRINT
 		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S92
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S93
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -4275,11 +4787,15 @@ var gotoTab = gotoTable{
 		-1,  // FACTOR
 		-1,  // FONDO_FALSO
 		-1,  // FACTOR_OPERADOR
-		146, // ID_CTE
-		147, // CTE
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		158, // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -4288,55 +4804,10 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESION_PRINT
 		-1,  // EXPRESIONES_PRINT
 	},
-	gotoRow{ // S93
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
 	gotoRow{ // S94
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -4369,9 +4840,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -4383,6 +4858,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S95
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -4415,9 +4891,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -4429,6 +4909,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S96
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -4461,20 +4942,25 @@ var gotoTab = gotoTable{
 		-1,  // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
 		-1,  // PRINT
 		-1,  // LISTA_PRINT
 		-1,  // EXPRESION_PRINT
-		153, // EXPRESIONES_PRINT
+		161, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S97
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -4507,9 +4993,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -4521,6 +5011,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S98
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -4553,9 +5044,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -4567,6 +5062,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S99
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -4599,9 +5095,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -4613,6 +5113,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S100
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -4645,9 +5146,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -4659,6 +5164,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S101
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -4691,9 +5197,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -4705,6 +5215,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S102
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -4737,9 +5248,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -4751,6 +5266,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S103
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -4783,9 +5299,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -4795,100 +5315,9 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S104
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		155, // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		-1,  // PLUS_OP
-		-1,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		-1,  // FACTOR
-		-1,  // FONDO_FALSO
-		-1,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S105
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		156, // EXPRESION
-		-1,  // OP_REL
-		71,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		72,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		77,  // FACTOR
-		78,  // FONDO_FALSO
-		79,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S106
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -4921,9 +5350,115 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S105
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S106
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -4935,6 +5470,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S107
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -4948,1435 +5484,9 @@ var gotoTab = gotoTable{
 		-1,  // CUERPO_FUNC
 		-1,  // VARS_FUNC
 		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
+		163, // MAS_PARAMS
 		-1,  // PARAMS
 		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		157, // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		158, // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		159, // FACTOR
-		160, // FONDO_FALSO
-		161, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S108
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S109
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S110
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S111
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		162, // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		163, // FACTOR
-		164, // FONDO_FALSO
-		165, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S112
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S113
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		166, // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		163, // FACTOR
-		164, // FONDO_FALSO
-		165, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S114
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S115
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		167, // FACTOR
-		168, // FONDO_FALSO
-		169, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S116
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S117
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		170, // FACTOR
-		168, // FONDO_FALSO
-		169, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S118
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S119
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S120
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S121
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S122
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S123
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S124
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S125
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S126
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S127
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		173, // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		174, // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		175, // FACTOR
-		176, // FONDO_FALSO
-		177, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S128
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		178, // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		179, // FACTOR
-		180, // FONDO_FALSO
-		181, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S129
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		182, // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		179, // FACTOR
-		180, // FONDO_FALSO
-		181, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S130
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		183, // FACTOR
-		184, // FONDO_FALSO
-		185, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S131
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		186, // FACTOR
-		184, // FONDO_FALSO
-		185, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S132
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S133
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S134
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S135
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S136
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S137
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S138
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		188, // Body
 		-1,  // STATEMENT_PROG
 		-1,  // STATEMENT
 		-1,  // ASSIGN
@@ -6393,9 +5503,13 @@ var gotoTab = gotoTable{
 		-1,  // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -6404,9 +5518,163 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESION_PRINT
 		-1,  // EXPRESIONES_PRINT
 	},
-	gotoRow{ // S139
+	gotoRow{ // S108
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S109
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		165, // EXPRESION
+		-1,  // OP_REL
+		68,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		69,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		74,  // FACTOR
+		75,  // FONDO_FALSO
+		76,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S110
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S111
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -6428,10 +5696,1183 @@ var gotoTab = gotoTable{
 		-1,  // ASSIGN
 		-1,  // EXPRESION
 		-1,  // OP_REL
-		190, // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
+		166, // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		167, // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		168, // FACTOR
+		169, // FONDO_FALSO
+		170, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S112
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S113
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S114
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S115
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		171, // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		172, // FACTOR
+		173, // FONDO_FALSO
+		174, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S116
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S117
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		175, // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		172, // FACTOR
+		173, // FONDO_FALSO
+		174, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S118
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S119
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		176, // FACTOR
+		177, // FONDO_FALSO
+		178, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S120
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S121
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		179, // FACTOR
+		177, // FONDO_FALSO
+		178, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S122
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S123
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S124
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S125
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S126
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S127
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S128
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S129
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S130
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S131
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		182, // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		183, // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		184, // FACTOR
+		185, // FONDO_FALSO
+		186, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S132
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		187, // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		188, // FACTOR
+		189, // FONDO_FALSO
+		190, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S133
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
 		191, // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		188, // FACTOR
+		189, // FONDO_FALSO
+		190, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S134
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		-1,  // TERMINO
 		-1,  // MULT_OP
 		-1,  // DIV_OP
 		192, // FACTOR
@@ -6439,9 +6880,13 @@ var gotoTab = gotoTable{
 		194, // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -6450,9 +6895,10 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESION_PRINT
 		-1,  // EXPRESIONES_PRINT
 	},
-	gotoRow{ // S140
+	gotoRow{ // S135
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -6475,111 +6921,23 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESION
 		-1,  // OP_REL
 		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		195, // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		196, // FACTOR
-		197, // FONDO_FALSO
-		198, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S141
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		199, // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		196, // FACTOR
-		197, // FONDO_FALSO
-		198, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S142
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
 		-1,  // TERMINO
 		-1,  // MULT_OP
 		-1,  // DIV_OP
-		200, // FACTOR
-		201, // FONDO_FALSO
-		202, // FACTOR_OPERADOR
+		195, // FACTOR
+		193, // FONDO_FALSO
+		194, // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -6587,10 +6945,368 @@ var gotoTab = gotoTable{
 		-1,  // LISTA_PRINT
 		-1,  // EXPRESION_PRINT
 		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S136
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S137
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S138
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S139
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S140
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S141
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S142
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S143
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -6612,20 +7328,24 @@ var gotoTab = gotoTable{
 		-1,  // ASSIGN
 		-1,  // EXPRESION
 		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		-1,  // TERMINO
+		197, // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		198, // TERMINO
 		-1,  // MULT_OP
 		-1,  // DIV_OP
-		203, // FACTOR
-		201, // FONDO_FALSO
-		202, // FACTOR_OPERADOR
+		199, // FACTOR
+		200, // FONDO_FALSO
+		201, // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -6635,192 +7355,213 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S144
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		202, // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		203, // FACTOR
+		204, // FONDO_FALSO
+		205, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S145
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		206, // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		203, // FACTOR
+		204, // FONDO_FALSO
+		205, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S146
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		207, // FACTOR
+		208, // FONDO_FALSO
+		209, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S147
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		210, // FACTOR
+		208, // FONDO_FALSO
+		209, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S148
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -6853,9 +7594,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -6867,6 +7612,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S149
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -6899,9 +7645,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -6913,6 +7663,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S150
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -6945,9 +7696,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -6959,6 +7714,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S151
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -6991,9 +7747,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -7003,8 +7763,417 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S152
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S153
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S154
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S155
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		-1,  // PLUS_OP
+		-1,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		213, // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S156
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S157
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S158
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		215, // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		-1,  // PLUS_OP
+		-1,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S159
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S160
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -7026,445 +8195,36 @@ var gotoTab = gotoTable{
 		-1,  // ASSIGN
 		94,  // EXPRESION
 		-1,  // OP_REL
-		71,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		72,  // TERMINO
+		68,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		69,  // TERMINO
 		-1,  // MULT_OP
 		-1,  // DIV_OP
-		77,  // FACTOR
-		78,  // FONDO_FALSO
-		79,  // FACTOR_OPERADOR
+		74,  // FACTOR
+		75,  // FONDO_FALSO
+		76,  // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
 		-1,  // PRINT
 		-1,  // LISTA_PRINT
-		207, // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S153
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S154
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		208, // VARIABLES
-		209, // MAS_VARIABLES
-		45,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		-1,  // PLUS_OP
-		-1,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		-1,  // FACTOR
-		-1,  // FONDO_FALSO
-		-1,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S155
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S156
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		-1,  // PLUS_OP
-		-1,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		-1,  // FACTOR
-		-1,  // FONDO_FALSO
-		-1,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		210, // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S157
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S158
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		211, // PLUS_OP
-		212, // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		-1,  // FACTOR
-		-1,  // FONDO_FALSO
-		-1,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S159
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		-1,  // PLUS_OP
-		-1,  // MINUS_OP
-		-1,  // TERMINO
-		213, // MULT_OP
-		214, // DIV_OP
-		-1,  // FACTOR
-		-1,  // FONDO_FALSO
-		-1,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S160
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		215, // EXPRESION
-		-1,  // OP_REL
-		88,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		89,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		90,  // FACTOR
-		91,  // FONDO_FALSO
-		92,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
+		218, // EXPRESION_PRINT
 		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S161
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		-1,  // PLUS_OP
-		-1,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		-1,  // FACTOR
-		-1,  // FONDO_FALSO
-		-1,  // FACTOR_OPERADOR
-		217, // ID_CTE
-		218, // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S162
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -7497,9 +8257,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -7508,15 +8272,16 @@ var gotoTab = gotoTable{
 		-1, // EXPRESION_PRINT
 		-1, // EXPRESIONES_PRINT
 	},
-	gotoRow{ // S163
+	gotoRow{ // S162
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
+		219, // VARIABLES
+		220, // MAS_VARIABLES
+		38,  // ID_LIST
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
@@ -7536,16 +8301,20 @@ var gotoTab = gotoTable{
 		-1,  // PLUS_OP
 		-1,  // MINUS_OP
 		-1,  // TERMINO
-		221, // MULT_OP
-		222, // DIV_OP
+		-1,  // MULT_OP
+		-1,  // DIV_OP
 		-1,  // FACTOR
 		-1,  // FONDO_FALSO
 		-1,  // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -7553,16 +8322,68 @@ var gotoTab = gotoTable{
 		-1,  // LISTA_PRINT
 		-1,  // EXPRESION_PRINT
 		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S163
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S164
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
+		221, // VARIABLES
+		222, // MAS_VARIABLES
+		46,  // ID_LIST
 		-1,  // MAS_IDS
 		-1,  // TYPE
 		-1,  // FUNCS
@@ -7576,22 +8397,26 @@ var gotoTab = gotoTable{
 		-1,  // STATEMENT_PROG
 		-1,  // STATEMENT
 		-1,  // ASSIGN
-		223, // EXPRESION
+		-1,  // EXPRESION
 		-1,  // OP_REL
-		88,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		89,  // TERMINO
+		-1,  // EXP
+		-1,  // PLUS_OP
+		-1,  // MINUS_OP
+		-1,  // TERMINO
 		-1,  // MULT_OP
 		-1,  // DIV_OP
-		90,  // FACTOR
-		91,  // FONDO_FALSO
-		92,  // FACTOR_OPERADOR
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -7603,6 +8428,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S165
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -7633,14 +8459,18 @@ var gotoTab = gotoTable{
 		-1,  // FACTOR
 		-1,  // FONDO_FALSO
 		-1,  // FACTOR_OPERADOR
-		225, // ID_CTE
-		226, // CTE
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
+		223, // MAS_EXPRESIONES
 		-1,  // PRINT
 		-1,  // LISTA_PRINT
 		-1,  // EXPRESION_PRINT
@@ -7649,6 +8479,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S166
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -7681,9 +8512,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -7693,54 +8528,9 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S167
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S168
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -7760,22 +8550,77 @@ var gotoTab = gotoTable{
 		-1,  // STATEMENT_PROG
 		-1,  // STATEMENT
 		-1,  // ASSIGN
-		229, // EXPRESION
+		-1,  // EXPRESION
 		-1,  // OP_REL
-		88,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		89,  // TERMINO
+		-1,  // EXP
+		224, // PLUS_OP
+		225, // MINUS_OP
+		-1,  // TERMINO
 		-1,  // MULT_OP
 		-1,  // DIV_OP
-		90,  // FACTOR
-		91,  // FONDO_FALSO
-		92,  // FACTOR_OPERADOR
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S168
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		-1,  // PLUS_OP
+		-1,  // MINUS_OP
+		-1,  // TERMINO
+		226, // MULT_OP
+		227, // DIV_OP
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -7787,6 +8632,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S169
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -7806,22 +8652,26 @@ var gotoTab = gotoTable{
 		-1,  // STATEMENT_PROG
 		-1,  // STATEMENT
 		-1,  // ASSIGN
-		-1,  // EXPRESION
+		228, // EXPRESION
 		-1,  // OP_REL
-		-1,  // EXP
-		-1,  // PLUS_OP
-		-1,  // MINUS_OP
-		-1,  // TERMINO
+		85,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		86,  // TERMINO
 		-1,  // MULT_OP
 		-1,  // DIV_OP
-		-1,  // FACTOR
-		-1,  // FONDO_FALSO
-		-1,  // FACTOR_OPERADOR
-		231, // ID_CTE
-		232, // CTE
+		87,  // FACTOR
+		88,  // FONDO_FALSO
+		89,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -7831,54 +8681,60 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S170
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		-1,  // PLUS_OP
+		-1,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
+		230, // ID_CTE
+		231, // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S171
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -7911,9 +8767,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -7923,100 +8783,9 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S172
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S173
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S174
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -8039,19 +8808,125 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESION
 		-1,  // OP_REL
 		-1,  // EXP
-		235, // PLUS_OP
-		236, // MINUS_OP
+		-1,  // PLUS_OP
+		-1,  // MINUS_OP
+		-1,  // TERMINO
+		234, // MULT_OP
+		235, // DIV_OP
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S173
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		236, // EXPRESION
+		-1,  // OP_REL
+		85,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		86,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		87,  // FACTOR
+		88,  // FONDO_FALSO
+		89,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S174
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		-1,  // PLUS_OP
+		-1,  // MINUS_OP
 		-1,  // TERMINO
 		-1,  // MULT_OP
 		-1,  // DIV_OP
 		-1,  // FACTOR
 		-1,  // FONDO_FALSO
 		-1,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
+		238, // ID_CTE
+		239, // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -8061,100 +8936,111 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S175
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		-1,  // PLUS_OP
-		-1,  // MINUS_OP
-		-1,  // TERMINO
-		237, // MULT_OP
-		238, // DIV_OP
-		-1,  // FACTOR
-		-1,  // FONDO_FALSO
-		-1,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S176
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		239, // EXPRESION
-		-1,  // OP_REL
-		88,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		89,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		90,  // FACTOR
-		91,  // FONDO_FALSO
-		92,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S177
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -8174,22 +9060,26 @@ var gotoTab = gotoTable{
 		-1,  // STATEMENT_PROG
 		-1,  // STATEMENT
 		-1,  // ASSIGN
-		-1,  // EXPRESION
+		242, // EXPRESION
 		-1,  // OP_REL
-		-1,  // EXP
-		-1,  // PLUS_OP
-		-1,  // MINUS_OP
-		-1,  // TERMINO
+		85,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		86,  // TERMINO
 		-1,  // MULT_OP
 		-1,  // DIV_OP
-		-1,  // FACTOR
-		-1,  // FONDO_FALSO
-		-1,  // FACTOR_OPERADOR
-		241, // ID_CTE
-		242, // CTE
+		87,  // FACTOR
+		88,  // FONDO_FALSO
+		89,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -8199,8 +9089,60 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S178
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		-1,  // PLUS_OP
+		-1,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
+		244, // ID_CTE
+		245, // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S179
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -8233,9 +9175,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -8244,147 +9190,10 @@ var gotoTab = gotoTable{
 		-1, // EXPRESION_PRINT
 		-1, // EXPRESIONES_PRINT
 	},
-	gotoRow{ // S179
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		-1,  // PLUS_OP
-		-1,  // MINUS_OP
-		-1,  // TERMINO
-		245, // MULT_OP
-		246, // DIV_OP
-		-1,  // FACTOR
-		-1,  // FONDO_FALSO
-		-1,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
 	gotoRow{ // S180
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		247, // EXPRESION
-		-1,  // OP_REL
-		88,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		89,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		90,  // FACTOR
-		91,  // FONDO_FALSO
-		92,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S181
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		-1,  // PLUS_OP
-		-1,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		-1,  // FACTOR
-		-1,  // FONDO_FALSO
-		-1,  // FACTOR_OPERADOR
-		249, // ID_CTE
-		250, // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S182
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -8417,9 +9226,115 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S181
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S182
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -8429,54 +9344,9 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S183
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S184
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -8496,22 +9366,77 @@ var gotoTab = gotoTable{
 		-1,  // STATEMENT_PROG
 		-1,  // STATEMENT
 		-1,  // ASSIGN
-		253, // EXPRESION
+		-1,  // EXPRESION
 		-1,  // OP_REL
-		88,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		89,  // TERMINO
+		-1,  // EXP
+		248, // PLUS_OP
+		249, // MINUS_OP
+		-1,  // TERMINO
 		-1,  // MULT_OP
 		-1,  // DIV_OP
-		90,  // FACTOR
-		91,  // FONDO_FALSO
-		92,  // FACTOR_OPERADOR
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S184
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		-1,  // PLUS_OP
+		-1,  // MINUS_OP
+		-1,  // TERMINO
+		250, // MULT_OP
+		251, // DIV_OP
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -8523,6 +9448,58 @@ var gotoTab = gotoTable{
 	gotoRow{ // S185
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		252, // EXPRESION
+		-1,  // OP_REL
+		85,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		86,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		87,  // FACTOR
+		88,  // FONDO_FALSO
+		89,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S186
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -8553,11 +9530,15 @@ var gotoTab = gotoTable{
 		-1,  // FACTOR
 		-1,  // FONDO_FALSO
 		-1,  // FACTOR_OPERADOR
-		255, // ID_CTE
-		256, // CTE
+		254, // ID_CTE
+		255, // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -8566,55 +9547,10 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESION_PRINT
 		-1,  // EXPRESIONES_PRINT
 	},
-	gotoRow{ // S186
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
 	gotoRow{ // S187
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -8647,9 +9583,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -8661,6 +9601,109 @@ var gotoTab = gotoTable{
 	gotoRow{ // S188
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		-1,  // PLUS_OP
+		-1,  // MINUS_OP
+		-1,  // TERMINO
+		258, // MULT_OP
+		259, // DIV_OP
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S189
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		260, // EXPRESION
+		-1,  // OP_REL
+		85,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		86,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		87,  // FACTOR
+		88,  // FONDO_FALSO
+		89,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S190
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -8691,11 +9734,15 @@ var gotoTab = gotoTable{
 		-1,  // FACTOR
 		-1,  // FONDO_FALSO
 		-1,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
+		262, // ID_CTE
+		263, // CTE
+		-1,  // IF
 		-1,  // CONDITION
-		259, // ELSE_BODY
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -8704,55 +9751,10 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESION_PRINT
 		-1,  // EXPRESIONES_PRINT
 	},
-	gotoRow{ // S189
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		261, // STATEMENT_PROG
-		35,  // STATEMENT
-		36,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		-1,  // PLUS_OP
-		-1,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		-1,  // FACTOR
-		-1,  // FONDO_FALSO
-		-1,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		37,  // CONDITION
-		-1,  // ELSE_BODY
-		38,  // CYCLE
-		39,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		40,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S190
+	gotoRow{ // S191
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -8785,9 +9787,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -8796,101 +9802,61 @@ var gotoTab = gotoTable{
 		-1, // EXPRESION_PRINT
 		-1, // EXPRESIONES_PRINT
 	},
-	gotoRow{ // S191
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		262, // PLUS_OP
-		263, // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		-1,  // FACTOR
-		-1,  // FONDO_FALSO
-		-1,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
 	gotoRow{ // S192
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		-1,  // PLUS_OP
-		-1,  // MINUS_OP
-		-1,  // TERMINO
-		264, // MULT_OP
-		265, // DIV_OP
-		-1,  // FACTOR
-		-1,  // FONDO_FALSO
-		-1,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S193
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -8912,20 +9878,24 @@ var gotoTab = gotoTable{
 		-1,  // ASSIGN
 		266, // EXPRESION
 		-1,  // OP_REL
-		88,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		89,  // TERMINO
+		85,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		86,  // TERMINO
 		-1,  // MULT_OP
 		-1,  // DIV_OP
-		90,  // FACTOR
-		91,  // FONDO_FALSO
-		92,  // FACTOR_OPERADOR
+		87,  // FACTOR
+		88,  // FONDO_FALSO
+		89,  // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -8937,6 +9907,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S194
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -8969,9 +9940,13 @@ var gotoTab = gotoTable{
 		-1,  // FACTOR_OPERADOR
 		268, // ID_CTE
 		269, // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -8983,6 +9958,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S195
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -9015,9 +9991,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -9027,100 +10007,111 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S196
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		-1,  // PLUS_OP
-		-1,  // MINUS_OP
-		-1,  // TERMINO
-		272, // MULT_OP
-		273, // DIV_OP
-		-1,  // FACTOR
-		-1,  // FONDO_FALSO
-		-1,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S197
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		274, // EXPRESION
-		-1,  // OP_REL
-		88,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		89,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		90,  // FACTOR
-		91,  // FONDO_FALSO
-		92,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S198
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -9143,19 +10134,23 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESION
 		-1,  // OP_REL
 		-1,  // EXP
-		-1,  // PLUS_OP
-		-1,  // MINUS_OP
+		272, // PLUS_OP
+		273, // MINUS_OP
 		-1,  // TERMINO
 		-1,  // MULT_OP
 		-1,  // DIV_OP
 		-1,  // FACTOR
 		-1,  // FONDO_FALSO
 		-1,  // FACTOR_OPERADOR
-		276, // ID_CTE
-		277, // CTE
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -9165,100 +10160,9 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S199
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S200
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S201
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -9278,22 +10182,128 @@ var gotoTab = gotoTable{
 		-1,  // STATEMENT_PROG
 		-1,  // STATEMENT
 		-1,  // ASSIGN
-		280, // EXPRESION
+		-1,  // EXPRESION
 		-1,  // OP_REL
-		88,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		89,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		90,  // FACTOR
-		91,  // FONDO_FALSO
-		92,  // FACTOR_OPERADOR
+		-1,  // EXP
+		-1,  // PLUS_OP
+		-1,  // MINUS_OP
+		-1,  // TERMINO
+		274, // MULT_OP
+		275, // DIV_OP
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S200
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		276, // EXPRESION
+		-1,  // OP_REL
+		85,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		86,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		87,  // FACTOR
+		88,  // FONDO_FALSO
+		89,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S201
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		-1,  // PLUS_OP
+		-1,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
+		278, // ID_CTE
+		279, // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -9303,8 +10313,162 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S202
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S203
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		-1,  // PLUS_OP
+		-1,  // MINUS_OP
+		-1,  // TERMINO
+		282, // MULT_OP
+		283, // DIV_OP
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S204
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		284, // EXPRESION
+		-1,  // OP_REL
+		85,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		86,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		87,  // FACTOR
+		88,  // FONDO_FALSO
+		89,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S205
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -9335,149 +10499,15 @@ var gotoTab = gotoTable{
 		-1,  // FACTOR
 		-1,  // FONDO_FALSO
 		-1,  // FACTOR_OPERADOR
-		282, // ID_CTE
-		283, // CTE
+		286, // ID_CTE
+		287, // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S203
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S204
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S205
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		286, // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		-1,  // PLUS_OP
-		-1,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		-1,  // FACTOR
-		-1,  // FONDO_FALSO
-		-1,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -9489,6 +10519,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S206
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -9521,9 +10552,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -9533,8 +10568,570 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S207
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S208
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		290, // EXPRESION
+		-1,  // OP_REL
+		85,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		86,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		87,  // FACTOR
+		88,  // FONDO_FALSO
+		89,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S209
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		-1,  // PLUS_OP
+		-1,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
+		292, // ID_CTE
+		293, // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S210
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S211
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S212
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S213
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		296, // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		-1,  // PLUS_OP
+		-1,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S214
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S215
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S216
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		298, // STATEMENT_PROG
+		26,  // STATEMENT
+		27,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		-1,  // PLUS_OP
+		-1,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		28,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		29,  // CYCLE
+		33,  // WHILE_START
+		-1,  // WHILE_END
+		30,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		31,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S217
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S218
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -9567,526 +11164,25 @@ var gotoTab = gotoTable{
 		-1,  // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
 		-1,  // PRINT
 		-1,  // LISTA_PRINT
 		-1,  // EXPRESION_PRINT
-		288, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S208
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S209
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S210
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S211
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		289, // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		290, // FACTOR
-		291, // FONDO_FALSO
-		292, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S212
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		293, // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		290, // FACTOR
-		291, // FONDO_FALSO
-		292, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S213
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		294, // FACTOR
-		295, // FONDO_FALSO
-		296, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S214
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		297, // FACTOR
-		295, // FONDO_FALSO
-		296, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S215
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S216
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S217
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S218
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
+		299, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S219
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -10119,9 +11215,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -10133,6 +11233,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S220
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -10165,9 +11266,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -10177,100 +11282,9 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S221
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		299, // FACTOR
-		300, // FONDO_FALSO
-		301, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S222
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		302, // FACTOR
-		300, // FONDO_FALSO
-		301, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S223
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -10303,9 +11317,115 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S222
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S223
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -10315,192 +11435,213 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S224
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		300, // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		301, // FACTOR
+		302, // FONDO_FALSO
+		303, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S225
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		304, // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		301, // FACTOR
+		302, // FONDO_FALSO
+		303, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S226
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		305, // FACTOR
+		306, // FONDO_FALSO
+		307, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S227
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		308, // FACTOR
+		306, // FONDO_FALSO
+		307, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S228
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -10533,9 +11674,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -10547,6 +11692,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S229
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -10579,9 +11725,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -10593,6 +11743,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S230
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -10625,9 +11776,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -10639,6 +11794,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S231
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -10671,9 +11827,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -10685,6 +11845,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S232
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -10717,9 +11878,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -10731,6 +11896,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S233
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -10763,9 +11929,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -10775,54 +11945,9 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S234
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S235
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -10845,19 +11970,74 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESION
 		-1,  // OP_REL
 		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		305, // TERMINO
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		-1,  // TERMINO
 		-1,  // MULT_OP
 		-1,  // DIV_OP
-		306, // FACTOR
-		307, // FONDO_FALSO
-		308, // FACTOR_OPERADOR
+		310, // FACTOR
+		311, // FONDO_FALSO
+		312, // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S235
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		313, // FACTOR
+		311, // FONDO_FALSO
+		312, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -10867,146 +12047,9 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S236
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		309, // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		306, // FACTOR
-		307, // FONDO_FALSO
-		308, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S237
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		310, // FACTOR
-		311, // FONDO_FALSO
-		312, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S238
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		313, // FACTOR
-		311, // FONDO_FALSO
-		312, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S239
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -11039,9 +12082,166 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S237
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S238
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S239
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -11053,6 +12253,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S240
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -11085,9 +12286,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -11099,6 +12304,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S241
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -11131,9 +12337,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -11145,6 +12355,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S242
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -11177,9 +12388,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -11191,6 +12406,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S243
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -11223,9 +12439,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -11237,6 +12457,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S244
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -11269,9 +12490,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -11281,100 +12506,9 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S245
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		315, // FACTOR
-		316, // FONDO_FALSO
-		317, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S246
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		318, // FACTOR
-		316, // FONDO_FALSO
-		317, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S247
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -11407,9 +12541,115 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S246
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S247
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -11419,192 +12659,213 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S248
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		316, // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		317, // FACTOR
+		318, // FONDO_FALSO
+		319, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S249
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		320, // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		317, // FACTOR
+		318, // FONDO_FALSO
+		319, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S250
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		321, // FACTOR
+		322, // FONDO_FALSO
+		323, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S251
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		324, // FACTOR
+		322, // FONDO_FALSO
+		323, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S252
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -11637,9 +12898,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -11651,6 +12916,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S253
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -11683,9 +12949,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -11697,6 +12967,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S254
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -11729,9 +13000,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -11743,6 +13018,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S255
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -11775,9 +13051,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -11789,6 +13069,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S256
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -11821,9 +13102,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -11835,6 +13120,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S257
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -11867,9 +13153,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -11879,100 +13169,9 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S258
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S259
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S260
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -11988,26 +13187,30 @@ var gotoTab = gotoTable{
 		-1,  // ID_LIST_PARAMS
 		-1,  // MAS_PARAMS
 		-1,  // PARAMS
-		322, // Body
+		-1,  // Body
 		-1,  // STATEMENT_PROG
 		-1,  // STATEMENT
 		-1,  // ASSIGN
 		-1,  // EXPRESION
 		-1,  // OP_REL
 		-1,  // EXP
-		-1,  // PLUS_OP
-		-1,  // MINUS_OP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
 		-1,  // TERMINO
 		-1,  // MULT_OP
 		-1,  // DIV_OP
-		-1,  // FACTOR
-		-1,  // FONDO_FALSO
-		-1,  // FACTOR_OPERADOR
+		326, // FACTOR
+		327, // FONDO_FALSO
+		328, // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -12016,9 +13219,61 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESION_PRINT
 		-1,  // EXPRESIONES_PRINT
 	},
-	gotoRow{ // S261
+	gotoRow{ // S259
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		329, // FACTOR
+		327, // FONDO_FALSO
+		328, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S260
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -12051,9 +13306,64 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S261
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -12063,192 +13373,9 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S262
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		324, // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		325, // FACTOR
-		326, // FONDO_FALSO
-		327, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S263
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		328, // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		325, // FACTOR
-		326, // FONDO_FALSO
-		327, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S264
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		329, // FACTOR
-		330, // FONDO_FALSO
-		331, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S265
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		332, // FACTOR
-		330, // FONDO_FALSO
-		331, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S266
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -12281,9 +13408,217 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S263
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S264
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S265
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S266
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -12295,6 +13630,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S267
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -12327,9 +13663,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -12341,6 +13681,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S268
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -12373,9 +13714,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -12387,6 +13732,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S269
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -12419,9 +13765,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -12433,6 +13783,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S270
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -12465,9 +13816,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -12479,6 +13834,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S271
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -12511,9 +13867,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -12525,6 +13885,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S272
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -12547,19 +13908,23 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESION
 		-1,  // OP_REL
 		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		-1,  // TERMINO
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		332, // TERMINO
 		-1,  // MULT_OP
 		-1,  // DIV_OP
-		334, // FACTOR
-		335, // FONDO_FALSO
-		336, // FACTOR_OPERADOR
+		333, // FACTOR
+		334, // FONDO_FALSO
+		335, // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -12571,6 +13936,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S273
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -12593,19 +13959,23 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESION
 		-1,  // OP_REL
 		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		-1,  // TERMINO
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		336, // TERMINO
 		-1,  // MULT_OP
 		-1,  // DIV_OP
-		337, // FACTOR
-		335, // FONDO_FALSO
-		336, // FACTOR_OPERADOR
+		333, // FACTOR
+		334, // FONDO_FALSO
+		335, // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -12615,100 +13985,111 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S274
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		337, // FACTOR
+		338, // FONDO_FALSO
+		339, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S275
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		340, // FACTOR
+		338, // FONDO_FALSO
+		339, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S276
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -12741,9 +14122,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -12755,6 +14140,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S277
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -12787,9 +14173,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -12801,6 +14191,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S278
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -12833,9 +14224,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -12847,6 +14242,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S279
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -12879,9 +14275,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -12893,6 +14293,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S280
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -12925,9 +14326,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -12939,6 +14344,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S281
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -12971,9 +14377,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -12983,100 +14393,111 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S282
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		342, // FACTOR
+		343, // FONDO_FALSO
+		344, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S283
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		345, // FACTOR
+		343, // FONDO_FALSO
+		344, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S284
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -13109,9 +14530,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -13123,6 +14548,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S285
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -13155,9 +14581,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -13169,6 +14599,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S286
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -13201,9 +14632,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -13213,54 +14648,9 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S287
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		341, // STATEMENT_PROG
-		35,  // STATEMENT
-		36,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		-1,  // PLUS_OP
-		-1,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		-1,  // FACTOR
-		-1,  // FONDO_FALSO
-		-1,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		37,  // CONDITION
-		-1,  // ELSE_BODY
-		38,  // CYCLE
-		39,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		40,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S288
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -13293,9 +14683,64 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S288
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -13307,6 +14752,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S289
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -13339,9 +14785,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -13351,146 +14801,9 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S290
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		-1,  // PLUS_OP
-		-1,  // MINUS_OP
-		-1,  // TERMINO
-		342, // MULT_OP
-		343, // DIV_OP
-		-1,  // FACTOR
-		-1,  // FONDO_FALSO
-		-1,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S291
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		344, // EXPRESION
-		-1,  // OP_REL
-		88,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		89,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		90,  // FACTOR
-		91,  // FONDO_FALSO
-		92,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S292
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		-1,  // PLUS_OP
-		-1,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		-1,  // FACTOR
-		-1,  // FONDO_FALSO
-		-1,  // FACTOR_OPERADOR
-		346, // ID_CTE
-		347, // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S293
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -13523,9 +14836,166 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S291
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S292
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S293
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -13537,6 +15007,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S294
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -13569,9 +15040,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -13581,100 +15056,9 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S295
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		350, // EXPRESION
-		-1,  // OP_REL
-		88,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		89,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		90,  // FACTOR
-		91,  // FONDO_FALSO
-		92,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S296
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		-1,  // PLUS_OP
-		-1,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		-1,  // FACTOR
-		-1,  // FONDO_FALSO
-		-1,  // FACTOR_OPERADOR
-		352, // ID_CTE
-		353, // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S297
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -13707,9 +15091,115 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S296
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S297
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -13721,6 +15211,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S298
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -13753,9 +15244,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -13767,6 +15262,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S299
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -13799,9 +15295,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -13811,8 +15311,60 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S300
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S301
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -13832,22 +15384,26 @@ var gotoTab = gotoTable{
 		-1,  // STATEMENT_PROG
 		-1,  // STATEMENT
 		-1,  // ASSIGN
-		356, // EXPRESION
+		-1,  // EXPRESION
 		-1,  // OP_REL
-		88,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		89,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		90,  // FACTOR
-		91,  // FONDO_FALSO
-		92,  // FACTOR_OPERADOR
+		-1,  // EXP
+		-1,  // PLUS_OP
+		-1,  // MINUS_OP
+		-1,  // TERMINO
+		349, // MULT_OP
+		350, // DIV_OP
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -13856,9 +15412,61 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESION_PRINT
 		-1,  // EXPRESIONES_PRINT
 	},
-	gotoRow{ // S301
+	gotoRow{ // S302
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		351, // EXPRESION
+		-1,  // OP_REL
+		85,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		86,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		87,  // FACTOR
+		88,  // FONDO_FALSO
+		89,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S303
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -13889,11 +15497,15 @@ var gotoTab = gotoTable{
 		-1,  // FACTOR
 		-1,  // FONDO_FALSO
 		-1,  // FACTOR_OPERADOR
-		358, // ID_CTE
-		359, // CTE
+		353, // ID_CTE
+		354, // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -13902,101 +15514,10 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESION_PRINT
 		-1,  // EXPRESIONES_PRINT
 	},
-	gotoRow{ // S302
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S303
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
 	gotoRow{ // S304
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -14029,9 +15550,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -14043,6 +15568,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S305
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -14075,9 +15601,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -14089,6 +15619,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S306
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -14108,22 +15639,26 @@ var gotoTab = gotoTable{
 		-1,  // STATEMENT_PROG
 		-1,  // STATEMENT
 		-1,  // ASSIGN
-		-1,  // EXPRESION
+		357, // EXPRESION
 		-1,  // OP_REL
-		-1,  // EXP
-		-1,  // PLUS_OP
-		-1,  // MINUS_OP
-		-1,  // TERMINO
-		362, // MULT_OP
-		363, // DIV_OP
-		-1,  // FACTOR
-		-1,  // FONDO_FALSO
-		-1,  // FACTOR_OPERADOR
+		85,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		86,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		87,  // FACTOR
+		88,  // FONDO_FALSO
+		89,  // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -14135,52 +15670,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S307
 		-1,  // S'
 		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		364, // EXPRESION
-		-1,  // OP_REL
-		88,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		89,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		90,  // FACTOR
-		91,  // FONDO_FALSO
-		92,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S308
-		-1,  // S'
-		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -14211,11 +15701,15 @@ var gotoTab = gotoTable{
 		-1,  // FACTOR
 		-1,  // FONDO_FALSO
 		-1,  // FACTOR_OPERADOR
-		366, // ID_CTE
-		367, // CTE
+		359, // ID_CTE
+		360, // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -14224,9 +15718,10 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESION_PRINT
 		-1,  // EXPRESIONES_PRINT
 	},
-	gotoRow{ // S309
+	gotoRow{ // S308
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -14259,9 +15754,64 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S309
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -14273,6 +15823,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S310
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -14305,9 +15856,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -14319,6 +15874,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S311
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -14338,22 +15894,26 @@ var gotoTab = gotoTable{
 		-1,  // STATEMENT_PROG
 		-1,  // STATEMENT
 		-1,  // ASSIGN
-		370, // EXPRESION
+		363, // EXPRESION
 		-1,  // OP_REL
-		88,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		89,  // TERMINO
+		85,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		86,  // TERMINO
 		-1,  // MULT_OP
 		-1,  // DIV_OP
-		90,  // FACTOR
-		91,  // FONDO_FALSO
-		92,  // FACTOR_OPERADOR
+		87,  // FACTOR
+		88,  // FONDO_FALSO
+		89,  // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -14365,6 +15925,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S312
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -14395,11 +15956,15 @@ var gotoTab = gotoTable{
 		-1,  // FACTOR
 		-1,  // FONDO_FALSO
 		-1,  // FACTOR_OPERADOR
-		372, // ID_CTE
-		373, // CTE
+		365, // ID_CTE
+		366, // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -14411,6 +15976,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S313
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -14443,9 +16009,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -14457,6 +16027,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S314
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -14489,9 +16060,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -14503,6 +16078,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S315
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -14535,9 +16111,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -14547,8 +16127,60 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S316
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S317
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -14568,22 +16200,26 @@ var gotoTab = gotoTable{
 		-1,  // STATEMENT_PROG
 		-1,  // STATEMENT
 		-1,  // ASSIGN
-		376, // EXPRESION
+		-1,  // EXPRESION
 		-1,  // OP_REL
-		88,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		89,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		90,  // FACTOR
-		91,  // FONDO_FALSO
-		92,  // FACTOR_OPERADOR
+		-1,  // EXP
+		-1,  // PLUS_OP
+		-1,  // MINUS_OP
+		-1,  // TERMINO
+		369, // MULT_OP
+		370, // DIV_OP
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -14592,9 +16228,61 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESION_PRINT
 		-1,  // EXPRESIONES_PRINT
 	},
-	gotoRow{ // S317
+	gotoRow{ // S318
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		371, // EXPRESION
+		-1,  // OP_REL
+		85,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		86,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		87,  // FACTOR
+		88,  // FONDO_FALSO
+		89,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S319
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -14625,11 +16313,15 @@ var gotoTab = gotoTable{
 		-1,  // FACTOR
 		-1,  // FONDO_FALSO
 		-1,  // FACTOR_OPERADOR
-		378, // ID_CTE
-		379, // CTE
+		373, // ID_CTE
+		374, // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -14638,101 +16330,10 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESION_PRINT
 		-1,  // EXPRESIONES_PRINT
 	},
-	gotoRow{ // S318
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S319
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
 	gotoRow{ // S320
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -14765,9 +16366,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -14779,6 +16384,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S321
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -14811,9 +16417,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -14823,100 +16433,111 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S322
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		377, // EXPRESION
+		-1,  // OP_REL
+		85,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		86,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		87,  // FACTOR
+		88,  // FONDO_FALSO
+		89,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S323
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		-1,  // PLUS_OP
+		-1,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
+		379, // ID_CTE
+		380, // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S324
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -14949,9 +16570,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -14961,100 +16586,111 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S325
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		-1,  // PLUS_OP
-		-1,  // MINUS_OP
-		-1,  // TERMINO
-		382, // MULT_OP
-		383, // DIV_OP
-		-1,  // FACTOR
-		-1,  // FONDO_FALSO
-		-1,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S326
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		384, // EXPRESION
-		-1,  // OP_REL
-		88,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		89,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		90,  // FACTOR
-		91,  // FONDO_FALSO
-		92,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S327
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -15074,22 +16710,26 @@ var gotoTab = gotoTable{
 		-1,  // STATEMENT_PROG
 		-1,  // STATEMENT
 		-1,  // ASSIGN
-		-1,  // EXPRESION
+		383, // EXPRESION
 		-1,  // OP_REL
-		-1,  // EXP
-		-1,  // PLUS_OP
-		-1,  // MINUS_OP
-		-1,  // TERMINO
+		85,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		86,  // TERMINO
 		-1,  // MULT_OP
 		-1,  // DIV_OP
-		-1,  // FACTOR
-		-1,  // FONDO_FALSO
-		-1,  // FACTOR_OPERADOR
-		386, // ID_CTE
-		387, // CTE
+		87,  // FACTOR
+		88,  // FONDO_FALSO
+		89,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -15099,54 +16739,60 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S328
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		-1,  // PLUS_OP
+		-1,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
+		385, // ID_CTE
+		386, // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S329
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -15179,9 +16825,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -15191,100 +16841,9 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S330
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		390, // EXPRESION
-		-1,  // OP_REL
-		88,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		89,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		90,  // FACTOR
-		91,  // FONDO_FALSO
-		92,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S331
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		-1,  // PLUS_OP
-		-1,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		-1,  // FACTOR
-		-1,  // FONDO_FALSO
-		-1,  // FACTOR_OPERADOR
-		392, // ID_CTE
-		393, // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S332
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -15317,9 +16876,115 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S331
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S332
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -15329,100 +16994,9 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S333
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S334
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S335
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -15442,22 +17016,26 @@ var gotoTab = gotoTable{
 		-1,  // STATEMENT_PROG
 		-1,  // STATEMENT
 		-1,  // ASSIGN
-		396, // EXPRESION
+		-1,  // EXPRESION
 		-1,  // OP_REL
-		88,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		89,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		90,  // FACTOR
-		91,  // FONDO_FALSO
-		92,  // FACTOR_OPERADOR
+		-1,  // EXP
+		-1,  // PLUS_OP
+		-1,  // MINUS_OP
+		-1,  // TERMINO
+		389, // MULT_OP
+		390, // DIV_OP
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -15466,9 +17044,61 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESION_PRINT
 		-1,  // EXPRESIONES_PRINT
 	},
-	gotoRow{ // S336
+	gotoRow{ // S334
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		391, // EXPRESION
+		-1,  // OP_REL
+		85,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		86,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		87,  // FACTOR
+		88,  // FONDO_FALSO
+		89,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S335
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -15499,11 +17129,15 @@ var gotoTab = gotoTable{
 		-1,  // FACTOR
 		-1,  // FONDO_FALSO
 		-1,  // FACTOR_OPERADOR
-		398, // ID_CTE
-		399, // CTE
+		393, // ID_CTE
+		394, // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -15512,9 +17146,10 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESION_PRINT
 		-1,  // EXPRESIONES_PRINT
 	},
-	gotoRow{ // S337
+	gotoRow{ // S336
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -15547,9 +17182,64 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S337
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -15559,100 +17249,111 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S338
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		397, // EXPRESION
+		-1,  // OP_REL
+		85,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		86,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		87,  // FACTOR
+		88,  // FONDO_FALSO
+		89,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S339
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		-1,  // PLUS_OP
+		-1,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
+		399, // ID_CTE
+		400, // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S340
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -15685,9 +17386,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -15699,6 +17404,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S341
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -15731,9 +17437,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -15743,54 +17453,60 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S342
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		403, // FACTOR
-		404, // FONDO_FALSO
-		405, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S343
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -15810,22 +17526,26 @@ var gotoTab = gotoTable{
 		-1,  // STATEMENT_PROG
 		-1,  // STATEMENT
 		-1,  // ASSIGN
-		-1,  // EXPRESION
+		403, // EXPRESION
 		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		-1,  // TERMINO
+		85,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		86,  // TERMINO
 		-1,  // MULT_OP
 		-1,  // DIV_OP
-		406, // FACTOR
-		404, // FONDO_FALSO
-		405, // FACTOR_OPERADOR
+		87,  // FACTOR
+		88,  // FONDO_FALSO
+		89,  // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -15835,2814 +17555,9 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S344
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S345
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S346
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S347
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S348
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S349
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S350
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S351
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S352
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S353
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S354
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S355
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S356
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S357
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S358
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S359
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S360
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S361
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S362
 		-1,  // S'
 		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		410, // FACTOR
-		411, // FONDO_FALSO
-		412, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S363
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		413, // FACTOR
-		411, // FONDO_FALSO
-		412, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S364
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S365
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S366
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S367
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S368
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S369
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S370
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S371
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S372
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S373
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S374
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S375
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S376
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S377
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S378
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S379
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S380
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S381
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S382
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		417, // FACTOR
-		418, // FONDO_FALSO
-		419, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S383
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		-1,  // EXPRESION
-		-1,  // OP_REL
-		-1,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		-1,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		420, // FACTOR
-		418, // FONDO_FALSO
-		419, // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S384
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S385
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S386
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S387
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S388
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S389
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S390
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S391
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S392
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S393
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S394
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S395
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S396
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S397
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S398
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S399
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S400
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S401
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S402
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S403
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S404
-		-1,  // S'
-		-1,  // Programa
-		-1,  // VARS_PROG
-		-1,  // FUNCS_PROG
-		-1,  // VARS
-		-1,  // VARIABLES
-		-1,  // MAS_VARIABLES
-		-1,  // ID_LIST
-		-1,  // MAS_IDS
-		-1,  // TYPE
-		-1,  // FUNCS
-		-1,  // FUNC_PRIMERA_PARTE
-		-1,  // CUERPO_FUNC
-		-1,  // VARS_FUNC
-		-1,  // ID_LIST_PARAMS
-		-1,  // MAS_PARAMS
-		-1,  // PARAMS
-		-1,  // Body
-		-1,  // STATEMENT_PROG
-		-1,  // STATEMENT
-		-1,  // ASSIGN
-		424, // EXPRESION
-		-1,  // OP_REL
-		88,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		89,  // TERMINO
-		-1,  // MULT_OP
-		-1,  // DIV_OP
-		90,  // FACTOR
-		91,  // FONDO_FALSO
-		92,  // FACTOR_OPERADOR
-		-1,  // ID_CTE
-		-1,  // CTE
-		-1,  // CONDITION
-		-1,  // ELSE_BODY
-		-1,  // CYCLE
-		-1,  // F_CALL
-		-1,  // EXPRESION_STATEMENT
-		-1,  // MAS_EXPRESIONES
-		-1,  // PRINT
-		-1,  // LISTA_PRINT
-		-1,  // EXPRESION_PRINT
-		-1,  // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S405
-		-1,  // S'
-		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -18673,11 +17588,15 @@ var gotoTab = gotoTable{
 		-1,  // FACTOR
 		-1,  // FONDO_FALSO
 		-1,  // FACTOR_OPERADOR
-		426, // ID_CTE
-		427, // CTE
+		405, // ID_CTE
+		406, // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -18686,9 +17605,10 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESION_PRINT
 		-1,  // EXPRESIONES_PRINT
 	},
-	gotoRow{ // S406
+	gotoRow{ // S345
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -18721,9 +17641,3124 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S346
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S347
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S348
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S349
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		409, // FACTOR
+		410, // FONDO_FALSO
+		411, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S350
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		412, // FACTOR
+		410, // FONDO_FALSO
+		411, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S351
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S352
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S353
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S354
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S355
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S356
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S357
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S358
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S359
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S360
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S361
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S362
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S363
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S364
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S365
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S366
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S367
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S368
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S369
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		416, // FACTOR
+		417, // FONDO_FALSO
+		418, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S370
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		419, // FACTOR
+		417, // FONDO_FALSO
+		418, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S371
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S372
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S373
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S374
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S375
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S376
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S377
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S378
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S379
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S380
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S381
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S382
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S383
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S384
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S385
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S386
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S387
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S388
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S389
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		423, // FACTOR
+		424, // FONDO_FALSO
+		425, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S390
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		426, // FACTOR
+		424, // FONDO_FALSO
+		425, // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S391
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S392
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S393
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S394
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S395
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S396
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S397
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S398
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S399
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S400
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S401
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S402
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S403
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S404
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S405
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S406
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -18735,6 +20770,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S407
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -18767,9 +20803,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -18781,6 +20821,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S408
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -18813,9 +20854,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -18827,6 +20872,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S409
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -18859,9 +20905,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -18871,54 +20921,9 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S410
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S411
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -18940,20 +20945,24 @@ var gotoTab = gotoTable{
 		-1,  // ASSIGN
 		430, // EXPRESION
 		-1,  // OP_REL
-		88,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		89,  // TERMINO
+		85,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		86,  // TERMINO
 		-1,  // MULT_OP
 		-1,  // DIV_OP
-		90,  // FACTOR
-		91,  // FONDO_FALSO
-		92,  // FACTOR_OPERADOR
+		87,  // FACTOR
+		88,  // FONDO_FALSO
+		89,  // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -18962,9 +20971,10 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESION_PRINT
 		-1,  // EXPRESIONES_PRINT
 	},
-	gotoRow{ // S412
+	gotoRow{ // S411
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -18997,9 +21007,13 @@ var gotoTab = gotoTable{
 		-1,  // FACTOR_OPERADOR
 		432, // ID_CTE
 		433, // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -19008,9 +21022,10 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESION_PRINT
 		-1,  // EXPRESIONES_PRINT
 	},
-	gotoRow{ // S413
+	gotoRow{ // S412
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -19043,9 +21058,64 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S413
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -19057,6 +21127,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S414
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -19089,9 +21160,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -19103,6 +21178,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S415
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -19135,9 +21211,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -19149,6 +21229,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S416
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -19181,9 +21262,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -19193,54 +21278,9 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S417
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
-	},
-	gotoRow{ // S418
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -19262,20 +21302,24 @@ var gotoTab = gotoTable{
 		-1,  // ASSIGN
 		436, // EXPRESION
 		-1,  // OP_REL
-		88,  // EXP
-		73,  // PLUS_OP
-		75,  // MINUS_OP
-		89,  // TERMINO
+		85,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		86,  // TERMINO
 		-1,  // MULT_OP
 		-1,  // DIV_OP
-		90,  // FACTOR
-		91,  // FONDO_FALSO
-		92,  // FACTOR_OPERADOR
+		87,  // FACTOR
+		88,  // FONDO_FALSO
+		89,  // FACTOR_OPERADOR
 		-1,  // ID_CTE
 		-1,  // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -19284,9 +21328,10 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESION_PRINT
 		-1,  // EXPRESIONES_PRINT
 	},
-	gotoRow{ // S419
+	gotoRow{ // S418
 		-1,  // S'
 		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
 		-1,  // VARS_PROG
 		-1,  // FUNCS_PROG
 		-1,  // VARS
@@ -19319,9 +21364,13 @@ var gotoTab = gotoTable{
 		-1,  // FACTOR_OPERADOR
 		438, // ID_CTE
 		439, // CTE
+		-1,  // IF
 		-1,  // CONDITION
 		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
 		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
 		-1,  // F_CALL
 		-1,  // EXPRESION_STATEMENT
 		-1,  // MAS_EXPRESIONES
@@ -19330,9 +21379,10 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESION_PRINT
 		-1,  // EXPRESIONES_PRINT
 	},
-	gotoRow{ // S420
+	gotoRow{ // S419
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -19365,9 +21415,64 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S420
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -19379,6 +21484,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S421
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -19411,9 +21517,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -19425,6 +21535,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S422
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -19457,9 +21568,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -19471,6 +21586,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S423
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -19503,9 +21619,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -19515,100 +21635,111 @@ var gotoTab = gotoTable{
 		-1, // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S424
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		442, // EXPRESION
+		-1,  // OP_REL
+		85,  // EXP
+		70,  // PLUS_OP
+		72,  // MINUS_OP
+		86,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		87,  // FACTOR
+		88,  // FONDO_FALSO
+		89,  // FACTOR_OPERADOR
+		-1,  // ID_CTE
+		-1,  // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S425
-		-1, // S'
-		-1, // Programa
-		-1, // VARS_PROG
-		-1, // FUNCS_PROG
-		-1, // VARS
-		-1, // VARIABLES
-		-1, // MAS_VARIABLES
-		-1, // ID_LIST
-		-1, // MAS_IDS
-		-1, // TYPE
-		-1, // FUNCS
-		-1, // FUNC_PRIMERA_PARTE
-		-1, // CUERPO_FUNC
-		-1, // VARS_FUNC
-		-1, // ID_LIST_PARAMS
-		-1, // MAS_PARAMS
-		-1, // PARAMS
-		-1, // Body
-		-1, // STATEMENT_PROG
-		-1, // STATEMENT
-		-1, // ASSIGN
-		-1, // EXPRESION
-		-1, // OP_REL
-		-1, // EXP
-		-1, // PLUS_OP
-		-1, // MINUS_OP
-		-1, // TERMINO
-		-1, // MULT_OP
-		-1, // DIV_OP
-		-1, // FACTOR
-		-1, // FONDO_FALSO
-		-1, // FACTOR_OPERADOR
-		-1, // ID_CTE
-		-1, // CTE
-		-1, // CONDITION
-		-1, // ELSE_BODY
-		-1, // CYCLE
-		-1, // F_CALL
-		-1, // EXPRESION_STATEMENT
-		-1, // MAS_EXPRESIONES
-		-1, // PRINT
-		-1, // LISTA_PRINT
-		-1, // EXPRESION_PRINT
-		-1, // EXPRESIONES_PRINT
+		-1,  // S'
+		-1,  // Programa
+		-1,  // DECLARAR_PROGRAMA
+		-1,  // VARS_PROG
+		-1,  // FUNCS_PROG
+		-1,  // VARS
+		-1,  // VARIABLES
+		-1,  // MAS_VARIABLES
+		-1,  // ID_LIST
+		-1,  // MAS_IDS
+		-1,  // TYPE
+		-1,  // FUNCS
+		-1,  // FUNC_PRIMERA_PARTE
+		-1,  // CUERPO_FUNC
+		-1,  // VARS_FUNC
+		-1,  // ID_LIST_PARAMS
+		-1,  // MAS_PARAMS
+		-1,  // PARAMS
+		-1,  // Body
+		-1,  // STATEMENT_PROG
+		-1,  // STATEMENT
+		-1,  // ASSIGN
+		-1,  // EXPRESION
+		-1,  // OP_REL
+		-1,  // EXP
+		-1,  // PLUS_OP
+		-1,  // MINUS_OP
+		-1,  // TERMINO
+		-1,  // MULT_OP
+		-1,  // DIV_OP
+		-1,  // FACTOR
+		-1,  // FONDO_FALSO
+		-1,  // FACTOR_OPERADOR
+		444, // ID_CTE
+		445, // CTE
+		-1,  // IF
+		-1,  // CONDITION
+		-1,  // ELSE_BODY
+		-1,  // ELSE_JUMP
+		-1,  // CYCLE
+		-1,  // WHILE_START
+		-1,  // WHILE_END
+		-1,  // F_CALL
+		-1,  // EXPRESION_STATEMENT
+		-1,  // MAS_EXPRESIONES
+		-1,  // PRINT
+		-1,  // LISTA_PRINT
+		-1,  // EXPRESION_PRINT
+		-1,  // EXPRESIONES_PRINT
 	},
 	gotoRow{ // S426
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -19641,9 +21772,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -19655,6 +21790,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S427
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -19687,9 +21823,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -19701,6 +21841,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S428
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -19733,9 +21874,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -19747,6 +21892,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S429
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -19779,9 +21925,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -19793,6 +21943,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S430
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -19825,9 +21976,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -19839,6 +21994,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S431
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -19871,9 +22027,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -19885,6 +22045,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S432
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -19917,9 +22078,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -19931,6 +22096,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S433
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -19963,9 +22129,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -19977,6 +22147,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S434
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -20009,9 +22180,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -20023,6 +22198,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S435
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -20055,9 +22231,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -20069,6 +22249,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S436
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -20101,9 +22282,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -20115,6 +22300,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S437
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -20147,9 +22333,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -20161,6 +22351,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S438
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -20193,9 +22384,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -20207,6 +22402,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S439
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -20239,9 +22435,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -20253,6 +22453,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S440
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -20285,9 +22486,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -20299,6 +22504,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S441
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -20331,9 +22537,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -20345,6 +22555,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S442
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -20377,9 +22588,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -20391,6 +22606,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S443
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -20423,9 +22639,13 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
@@ -20437,6 +22657,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S444
 		-1, // S'
 		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
 		-1, // VARS_PROG
 		-1, // FUNCS_PROG
 		-1, // VARS
@@ -20469,9 +22690,319 @@ var gotoTab = gotoTable{
 		-1, // FACTOR_OPERADOR
 		-1, // ID_CTE
 		-1, // CTE
+		-1, // IF
 		-1, // CONDITION
 		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
 		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S445
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S446
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S447
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S448
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S449
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
+		-1, // F_CALL
+		-1, // EXPRESION_STATEMENT
+		-1, // MAS_EXPRESIONES
+		-1, // PRINT
+		-1, // LISTA_PRINT
+		-1, // EXPRESION_PRINT
+		-1, // EXPRESIONES_PRINT
+	},
+	gotoRow{ // S450
+		-1, // S'
+		-1, // Programa
+		-1, // DECLARAR_PROGRAMA
+		-1, // VARS_PROG
+		-1, // FUNCS_PROG
+		-1, // VARS
+		-1, // VARIABLES
+		-1, // MAS_VARIABLES
+		-1, // ID_LIST
+		-1, // MAS_IDS
+		-1, // TYPE
+		-1, // FUNCS
+		-1, // FUNC_PRIMERA_PARTE
+		-1, // CUERPO_FUNC
+		-1, // VARS_FUNC
+		-1, // ID_LIST_PARAMS
+		-1, // MAS_PARAMS
+		-1, // PARAMS
+		-1, // Body
+		-1, // STATEMENT_PROG
+		-1, // STATEMENT
+		-1, // ASSIGN
+		-1, // EXPRESION
+		-1, // OP_REL
+		-1, // EXP
+		-1, // PLUS_OP
+		-1, // MINUS_OP
+		-1, // TERMINO
+		-1, // MULT_OP
+		-1, // DIV_OP
+		-1, // FACTOR
+		-1, // FONDO_FALSO
+		-1, // FACTOR_OPERADOR
+		-1, // ID_CTE
+		-1, // CTE
+		-1, // IF
+		-1, // CONDITION
+		-1, // ELSE_BODY
+		-1, // ELSE_JUMP
+		-1, // CYCLE
+		-1, // WHILE_START
+		-1, // WHILE_END
 		-1, // F_CALL
 		-1, // EXPRESION_STATEMENT
 		-1, // MAS_EXPRESIONES
