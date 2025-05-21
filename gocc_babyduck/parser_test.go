@@ -82,7 +82,7 @@ var testData = []*TI{
 	},
 }*/
 
-/*var testData = []*TI{
+var testData = []*TI{
 	{
 		`program xyz;
 			var a,b: int;
@@ -102,7 +102,7 @@ var testData = []*TI{
 			} end`,
 		0,
 	},
-}*/
+}
 
 /*var testData = []*TI{
 	{
@@ -121,7 +121,7 @@ var testData = []*TI{
 	},
 }*/
 
-var testData = []*TI{
+/*var testData = []*TI{
 	{
 		`program xyz;
     var a, b: int;
@@ -132,7 +132,6 @@ var testData = []*TI{
 
         while (a < b) do {
             print("a es", a);
-            a = a + 1;
         };
 
         print("Fin del ciclo");
@@ -141,7 +140,7 @@ end
 `,
 		0,
 	},
-}
+}*/
 
 func TestParser(t *testing.T) {
 	p := parser.NewParser()

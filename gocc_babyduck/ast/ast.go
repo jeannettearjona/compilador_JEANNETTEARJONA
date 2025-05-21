@@ -164,6 +164,7 @@ func GenerateQuadrupleForExp() error {
 	op := Operadores.Pop()
 
 	resultType, err := DefaultSemanticCube.GetResultType(left_type, right_type, op)
+	fmt.Printf("resultType: %s para right op %d\n and left op %d\n", resultType, right_operand, left_operand)
 
 	if err != nil {
 		return fmt.Errorf("error: %s", err)
@@ -171,6 +172,7 @@ func GenerateQuadrupleForExp() error {
 
 	//temp := GetTemp()
 	temp := Prog_MemoryManager.GetTempVarMem(resultType)
+	fmt.Printf("y le tocaria la direccion de memoria: %d\n", temp)
 
 	// Generar el cuadruplo
 	quad := NewQuadruple(op, left_operand, right_operand, temp)
@@ -273,8 +275,8 @@ func GoToEndIf() {
 func ImprimirCuadruplos() {
 	// Imprimir los cuadruplos generados
 	fmt.Println("Cuadruplos generados:")
-	for _, quad := range Cuadruplos.Print() {
-		fmt.Printf("%s %d %d %d\n", quad.Operador, quad.Izq, quad.Der, quad.Res)
+	for i, quad := range Cuadruplos.Print() {
+		fmt.Printf("%d: %s %d %d %d\n", i, quad.Operador, quad.Izq, quad.Der, quad.Res)
 	}
 }
 

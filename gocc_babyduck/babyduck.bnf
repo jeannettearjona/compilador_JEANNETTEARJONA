@@ -41,9 +41,11 @@ _char: 'a'-'z' | 'A'-'Z' | '0'-'9' | '!' | '#' | '$' | '%' | '&' | '\'' | '(' | 
 
 /* Syntax Part */
 
+//DONE 
 Programa:
     DECLARAR_PROGRAMA FUNCS_PROG main Body end    ;
 
+//DONE: Declara el programa en el dir de funciones
 DECLARAR_PROGRAMA:
     program id semicolon VARS_PROG
     <<
@@ -65,7 +67,7 @@ DECLARAR_PROGRAMA:
     }()
     >>;
 
-
+//DONE
 VARS_PROG: //ESTAS SON VARS GLOBALES //TENGO QUE REPETIR LA MISMA REGLA CON VARS_FUNC
     VARS   
     <<
@@ -530,7 +532,7 @@ IF:
     <<
     func() (Attrib, error){
         //hay else o no
-        hayElse := $2.(bool)
+        hayElse := $3.(bool)
 
         if(hayElse){
             endJump := ast.PJumps.Pop()
@@ -610,7 +612,7 @@ ELSE_JUMP:
 
 
 CYCLE:
-    WHILE_START CONDITION do WHILE_END Body semicolon               ;
+    WHILE_START CONDITION do Body WHILE_END semicolon               ;
 
 WHILE_START:
     while   
@@ -626,18 +628,16 @@ WHILE_END:
     empty   
     <<
     func()(Attrib, error){
-        returnJump := ast.PJumps.Pop()
-        falseJump := ast.PJumps.Pop()
+        returnJump := ast.PJumps.Pop() - 1
+        falseJump := ast.PJumps.Pop() +1
 
+        //GOTO para regresar al inicio del ciclo
         quadGoTo := ast.NewQuadruple("GOTO", 0, 0, returnJump)
         ast.Cuadruplos.Enqueue(quadGoTo)
 
-        //quadGoToF := ast.Cuadruplos.GetItem(falseJump)
-        //quadGoToF.Res = ast.Cuadruplos.Size()
-        //ast.Cuadruplos.Update(falseJump, quadGoToF)
-
+        //BackPatch al GOTOF para salir del ciclo
         quadGoToF := ast.Cuadruplos.GetItem(falseJump)
-        quadGoToF.Res = falseJump // O ast.Cuadruplos.Size() si no hay else
+        quadGoToF.Res = ast.Cuadruplos.Size()
         ast.Cuadruplos.Update(falseJump, quadGoToF)
 
         return nil, nil
