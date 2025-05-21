@@ -531,22 +531,21 @@ IF:
     if CONDITION Body ELSE_BODY semicolon        
     <<
     func() (Attrib, error){
-        //hay else o no
         hayElse := $3.(bool)
 
         if(hayElse){
-            endJump := ast.PJumps.Pop()
+            goto_Jump := ast.PJumps.Pop()
             falseJump := ast.PJumps.Pop()
 
-            // Backpatch para el GOTO: apunta al final del if-else
-            quadGoto := ast.Cuadruplos.GetItem(endJump)
-            quadGoto.Res = ast.Cuadruplos.Size()
-            ast.Cuadruplos.Update(endJump, quadGoto)
+            //Llenar GOTO: saltar el else
+            quadGoto := ast.Cuadruplos.GetItem(goto_Jump) //5
+            quadGoto.Res = ast.Cuadruplos.Size() //size 7: pero indices del 0-6 entonces le dice que vaya al sig en el sig indice
+            ast.Cuadruplos.Update(goto_Jump, quadGoto) //cambia el 5 y ponle 7
 
-            // Backpatch para el GOTOF: apunta al inicio del else (o al final si no hay else)
-            quadGoToF := ast.Cuadruplos.GetItem(falseJump)
-            quadGoToF.Res = endJump // O ast.Cuadruplos.Size() si no hay else
-            ast.Cuadruplos.Update(falseJump, quadGoToF)
+            //Llenar el GOTOF: apunta al inicio del else
+            quadGoToF := ast.Cuadruplos.GetItem(falseJump) //3
+            quadGoToF.Res = goto_Jump + 1 
+            ast.Cuadruplos.Update(falseJump, quadGoToF) //al 3 le agregas el 5+1
         } else {
             // Solo Pop del GOTOF (condición)
             falseJump := ast.PJumps.Pop()
@@ -605,7 +604,7 @@ ELSE_JUMP:
     func() (Attrib, error){
         quad := ast.NewQuadruple("GOTO", 0, 0, 0)
         ast.Cuadruplos.Enqueue(quad)
-        ast.PJumps.Push(ast.Cuadruplos.Size() - 1)
+        ast.PJumps.Push(ast.Cuadruplos.Size() - 1) //size - 1 agarra el quad GOTO que se acaba de hacer
         return nil, nil
     }()
     >>;

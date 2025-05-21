@@ -1076,8 +1076,8 @@ var productionsTable = ProdTab{
         hayElse := X[3].(bool)
 
         if(hayElse){
-            endJump := ast.PJumps.Pop()
-            falseJump := ast.PJumps.Pop()
+            endJump := ast.PJumps.Pop() //7
+            falseJump := ast.PJumps.Pop() //3
 
             // Backpatch para el GOTO: apunta al final del if-else
             quadGoto := ast.Cuadruplos.GetItem(endJump)
@@ -1086,7 +1086,7 @@ var productionsTable = ProdTab{
 
             // Backpatch para el GOTOF: apunta al inicio del else (o al final si no hay else)
             quadGoToF := ast.Cuadruplos.GetItem(falseJump)
-            quadGoToF.Res = endJump // O ast.Cuadruplos.Size() si no hay else
+            quadGoToF.Res = endJump + 1 // O ast.Cuadruplos.Size() si no hay else
             ast.Cuadruplos.Update(falseJump, quadGoToF)
         } else {
             // Solo Pop del GOTOF (condición)
@@ -1108,8 +1108,8 @@ var productionsTable = ProdTab{
         hayElse := X[3].(bool)
 
         if(hayElse){
-            endJump := ast.PJumps.Pop()
-            falseJump := ast.PJumps.Pop()
+            endJump := ast.PJumps.Pop() //7
+            falseJump := ast.PJumps.Pop() //3
 
             // Backpatch para el GOTO: apunta al final del if-else
             quadGoto := ast.Cuadruplos.GetItem(endJump)
@@ -1118,7 +1118,7 @@ var productionsTable = ProdTab{
 
             // Backpatch para el GOTOF: apunta al inicio del else (o al final si no hay else)
             quadGoToF := ast.Cuadruplos.GetItem(falseJump)
-            quadGoToF.Res = endJump // O ast.Cuadruplos.Size() si no hay else
+            quadGoToF.Res = endJump + 1 // O ast.Cuadruplos.Size() si no hay else
             ast.Cuadruplos.Update(falseJump, quadGoToF)
         } else {
             // Solo Pop del GOTOF (condición)
