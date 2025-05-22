@@ -1072,21 +1072,20 @@ var productionsTable = ProdTab{
 	},
 	ProdTabEntry{
 		String: `IF : if CONDITION Body ELSE_BODY semicolon	<< func() (Attrib, error){
-        //hay else o no
         hayElse := X[3].(bool)
 
         if(hayElse){
-            endJump := ast.PJumps.Pop() //7
-            falseJump := ast.PJumps.Pop() //3
+            goto_Jump := ast.PJumps.Pop()   //indice del goto que salta al else
+            falseJump := ast.PJumps.Pop()
 
-            // Backpatch para el GOTO: apunta al final del if-else
-            quadGoto := ast.Cuadruplos.GetItem(endJump)
-            quadGoto.Res = ast.Cuadruplos.Size()
-            ast.Cuadruplos.Update(endJump, quadGoto)
+            //Llenar GOTO: saltar el else
+            quadGoto := ast.Cuadruplos.GetItem(goto_Jump) 
+            quadGoto.Res = ast.Cuadruplos.Size() 
+            ast.Cuadruplos.Update(goto_Jump, quadGoto) 
 
-            // Backpatch para el GOTOF: apunta al inicio del else (o al final si no hay else)
+            //Llenar el GOTOF: apunta al inicio del else
             quadGoToF := ast.Cuadruplos.GetItem(falseJump)
-            quadGoToF.Res = endJump + 1 // O ast.Cuadruplos.Size() si no hay else
+            quadGoToF.Res = goto_Jump + 1   //salta al quad despues del GOTO (que es el else)
             ast.Cuadruplos.Update(falseJump, quadGoToF)
         } else {
             // Solo Pop del GOTOF (condición)
@@ -1104,21 +1103,20 @@ var productionsTable = ProdTab{
 		NumSymbols: 5,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error){
-        //hay else o no
         hayElse := X[3].(bool)
 
         if(hayElse){
-            endJump := ast.PJumps.Pop() //7
-            falseJump := ast.PJumps.Pop() //3
+            goto_Jump := ast.PJumps.Pop()   //indice del goto que salta al else
+            falseJump := ast.PJumps.Pop()
 
-            // Backpatch para el GOTO: apunta al final del if-else
-            quadGoto := ast.Cuadruplos.GetItem(endJump)
-            quadGoto.Res = ast.Cuadruplos.Size()
-            ast.Cuadruplos.Update(endJump, quadGoto)
+            //Llenar GOTO: saltar el else
+            quadGoto := ast.Cuadruplos.GetItem(goto_Jump) 
+            quadGoto.Res = ast.Cuadruplos.Size() 
+            ast.Cuadruplos.Update(goto_Jump, quadGoto) 
 
-            // Backpatch para el GOTOF: apunta al inicio del else (o al final si no hay else)
+            //Llenar el GOTOF: apunta al inicio del else
             quadGoToF := ast.Cuadruplos.GetItem(falseJump)
-            quadGoToF.Res = endJump + 1 // O ast.Cuadruplos.Size() si no hay else
+            quadGoToF.Res = goto_Jump + 1   //salta al quad despues del GOTO (que es el else)
             ast.Cuadruplos.Update(falseJump, quadGoToF)
         } else {
             // Solo Pop del GOTOF (condición)
@@ -1210,7 +1208,7 @@ var productionsTable = ProdTab{
 		String: `ELSE_JUMP : empty	<< func() (Attrib, error){
         quad := ast.NewQuadruple("GOTO", 0, 0, 0)
         ast.Cuadruplos.Enqueue(quad)
-        ast.PJumps.Push(ast.Cuadruplos.Size() - 1)
+        ast.PJumps.Push(ast.Cuadruplos.Size() - 1) //size - 1 agarra el quad GOTO que se acaba de hacer
         return nil, nil
     }() >>`,
 		Id:         "ELSE_JUMP",
@@ -1221,7 +1219,7 @@ var productionsTable = ProdTab{
 			return func() (Attrib, error){
         quad := ast.NewQuadruple("GOTO", 0, 0, 0)
         ast.Cuadruplos.Enqueue(quad)
-        ast.PJumps.Push(ast.Cuadruplos.Size() - 1)
+        ast.PJumps.Push(ast.Cuadruplos.Size() - 1) //size - 1 agarra el quad GOTO que se acaba de hacer
         return nil, nil
     }()
 		},

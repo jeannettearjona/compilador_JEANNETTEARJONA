@@ -86,16 +86,20 @@ var testData = []*TI{
 	{
 		`program xyz;
 			var a,b: int;
+				c,d: float;
 			void funcion1 (param1 : int)
 			[ var varLocal: int; { b = varLocal + 2; }];
 			main {
 				if (a < b)
 				{
         			print("a es menor que b");
+					print("Hello", 42, c + d); 
+					c = 4 - 2 /  (d * 1.5);
     			}
     			else
     			{
 					print("a no es menor que b");
+					c = d - 1.5;
     			};
 
     			print("Fin del ifelse");

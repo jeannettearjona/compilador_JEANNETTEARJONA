@@ -534,18 +534,18 @@ IF:
         hayElse := $3.(bool)
 
         if(hayElse){
-            goto_Jump := ast.PJumps.Pop()
+            goto_Jump := ast.PJumps.Pop()   //indice del goto que salta al else
             falseJump := ast.PJumps.Pop()
 
             //Llenar GOTO: saltar el else
-            quadGoto := ast.Cuadruplos.GetItem(goto_Jump) //5
-            quadGoto.Res = ast.Cuadruplos.Size() //size 7: pero indices del 0-6 entonces le dice que vaya al sig en el sig indice
-            ast.Cuadruplos.Update(goto_Jump, quadGoto) //cambia el 5 y ponle 7
+            quadGoto := ast.Cuadruplos.GetItem(goto_Jump) 
+            quadGoto.Res = ast.Cuadruplos.Size() 
+            ast.Cuadruplos.Update(goto_Jump, quadGoto) 
 
             //Llenar el GOTOF: apunta al inicio del else
-            quadGoToF := ast.Cuadruplos.GetItem(falseJump) //3
-            quadGoToF.Res = goto_Jump + 1 
-            ast.Cuadruplos.Update(falseJump, quadGoToF) //al 3 le agregas el 5+1
+            quadGoToF := ast.Cuadruplos.GetItem(falseJump)
+            quadGoToF.Res = goto_Jump + 1   //salta al quad despues del GOTO (que es el else)
+            ast.Cuadruplos.Update(falseJump, quadGoToF)
         } else {
             // Solo Pop del GOTOF (condición)
             falseJump := ast.PJumps.Pop()
