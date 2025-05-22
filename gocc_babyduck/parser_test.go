@@ -82,7 +82,7 @@ var testData = []*TI{
 	},
 }*/
 
-var testData = []*TI{
+/*var testData = []*TI{
 	{
 		`program xyz;
 			var a,b: int;
@@ -93,7 +93,7 @@ var testData = []*TI{
 				if (a < b)
 				{
         			print("a es menor que b");
-					print("Hello", 42, c + d); 
+					print("Hello", 42, c + d);
 					c = 4 - 2 /  (d * 1.5);
     			}
     			else
@@ -106,7 +106,7 @@ var testData = []*TI{
 			} end`,
 		0,
 	},
-}
+}*/
 
 /*var testData = []*TI{
 	{
@@ -145,6 +145,33 @@ end
 		0,
 	},
 }*/
+
+var testData = []*TI{
+	{
+		`program test;
+			var a, b, c: int;
+
+			main {
+    			a = 2;
+    			b = 5;
+
+    			if (a < b) {
+        			print("a menor que b");
+        			a = a + 1;
+    			} else {
+        			print("a no es menor que b");
+        			a = a - 1;
+    			};
+
+    			while (a < b) do {
+        			print("en el while");
+        			a = a + 1;
+    			};
+			}
+		end`,
+		0,
+	},
+}
 
 func TestParser(t *testing.T) {
 	p := parser.NewParser()

@@ -1236,8 +1236,7 @@ var productionsTable = ProdTab{
 	},
 	ProdTabEntry{
 		String: `WHILE_START : while	<< func() (Attrib, error){
-        //guarda la posicion de inicio del ciclo
-        ast.PJumps.Push(ast.Cuadruplos.Size())
+        ast.PJumps.Push(ast.Cuadruplos.Size())  //marca inicio de while
         return nil, nil
     }() >>`,
 		Id:         "WHILE_START",
@@ -1246,16 +1245,18 @@ var productionsTable = ProdTab{
 		NumSymbols: 1,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error){
-        //guarda la posicion de inicio del ciclo
-        ast.PJumps.Push(ast.Cuadruplos.Size())
+        ast.PJumps.Push(ast.Cuadruplos.Size())  //marca inicio de while
         return nil, nil
     }()
 		},
 	},
 	ProdTabEntry{
 		String: `WHILE_END : empty	<< func()(Attrib, error){
-        returnJump := ast.PJumps.Pop() - 1
-        falseJump := ast.PJumps.Pop() +1
+        //returnJump := ast.PJumps.Pop() - 1
+        //falseJump := ast.PJumps.Pop() +1
+
+        falseJump := ast.PJumps.Pop()   //el GOTOF
+        returnJump := ast.PJumps.Pop()  //el inicio del ciclo
 
         //GOTO para regresar al inicio del ciclo
         quadGoTo := ast.NewQuadruple("GOTO", 0, 0, returnJump)
@@ -1274,8 +1275,11 @@ var productionsTable = ProdTab{
 		NumSymbols: 0,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func()(Attrib, error){
-        returnJump := ast.PJumps.Pop() - 1
-        falseJump := ast.PJumps.Pop() +1
+        //returnJump := ast.PJumps.Pop() - 1
+        //falseJump := ast.PJumps.Pop() +1
+
+        falseJump := ast.PJumps.Pop()   //el GOTOF
+        returnJump := ast.PJumps.Pop()  //el inicio del ciclo
 
         //GOTO para regresar al inicio del ciclo
         quadGoTo := ast.NewQuadruple("GOTO", 0, 0, returnJump)
