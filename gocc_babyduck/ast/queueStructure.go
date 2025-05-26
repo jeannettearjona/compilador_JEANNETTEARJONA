@@ -1,7 +1,7 @@
 package ast
 
 type Quadruple struct {
-	Operador string
+	Operador int
 	Izq      int
 	Der      int
 	Res      int
@@ -10,7 +10,7 @@ type Quadruple struct {
 	//Res      string
 }
 
-func NewQuadruple(op string, izq int, der int, res int) Quadruple {
+func NewQuadruple(op int, izq int, der int, res int) Quadruple {
 	return Quadruple{
 		Operador: op,
 		Izq:      izq,

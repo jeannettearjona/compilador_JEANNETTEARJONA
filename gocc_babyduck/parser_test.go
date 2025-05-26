@@ -3,6 +3,7 @@ package main
 import (
 	"testing"
 
+	"fmt"
 	"gocc_babyduck/ast"
 	"gocc_babyduck/lexer"
 	"gocc_babyduck/parser"
@@ -12,63 +13,6 @@ type TI struct {
 	src    string // El código o fragmento de entrada
 	expect int64  // El valor esperado del resultado
 }
-
-/*
-var testData = []*TI{
-	//VARIABLE DOBLEMENTE DECLARADA A NIVEL GLOBAL
-	{"program A1; var x: int; x: float; main { x = 5; } end", -1},
-
-	//VARIABLE DOBLEMENTE DECLARADA GLOBAL Y LOCAL
-	{"program A1; var a,b: int; void fun1 (s : int) [ var a: int; { x = 2; }]; main { x = 5; } end", 0}, //Ok: funcion con asignación sencilla en el cuerpo, //MAL: 2 funciones con el mismo nombre
-
-	//FUNCION DOBLEMENTE DECLARADA
-	{"program A1; var a,b: int; void fun1 (z : int) [{}]; void fun1 (z : int) [{}]; main { x = 5; } end", -1},
-
-	{"program A1; var x: int; main { x = 5; } end", 0}, // Caso ok
-	// Cambios en ID
-	{"program s1A; var x: int; main { x = 5; } end", 0}, //Ok: ID puede empezar con letra minuscula
-	{"program saa; var x: int; main { x = 5; } end", 0}, //Ok: ID puede tener solo letras minusculas
-	{"program SAA; var x: int; main { x = 5; } end", 0}, //Ok: ID puede tener solo letras mayusculas
-	{"program S22; var x: int; main { x = 5; } end", 0}, //Ok: ID puede tener numeros seguidos despues de que empieza con letra
-	{"program S; var x: int; main { x = 5; } end", 0},   //Ok: ID puede ser una sola letra
-	// Cambios en var
-	{"program A1; main { } end", 0},                                //Ok: si var es vacia
-	{"program A1; var a,b: int; main { x = 5; } end", 0},           //Ok: var puede tener varios ID separados por coma
-	{"program A1; var a,b: int; c: float; main { x = 5; } end", 0}, //Ok: var puede tener varios ID separados por coma y diferentes tipos
-	{"program A1; var a,b: int; c: char; main { x = 5; } end", -1}, //Bad: no hay tipo char
-	// Cambios en funciones
-	{"program A1; var a,b: int; void fun1 (z : int) [{}]; main { x = 5; } end", 0}, //Ok: funcion sin variables locales ni cuerpo
-	// funciones con assign
-	{"program A1; var a,b: int; void fun1 (z : int) [ var varFun1: int; { a = 2; }]; main { x = 5; } end", 0},         //Ok: funcion con asignación sencilla en el cuerpo
-	{"program A1; var a,b: int; void fun1 (z : int) [ var varFun1: int; { a = 2 > 1; }]; main { x = 5; } end", 0},     //Ok: funcion de asignacion con comparacion > se supone que no se vale operador con asignacion
-	{"program A1; var a,b: int; void fun1 (z : int) [ var varFun1: int; { a = 2 < 3; }]; main { x = 5; } end", 0},     //Ok: funcion de asignacion con comparacion <
-	{"program A1; var a,b: int; void fun1 (z : int) [ var varFun1: int; { a = 2 != 2.1; }]; main { x = 5; } end", 0},  //Ok: funcion de asignacion con comparacion !=
-	{"program A1; var a,b: int; void fun1 (z : int) [ var varFun1: int; { a = 2 == 2.1; }]; main { x = 5; } end", -1}, //Bad: no existe el operador ==
-	// funciones con assign y diferentes operaciones
-	{"program A1; var a,b: int; void fun1 (z : int) [ var varFun1: int; { a = (2 > 1); }]; main { x = 5; } end", 0},   //Ok: Uso de parentesis para operaciones
-	{"program A1; var a,b: int; void fun1 (z : int) [ var varFun1: int; { a = (2+2) > 1; }]; main { x = 5; } end", 0}, //Ok: Uso de parentesis para operaciones compuestas combinadas con comparacion
-	{"program A1; var a,b: int; void fun1 (z : int) [ var varFun1: int; { a = 2 - 1; }]; main { x = 5; } end", 0},     //Ok: Operacion de resta
-	{"program A1; var a,b: int; void fun1 (z : int) [ var varFun1: int; { a = 2 * 1; }]; main { x = 5; } end", 0},     //Ok: Operacion de multiplicacion
-	{"program A1; var a,b: int; void fun1 (z : int) [ var varFun1: int; { a = 2 / 1; }]; main { x = 5; } end", 0},     //Ok: Operacion de division
-	{"program A1; var a,b: int; void fun1 (z : int) [ var varFun1: int; { a = 2 % 1; }]; main { x = 5; } end", -1},    //Bad: no existe el operador %
-	{"program A1; var a,b: int; void fun1 (z : int) [ var varFun1: int; { a = +2; }]; main { x = 5; } end", 0},        //Ok: Operacion de suma unaria
-	{"program A1; var a,b: int; void fun1 (z : int) [ var varFun1: int; { a = -2; }]; main { x = 5; } end", 0},        //Ok: Operacion de resta unaria
-	{"program A1; var a,b: int; void fun1 (z : int) [ var varFun1: int; { a = +b; }]; main { x = 5; } end", 0},        //Ok: Operacion de suma unaria con variable
-	// funciones con condicionales
-	{"program A1; var a,b: int; void fun1 (z : int) [ var varFun1: int; { if (2){}; }]; main { x = 5; } end", 0},                       //Ok: if de cuerpo vacio sin else
-	{"program A1; var a,b: int; void fun1 (z : int) [ var varFun1: int; { if (2){}else{}; }]; main { x = 5; } end", 0},                 //Ok if de cuerpo vacio con else con cuerpo vacio
-	{"program A1; var a,b: int; void fun1 (z : int) [ var varFun1: int; { if (2>1){a = +2;}else{a = -2;}; }]; main { x = 5; } end", 0}, //Ok: if de comparacion con operacion en cuerpo y else con operacion en cuerpo
-	// funciones con while
-	{"program A1; var a,b: int; void fun1 (z : int) [ var varFun1: int; { while (b) do {}; }]; main { x = 5; } end", 0},               //Ok: while de cuerpo vacio
-	{"program A1; var a,b: int; void fun1 (z : int) [ var varFun1: int; { while ((b+2)!=a) do {a = +2;}; }]; main { x = 5; } end", 0}, //Ok: while de comparacion con operacion en cuerpo
-	// funciones con f calls
-	{"program A1; var a,b: int; void fun1 (z : int) [ var varFun1: int; { idFcall ((2 * 1) != 0); }]; main { x = 5; } end", 0},        //Ok: llamada a funcion con unico argumento
-	{"program A1; var a,b: int; void fun1 (z : int) [ var varFun1: int; { idFcall ((2 * 1) != 0, a > b); }]; main { x = 5; } end", 0}, //Ok: llamada a funcion con varios argumentos
-	// funciones con print
-	{"program A1; var a,b: int; void fun1 (z : int) [ var varFun1: int; { print (\"hola mundo\"); }]; main { x = 5; } end", 0}, //Ok: print con constante string
-	{"program A1; var a,b: int; void fun1 (z : int) [ var varFun1: int; { print (a+b); }]; main { x = 5; } end", 0},            //Ok: print con una expresion
-	{"program A1; var a,b: int; void fun1 (z : int) [ var varFun1: int; { print (a+b, (b+2)!=a); }]; main { x = 5; } end", 0},  //Ok: print con varias expresiones
-}*/
 
 /*var testData = []*TI{
 	{
@@ -112,14 +56,16 @@ var testData = []*TI{
 	{
 		`program xyz;
 			var a,b: int;
-			void funcion1 (param1 : int)
-			[ var varLocal: int; { b = varLocal + 2; }];
+				c,d: float;
+			void funcion1 (param1 : int, param2 : int)
+			[ var varLocal: int; { b = varLocal + 2; a = param1 + param2; }];
 			main {
 				if (a < b)
 				{
         			print("a es menor que b");
     			};
     			print("Fin del ifelse");
+				c = 4 - 2 /  (d * 1.5);
 			} end`,
 		0,
 	},
@@ -146,7 +92,7 @@ end
 	},
 }*/
 
-var testData = []*TI{
+/*var testData = []*TI{
 	{
 		`program test;
 			var a, b, c: int;
@@ -171,6 +117,21 @@ var testData = []*TI{
 		end`,
 		0,
 	},
+}*/
+
+var testData = []*TI{
+	{
+		`program test;
+			var a, b: float;
+			main {
+    			a = 20 + 6.5;
+				b = 20 - 6.5;
+				print(a);
+				print(b);
+			}
+		end`,
+		0,
+	},
 }
 
 func TestParser(t *testing.T) {
@@ -188,6 +149,9 @@ func TestParser(t *testing.T) {
 				t.Errorf("Expected no error but got: %v for input: %s", err, ts.src)
 			} else {
 				ast.ImprimirCuadruplos()
+				vm := ast.NewVirtualMachine(&ast.Cuadruplos, ast.ConstantsVarTable, ast.FunctionDirectory)
+				vm.Run()
+				fmt.Println(vm.Memory)
 			}
 		} else if ts.expect == -1 {
 			if err == nil {

@@ -33,7 +33,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `Programa : DECLARAR_PROGRAMA FUNCS_PROG main Body end	<<  >>`,
+		String: `Programa : DECLARA_PROG FUNCS_PROG main Body end	<<  >>`,
 		Id:         "Programa",
 		NTType:     1,
 		Index:      1,
@@ -43,40 +43,44 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `DECLARAR_PROGRAMA : program id semicolon VARS_PROG	<< func() (Attrib, error){
-        nombrePrograma := "program" + string(X[1].(*token.Token).Lit)
+		String: `DECLARA_PROG : program id semicolon VARS_PROG	<< func() (Attrib, error){
+        nombre_prog := string(X[1].(*token.Token).Lit)
 
-        //agregar "program xyz" a directorio de funciones
-        _, err := ast.DeclararFuncion(
-            nombrePrograma,             // Nombre de la función
-            []ast.VariableInfo{},       // Parámetros vacios
-            X[3].(*ast.HashMap),          // Variables locales
+        //agregar prog a FunctionDir
+        _, err := ast.Declare_Function(
+            nombre_prog,                // nombre
+            []ast.VariableInfo{},       // sin params
+            X[3].(*ast.HashMap),          // vars globales
         )
 
         if err != nil {
             return nil, err
         }
 
+        //agregar tabla vacia de temps y de ctes
+
         return nil, nil
     }() >>`,
-		Id:         "DECLARAR_PROGRAMA",
+		Id:         "DECLARA_PROG",
 		NTType:     2,
 		Index:      2,
 		NumSymbols: 4,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error){
-        nombrePrograma := "program" + string(X[1].(*token.Token).Lit)
+        nombre_prog := string(X[1].(*token.Token).Lit)
 
-        //agregar "program xyz" a directorio de funciones
-        _, err := ast.DeclararFuncion(
-            nombrePrograma,             // Nombre de la función
-            []ast.VariableInfo{},       // Parámetros vacios
-            X[3].(*ast.HashMap),          // Variables locales
+        //agregar prog a FunctionDir
+        _, err := ast.Declare_Function(
+            nombre_prog,                // nombre
+            []ast.VariableInfo{},       // sin params
+            X[3].(*ast.HashMap),          // vars globales
         )
 
         if err != nil {
             return nil, err
         }
+
+        //agregar tabla vacia de temps y de ctes
 
         return nil, nil
     }()
@@ -84,15 +88,14 @@ var productionsTable = ProdTab{
 	},
 	ProdTabEntry{
 		String: `VARS_PROG : VARS	<< func() (Attrib, error) {
-        //lista de variables desde VARIABLES
-        variables := X[0].([]ast.VariableInfo)
+        variables := X[0].([]ast.VariableInfo)    //slice de variables (name,type)
 
-        globalVarsMap, err := ast.DeclaracionVar(variables)
+        variables_globales, err := ast.Declare_GlobalVars(variables)
         if err != nil {
             return nil, err
         }
 
-        return globalVarsMap, nil
+        return variables_globales, nil
     }() >>`,
 		Id:         "VARS_PROG",
 		NTType:     3,
@@ -100,15 +103,14 @@ var productionsTable = ProdTab{
 		NumSymbols: 1,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error) {
-        //lista de variables desde VARIABLES
-        variables := X[0].([]ast.VariableInfo)
+        variables := X[0].([]ast.VariableInfo)    //slice de variables (name,type)
 
-        globalVarsMap, err := ast.DeclaracionVar(variables)
+        variables_globales, err := ast.Declare_GlobalVars(variables)
         if err != nil {
             return nil, err
         }
 
-        return globalVarsMap, nil
+        return variables_globales, nil
     }()
 		},
 	},
@@ -154,14 +156,13 @@ var productionsTable = ProdTab{
 	},
 	ProdTabEntry{
 		String: `VARIABLES : ID_LIST colon TYPE semicolon MAS_VARIABLES	<< func() (Attrib, error) {
-        //crear la lista inicial con identificadores y tipo
-        variables := []ast.VariableInfo{}
-        
-        for _, id := range X[0].([]string) {
-            variables = append(variables, ast.VariableInfo{Name: id, Type: X[2].(string)})
-        }
+        //crear SLICE (no mapa) de vars
+        id_list := X[0].([]string)
+        type_vars := X[2].(string)
 
-        //agregar las variables adicionales de MAS_VARIABLES
+        variables := ast.Create_VarList(id_list, type_vars)
+
+        //agregar las variables adicionales
         additionalVars := X[4].([]ast.VariableInfo)
         variables = append(variables, additionalVars...)
 
@@ -173,14 +174,13 @@ var productionsTable = ProdTab{
 		NumSymbols: 5,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error) {
-        //crear la lista inicial con identificadores y tipo
-        variables := []ast.VariableInfo{}
-        
-        for _, id := range X[0].([]string) {
-            variables = append(variables, ast.VariableInfo{Name: id, Type: X[2].(string)})
-        }
+        //crear SLICE (no mapa) de vars
+        id_list := X[0].([]string)
+        type_vars := X[2].(string)
 
-        //agregar las variables adicionales de MAS_VARIABLES
+        variables := ast.Create_VarList(id_list, type_vars)
+
+        //agregar las variables adicionales
         additionalVars := X[4].([]ast.VariableInfo)
         variables = append(variables, additionalVars...)
 
@@ -210,8 +210,12 @@ var productionsTable = ProdTab{
 	},
 	ProdTabEntry{
 		String: `ID_LIST : id MAS_IDS	<< func() (Attrib, error){
-        ids := append([]string{string(X[0].(*token.Token).Lit)}, X[1].([]string)...)
-        return ids, nil
+        id := string(X[0].(*token.Token).Lit)
+        mas_ids := X[1].([]string)
+
+        id_list := append([]string{id}, mas_ids...)
+
+        return id_list, nil
     }() >>`,
 		Id:         "ID_LIST",
 		NTType:     8,
@@ -219,8 +223,12 @@ var productionsTable = ProdTab{
 		NumSymbols: 2,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error){
-        ids := append([]string{string(X[0].(*token.Token).Lit)}, X[1].([]string)...)
-        return ids, nil
+        id := string(X[0].(*token.Token).Lit)
+        mas_ids := X[1].([]string)
+
+        id_list := append([]string{id}, mas_ids...)
+
+        return id_list, nil
     }()
 		},
 	},
@@ -265,14 +273,14 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `FUNCS : FUNC_PRIMERA_PARTE lbraket VARS_FUNC CUERPO_FUNC	<< func() (Attrib, error){
+		String: `FUNCS : DECLARA_FUNC lbraket VARS_FUNC Body rbraket semicolon	<< func() (Attrib, error){
             ast.CurrentFunction = nil
             return nil, nil
         }() >>`,
 		Id:         "FUNCS",
 		NTType:     11,
 		Index:      16,
-		NumSymbols: 4,
+		NumSymbols: 6,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error){
             ast.CurrentFunction = nil
@@ -281,93 +289,175 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `FUNC_PRIMERA_PARTE : void id lparen ID_LIST_PARAMS rparen	<< func() (Attrib, error){
-            // Llamar a la función DeclararFuncion para agregar una nueva funcion
-            fun, err := ast.DeclararFuncion(
-            string(X[1].(*token.Token).Lit), // Nombre de la función
-            X[3].([]ast.VariableInfo),      // Parámetros
-            //X[6].(*ast.HashMap),            // Variables locales
-            ast.NewHashMap(),                //tabla de variables temporalmente vacia
+		String: `DECLARA_FUNC : void id lparen HAY_PARAMS rparen	<< func() (Attrib, error){
+            nombre_fun := string(X[1].(*token.Token).Lit)
+            parametros := X[3].([]ast.VariableInfo)
+            local_varMap := ast.NewHashMap()
+
+            _, err := ast.Declare_Function(
+                nombre_fun,
+                parametros,
+                local_varMap,                //tabla de variables vacia
             )
 
             if err != nil {
                 return nil, err
             }
 
-            ast.CurrentFunction = fun
+            //ast.CurrentFunction = funcion
 
             return nil, nil
         }() >>`,
-		Id:         "FUNC_PRIMERA_PARTE",
+		Id:         "DECLARA_FUNC",
 		NTType:     12,
 		Index:      17,
 		NumSymbols: 5,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error){
-            // Llamar a la función DeclararFuncion para agregar una nueva funcion
-            fun, err := ast.DeclararFuncion(
-            string(X[1].(*token.Token).Lit), // Nombre de la función
-            X[3].([]ast.VariableInfo),      // Parámetros
-            //X[6].(*ast.HashMap),            // Variables locales
-            ast.NewHashMap(),                //tabla de variables temporalmente vacia
+            nombre_fun := string(X[1].(*token.Token).Lit)
+            parametros := X[3].([]ast.VariableInfo)
+            local_varMap := ast.NewHashMap()
+
+            _, err := ast.Declare_Function(
+                nombre_fun,
+                parametros,
+                local_varMap,                //tabla de variables vacia
             )
 
             if err != nil {
                 return nil, err
             }
 
-            ast.CurrentFunction = fun
+            //ast.CurrentFunction = funcion
 
             return nil, nil
         }()
 		},
 	},
 	ProdTabEntry{
-		String: `CUERPO_FUNC : Body rbraket semicolon	<< X[0], nil >>`,
-		Id:         "CUERPO_FUNC",
+		String: `HAY_PARAMS : PARAMETROS	<< X[0], nil >>`,
+		Id:         "HAY_PARAMS",
 		NTType:     13,
 		Index:      18,
-		NumSymbols: 3,
+		NumSymbols: 1,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return X[0], nil
 		},
 	},
 	ProdTabEntry{
+		String: `HAY_PARAMS : empty	<< []ast.VariableInfo{}, nil >>`,
+		Id:         "HAY_PARAMS",
+		NTType:     13,
+		Index:      19,
+		NumSymbols: 0,
+		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
+			return []ast.VariableInfo{}, nil
+		},
+	},
+	ProdTabEntry{
+		String: `PARAMETROS : PARAM MAS_PARAMS	<< func() (Attrib, error){
+        param := X[0].(ast.VariableInfo)
+        mas_params := X[1].([]ast.VariableInfo)
+
+        parametros := append([]ast.VariableInfo {param}, mas_params...)
+
+        return parametros, nil
+    }() >>`,
+		Id:         "PARAMETROS",
+		NTType:     14,
+		Index:      20,
+		NumSymbols: 2,
+		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
+			return func() (Attrib, error){
+        param := X[0].(ast.VariableInfo)
+        mas_params := X[1].([]ast.VariableInfo)
+
+        parametros := append([]ast.VariableInfo {param}, mas_params...)
+
+        return parametros, nil
+    }()
+		},
+	},
+	ProdTabEntry{
+		String: `PARAM : id colon TYPE	<< func() (Attrib, error) {
+        parametro := ast.VariableInfo {
+            Name: string(X[0].(*token.Token).Lit),    //nombre
+            Type: X[2].(string),                       //tipo
+                                                    //memoria?
+        }
+        return parametro, nil
+    }() >>`,
+		Id:         "PARAM",
+		NTType:     15,
+		Index:      21,
+		NumSymbols: 3,
+		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
+			return func() (Attrib, error) {
+        parametro := ast.VariableInfo {
+            Name: string(X[0].(*token.Token).Lit),    //nombre
+            Type: X[2].(string),                       //tipo
+                                                    //memoria?
+        }
+        return parametro, nil
+    }()
+		},
+	},
+	ProdTabEntry{
+		String: `MAS_PARAMS : comma PARAMETROS	<< X[1], nil >>`,
+		Id:         "MAS_PARAMS",
+		NTType:     16,
+		Index:      22,
+		NumSymbols: 2,
+		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
+			return X[1], nil
+		},
+	},
+	ProdTabEntry{
+		String: `MAS_PARAMS : empty	<< []ast.VariableInfo{}, nil >>`,
+		Id:         "MAS_PARAMS",
+		NTType:     16,
+		Index:      23,
+		NumSymbols: 0,
+		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
+			return []ast.VariableInfo{}, nil
+		},
+	},
+	ProdTabEntry{
 		String: `VARS_FUNC : VARS	<< func() (Attrib, error){
-        //Obtener la lista de variables desde VARIABLES
+
+        parametros := ast.CurrentFunction.Parameters
         variables := X[0].([]ast.VariableInfo)
 
-        // Registrar las variables en la tabla local de la función actual
-        //localVarsMap, err := ast.DeclaracionVarLocal(variables)
+        //lista de params y vars locales
+        variables_locales := append(parametros, variables...)
 
-        err := ast.InsertarVariableLocal(variables)
+        err := ast.Declare_LocalVars(variables_locales)
 
         if err != nil {
             return nil, err
         }
 
-        //return localVarsMap, nil
         return nil, nil
     }() >>`,
 		Id:         "VARS_FUNC",
-		NTType:     14,
-		Index:      19,
+		NTType:     17,
+		Index:      24,
 		NumSymbols: 1,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error){
-        //Obtener la lista de variables desde VARIABLES
+
+        parametros := ast.CurrentFunction.Parameters
         variables := X[0].([]ast.VariableInfo)
 
-        // Registrar las variables en la tabla local de la función actual
-        //localVarsMap, err := ast.DeclaracionVarLocal(variables)
+        //lista de params y vars locales
+        variables_locales := append(parametros, variables...)
 
-        err := ast.InsertarVariableLocal(variables)
+        err := ast.Declare_LocalVars(variables_locales)
 
         if err != nil {
             return nil, err
         }
 
-        //return localVarsMap, nil
         return nil, nil
     }()
 		},
@@ -375,77 +465,11 @@ var productionsTable = ProdTab{
 	ProdTabEntry{
 		String: `VARS_FUNC : empty	<< nil, nil >>`,
 		Id:         "VARS_FUNC",
-		NTType:     14,
-		Index:      20,
+		NTType:     17,
+		Index:      25,
 		NumSymbols: 0,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return nil, nil
-		},
-	},
-	ProdTabEntry{
-		String: `ID_LIST_PARAMS : PARAMS MAS_PARAMS	<< func() (Attrib, error){
-        params := append([]ast.VariableInfo{X[0].(ast.VariableInfo)}, X[1].([]ast.VariableInfo)...)
-        return params, nil
-    }() >>`,
-		Id:         "ID_LIST_PARAMS",
-		NTType:     15,
-		Index:      21,
-		NumSymbols: 2,
-		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
-			return func() (Attrib, error){
-        params := append([]ast.VariableInfo{X[0].(ast.VariableInfo)}, X[1].([]ast.VariableInfo)...)
-        return params, nil
-    }()
-		},
-	},
-	ProdTabEntry{
-		String: `ID_LIST_PARAMS : empty	<< []ast.VariableInfo{}, nil >>`,
-		Id:         "ID_LIST_PARAMS",
-		NTType:     15,
-		Index:      22,
-		NumSymbols: 0,
-		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
-			return []ast.VariableInfo{}, nil
-		},
-	},
-	ProdTabEntry{
-		String: `MAS_PARAMS : comma PARAMS MAS_PARAMS	<< func() (Attrib, error){
-        params := append([]ast.VariableInfo{X[1].(ast.VariableInfo)}, X[2].([]ast.VariableInfo)...)
-        return params, nil
-    }() >>`,
-		Id:         "MAS_PARAMS",
-		NTType:     16,
-		Index:      23,
-		NumSymbols: 3,
-		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
-			return func() (Attrib, error){
-        params := append([]ast.VariableInfo{X[1].(ast.VariableInfo)}, X[2].([]ast.VariableInfo)...)
-        return params, nil
-    }()
-		},
-	},
-	ProdTabEntry{
-		String: `MAS_PARAMS : empty	<< []ast.VariableInfo{}, nil >>`,
-		Id:         "MAS_PARAMS",
-		NTType:     16,
-		Index:      24,
-		NumSymbols: 0,
-		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
-			return []ast.VariableInfo{}, nil
-		},
-	},
-	ProdTabEntry{
-		String: `PARAMS : id colon TYPE	<< func() (Attrib, error) {
-        return ast.VariableInfo{Name: string(X[0].(*token.Token).Lit), Type: X[2].(string)}, nil
-    }() >>`,
-		Id:         "PARAMS",
-		NTType:     17,
-		Index:      25,
-		NumSymbols: 3,
-		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
-			return func() (Attrib, error) {
-        return ast.VariableInfo{Name: string(X[0].(*token.Token).Lit), Type: X[2].(string)}, nil
-    }()
 		},
 	},
 	ProdTabEntry{
@@ -583,8 +607,13 @@ var productionsTable = ProdTab{
 	ProdTabEntry{
 		String: `EXPRESION : EXP OP_REL EXP	<< func() (Attrib, error){
 
-        err := ast.GenerateQuadrupleForExp()
-        
+        //checar si hay operadores-operandos
+        err := ast.IsStackEmpty()
+        if err != nil {
+            return nil, err
+        }
+
+        err = ast.GenerateQuadrupleForExp()
         if err != nil {
             return nil, err
         }
@@ -597,8 +626,13 @@ var productionsTable = ProdTab{
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error){
 
-        err := ast.GenerateQuadrupleForExp()
-        
+        //checar si hay operadores-operandos
+        err := ast.IsStackEmpty()
+        if err != nil {
+            return nil, err
+        }
+
+        err = ast.GenerateQuadrupleForExp()
         if err != nil {
             return nil, err
         }
@@ -655,7 +689,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `EXP : TERMINO	<< X[0], nil >>`,
+		String: `EXP : TERMINO	<<  >>`,
 		Id:         "EXP",
 		NTType:     24,
 		Index:      40,
@@ -665,7 +699,14 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `EXP : TERMINO PLUS_OP TERMINO	<< func() (Attrib, error){
+		String: `EXP : TERMINO PLUS_MINUS TERMINO	<< func() (Attrib, error){
+
+        //checar si hay operadores-operandos
+        err := ast.IsStackEmpty()
+        if err != nil {
+            return nil, err
+        }
+
         operador := ast.Operadores.Top()
 
         if(operador == "+" || operador == "-") {
@@ -683,6 +724,13 @@ var productionsTable = ProdTab{
 		NumSymbols: 3,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error){
+
+        //checar si hay operadores-operandos
+        err := ast.IsStackEmpty()
+        if err != nil {
+            return nil, err
+        }
+
         operador := ast.Operadores.Top()
 
         if(operador == "+" || operador == "-") {
@@ -697,11 +745,11 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `PLUS_OP : plus	<< func() (Attrib, error){
+		String: `PLUS_MINUS : plus	<< func() (Attrib, error){
         ast.Operadores.Push("+")
         return nil, nil
     }() >>`,
-		Id:         "PLUS_OP",
+		Id:         "PLUS_MINUS",
 		NTType:     25,
 		Index:      42,
 		NumSymbols: 1,
@@ -713,45 +761,13 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `EXP : TERMINO MINUS_OP TERMINO	<< func() (Attrib, error){
-        operador := ast.Operadores.Top()
-
-        if(operador == "+" || operador == "-") {
-            err := ast.GenerateQuadrupleForExp()
-            if err != nil {
-                return nil, err
-            }
-            return nil, nil
-        }
-        return nil, nil 
-    }() >>`,
-		Id:         "EXP",
-		NTType:     24,
-		Index:      43,
-		NumSymbols: 3,
-		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
-			return func() (Attrib, error){
-        operador := ast.Operadores.Top()
-
-        if(operador == "+" || operador == "-") {
-            err := ast.GenerateQuadrupleForExp()
-            if err != nil {
-                return nil, err
-            }
-            return nil, nil
-        }
-        return nil, nil 
-    }()
-		},
-	},
-	ProdTabEntry{
-		String: `MINUS_OP : minus	<< func() (Attrib, error){
+		String: `PLUS_MINUS : minus	<< func() (Attrib, error){
         ast.Operadores.Push("-")
         return nil, nil
     }() >>`,
-		Id:         "MINUS_OP",
-		NTType:     26,
-		Index:      44,
+		Id:         "PLUS_MINUS",
+		NTType:     25,
+		Index:      43,
 		NumSymbols: 1,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error){
@@ -761,17 +777,24 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `TERMINO : FACTOR	<< X[0], nil >>`,
+		String: `TERMINO : FACTOR	<<  >>`,
 		Id:         "TERMINO",
-		NTType:     27,
-		Index:      45,
+		NTType:     26,
+		Index:      44,
 		NumSymbols: 1,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return X[0], nil
 		},
 	},
 	ProdTabEntry{
-		String: `TERMINO : FACTOR MULT_OP FACTOR	<< func() (Attrib, error){
+		String: `TERMINO : FACTOR MULT_DIV FACTOR	<< func() (Attrib, error){
+
+        //checar si hay operadores-operandos
+        err := ast.IsStackEmpty()
+        if err != nil {
+            return nil, err
+        }
+
         operador := ast.Operadores.Top()
 
         if(operador == "*" || operador == "/") {
@@ -784,11 +807,18 @@ var productionsTable = ProdTab{
         return nil, nil 
     }() >>`,
 		Id:         "TERMINO",
-		NTType:     27,
-		Index:      46,
+		NTType:     26,
+		Index:      45,
 		NumSymbols: 3,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error){
+
+        //checar si hay operadores-operandos
+        err := ast.IsStackEmpty()
+        if err != nil {
+            return nil, err
+        }
+
         operador := ast.Operadores.Top()
 
         if(operador == "*" || operador == "/") {
@@ -803,13 +833,13 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `MULT_OP : multiply	<< func() (Attrib, error){
+		String: `MULT_DIV : multiply	<< func() (Attrib, error){
         ast.Operadores.Push("*")
         return nil, nil
     }() >>`,
-		Id:         "MULT_OP",
-		NTType:     28,
-		Index:      47,
+		Id:         "MULT_DIV",
+		NTType:     27,
+		Index:      46,
 		NumSymbols: 1,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error){
@@ -819,45 +849,13 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `TERMINO : FACTOR DIV_OP FACTOR	<< func() (Attrib, error){
-        operador := ast.Operadores.Top()
-
-        if(operador == "*" || operador == "/") {
-            err := ast.GenerateQuadrupleForExp()
-            if err != nil {
-                return nil, err
-            }
-            return nil, nil
-        }
-        return nil, nil 
-    }() >>`,
-		Id:         "TERMINO",
-		NTType:     27,
-		Index:      48,
-		NumSymbols: 3,
-		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
-			return func() (Attrib, error){
-        operador := ast.Operadores.Top()
-
-        if(operador == "*" || operador == "/") {
-            err := ast.GenerateQuadrupleForExp()
-            if err != nil {
-                return nil, err
-            }
-            return nil, nil
-        }
-        return nil, nil 
-    }()
-		},
-	},
-	ProdTabEntry{
-		String: `DIV_OP : divide	<< func() (Attrib, error){
+		String: `MULT_DIV : divide	<< func() (Attrib, error){
         ast.Operadores.Push("/")
         return nil, nil
     }() >>`,
-		Id:         "DIV_OP",
-		NTType:     29,
-		Index:      49,
+		Id:         "MULT_DIV",
+		NTType:     27,
+		Index:      47,
 		NumSymbols: 1,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error){
@@ -869,39 +867,47 @@ var productionsTable = ProdTab{
 	ProdTabEntry{
 		String: `FACTOR : FONDO_FALSO EXPRESION rparen	<< func() (Attrib, error){
 
-        for !ast.Operadores.IsEmpty(){
+        //checar si hay operadores-operandos
+        err := ast.IsStackEmpty()
+        if err != nil {
+            return nil, err
+        }
 
-            top := ast.Operadores.Top()
-            if top == "(" {
-                ast.Operadores.Pop()
-                break
-            }
+        operador := ast.Operadores.Top()
+
+        for( operador != "(" ){
             err := ast.GenerateQuadrupleForExp()
             if err != nil {
                 return nil, err
             }
         }
+        ast.Operadores.Pop()
+        
         return nil, nil
     }() >>`,
 		Id:         "FACTOR",
-		NTType:     30,
-		Index:      50,
+		NTType:     28,
+		Index:      48,
 		NumSymbols: 3,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error){
 
-        for !ast.Operadores.IsEmpty(){
+        //checar si hay operadores-operandos
+        err := ast.IsStackEmpty()
+        if err != nil {
+            return nil, err
+        }
 
-            top := ast.Operadores.Top()
-            if top == "(" {
-                ast.Operadores.Pop()
-                break
-            }
+        operador := ast.Operadores.Top()
+
+        for( operador != "(" ){
             err := ast.GenerateQuadrupleForExp()
             if err != nil {
                 return nil, err
             }
         }
+        ast.Operadores.Pop()
+        
         return nil, nil
     }()
 		},
@@ -912,8 +918,8 @@ var productionsTable = ProdTab{
         return nil, nil
     }() >>`,
 		Id:         "FONDO_FALSO",
-		NTType:     31,
-		Index:      51,
+		NTType:     29,
+		Index:      49,
 		NumSymbols: 1,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error){
@@ -923,30 +929,20 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `FACTOR : FACTOR_OPERADOR ID_CTE	<< X[1],nil >>`,
+		String: `FACTOR : FACTOR_OPERADOR ID_CTE	<<  >>`,
 		Id:         "FACTOR",
-		NTType:     30,
-		Index:      52,
+		NTType:     28,
+		Index:      50,
 		NumSymbols: 2,
-		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
-			return X[1],nil
-		},
-	},
-	ProdTabEntry{
-		String: `FACTOR_OPERADOR : PLUS_OP	<< X[0], nil >>`,
-		Id:         "FACTOR_OPERADOR",
-		NTType:     32,
-		Index:      53,
-		NumSymbols: 1,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return X[0], nil
 		},
 	},
 	ProdTabEntry{
-		String: `FACTOR_OPERADOR : MINUS_OP	<< X[0], nil >>`,
+		String: `FACTOR_OPERADOR : PLUS_MINUS	<<  >>`,
 		Id:         "FACTOR_OPERADOR",
-		NTType:     32,
-		Index:      54,
+		NTType:     30,
+		Index:      51,
 		NumSymbols: 1,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return X[0], nil
@@ -955,8 +951,8 @@ var productionsTable = ProdTab{
 	ProdTabEntry{
 		String: `FACTOR_OPERADOR : empty	<<  >>`,
 		Id:         "FACTOR_OPERADOR",
-		NTType:     32,
-		Index:      55,
+		NTType:     30,
+		Index:      52,
 		NumSymbols: 0,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return nil, nil
@@ -964,39 +960,37 @@ var productionsTable = ProdTab{
 	},
 	ProdTabEntry{
 		String: `ID_CTE : id	<< func() (Attrib, error){
-        //Verificacion de variable no declarada
-        nombre := string(X[0].(*token.Token).Lit)
 
-        //Buscar variable
-        varInfo, error := ast.BuscarVariable(nombre)
+        nombre_var := string(X[0].(*token.Token).Lit)
+
+        //verificacion de variable
+        varInfo, error := ast.BuscarVariable(nombre_var)
         if (error != nil){
             return nil, error
         }
 
-        //Agregar a pila de Operandos
-        //ast.Operandos.Push(varInfo.Name)
+        //si si existe, agregarla a los stacks
         ast.Operandos.Push(varInfo.Address)
         ast.Tipos.Push(varInfo.Type)
         
         return nil, nil
     }() >>`,
 		Id:         "ID_CTE",
-		NTType:     33,
-		Index:      56,
+		NTType:     31,
+		Index:      53,
 		NumSymbols: 1,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error){
-        //Verificacion de variable no declarada
-        nombre := string(X[0].(*token.Token).Lit)
 
-        //Buscar variable
-        varInfo, error := ast.BuscarVariable(nombre)
+        nombre_var := string(X[0].(*token.Token).Lit)
+
+        //verificacion de variable
+        varInfo, error := ast.BuscarVariable(nombre_var)
         if (error != nil){
             return nil, error
         }
 
-        //Agregar a pila de Operandos
-        //ast.Operandos.Push(varInfo.Name)
+        //si si existe, agregarla a los stacks
         ast.Operandos.Push(varInfo.Address)
         ast.Tipos.Push(varInfo.Type)
         
@@ -1006,31 +1000,29 @@ var productionsTable = ProdTab{
 	},
 	ProdTabEntry{
 		String: `ID_CTE : CTE	<< func() (Attrib, error){
-        cte := X[0].([]string) // Obtener la lista devuelta por CTE
-        //valor := cte[0]
+        cte := X[0].([]string) //slice con info de la cte
+        valor := cte[0]
         tipo := cte[1]
 
-        direccion := ast.Prog_MemoryManager.GetConstVarMem(tipo)
+        direccion := ast.Declare_Constant(valor, tipo)
 
-        //ast.Operandos.Push(valor)
         ast.Operandos.Push(direccion)
         ast.Tipos.Push(tipo)
 
         return nil, nil
     }() >>`,
 		Id:         "ID_CTE",
-		NTType:     33,
-		Index:      57,
+		NTType:     31,
+		Index:      54,
 		NumSymbols: 1,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error){
-        cte := X[0].([]string) // Obtener la lista devuelta por CTE
-        //valor := cte[0]
+        cte := X[0].([]string) //slice con info de la cte
+        valor := cte[0]
         tipo := cte[1]
 
-        direccion := ast.Prog_MemoryManager.GetConstVarMem(tipo)
+        direccion := ast.Declare_Constant(valor, tipo)
 
-        //ast.Operandos.Push(valor)
         ast.Operandos.Push(direccion)
         ast.Tipos.Push(tipo)
 
@@ -1041,32 +1033,36 @@ var productionsTable = ProdTab{
 	ProdTabEntry{
 		String: `CTE : cte_int	<< func() (Attrib, error) {
         valor := string(X[0].(*token.Token).Lit)
-        return []string{valor, "int"}, nil
+        cte_int := []string {valor, "int"}
+        return cte_int, nil
     }() >>`,
 		Id:         "CTE",
-		NTType:     34,
-		Index:      58,
+		NTType:     32,
+		Index:      55,
 		NumSymbols: 1,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error) {
         valor := string(X[0].(*token.Token).Lit)
-        return []string{valor, "int"}, nil
+        cte_int := []string {valor, "int"}
+        return cte_int, nil
     }()
 		},
 	},
 	ProdTabEntry{
 		String: `CTE : cte_float	<< func() (Attrib, error) {
         valor := string(X[0].(*token.Token).Lit)
-        return []string{valor, "float"}, nil
+        cte_float := []string {valor, "float"}
+        return cte_float, nil
     }() >>`,
 		Id:         "CTE",
-		NTType:     34,
-		Index:      59,
+		NTType:     32,
+		Index:      56,
 		NumSymbols: 1,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error) {
         valor := string(X[0].(*token.Token).Lit)
-        return []string{valor, "float"}, nil
+        cte_float := []string {valor, "float"}
+        return cte_float, nil
     }()
 		},
 	},
@@ -1075,103 +1071,101 @@ var productionsTable = ProdTab{
         hayElse := X[3].(bool)
 
         if(hayElse){
-            goto_Jump := ast.PJumps.Pop()   //indice del goto que salta al else
-            falseJump := ast.PJumps.Pop()
 
-            //Llenar GOTO: saltar el else
-            quadGoto := ast.Cuadruplos.GetItem(goto_Jump) 
-            quadGoto.Res = ast.Cuadruplos.Size() 
-            ast.Cuadruplos.Update(goto_Jump, quadGoto) 
+            //llenar el GOTO
+            quad_GOTO := ast.PJumps.Pop()
+            value_GOTO := ast.Cuadruplos.Size()
+            err := ast.Fill_QuadJumps(quad_GOTO, value_GOTO)
 
-            //Llenar el GOTOF: apunta al inicio del else
-            quadGoToF := ast.Cuadruplos.GetItem(falseJump)
-            quadGoToF.Res = goto_Jump + 1   //salta al quad despues del GOTO (que es el else)
-            ast.Cuadruplos.Update(falseJump, quadGoToF)
+            if(err != nil){
+                return nil, err
+            }
+
+            //llenar el GOTOF
+            quad_GOTOF := ast.PJumps.Pop()
+            value_GOTOF := quad_GOTO + 1
+            err = ast.Fill_QuadJumps(quad_GOTOF, value_GOTOF)
+
+            if(err!=nil){
+                return nil, err
+            }
+
         } else {
-            // Solo Pop del GOTOF (condición)
-            falseJump := ast.PJumps.Pop()
-            quadGoToF := ast.Cuadruplos.GetItem(falseJump)
-            quadGoToF.Res = ast.Cuadruplos.Size()
-            ast.Cuadruplos.Update(falseJump, quadGoToF)
+            //si no hay else, llenar solo GOTOF
+            quad_GOTOF := ast.PJumps.Pop()
+            value_GOTOF := ast.Cuadruplos.Size()
+            err := ast.Fill_QuadJumps(quad_GOTOF, value_GOTOF)
+
+            if(err!=nil){
+                return nil, err
+            }
         }
-        
         return nil, nil
     }() >>`,
 		Id:         "IF",
-		NTType:     35,
-		Index:      60,
+		NTType:     33,
+		Index:      57,
 		NumSymbols: 5,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error){
         hayElse := X[3].(bool)
 
         if(hayElse){
-            goto_Jump := ast.PJumps.Pop()   //indice del goto que salta al else
-            falseJump := ast.PJumps.Pop()
 
-            //Llenar GOTO: saltar el else
-            quadGoto := ast.Cuadruplos.GetItem(goto_Jump) 
-            quadGoto.Res = ast.Cuadruplos.Size() 
-            ast.Cuadruplos.Update(goto_Jump, quadGoto) 
+            //llenar el GOTO
+            quad_GOTO := ast.PJumps.Pop()
+            value_GOTO := ast.Cuadruplos.Size()
+            err := ast.Fill_QuadJumps(quad_GOTO, value_GOTO)
 
-            //Llenar el GOTOF: apunta al inicio del else
-            quadGoToF := ast.Cuadruplos.GetItem(falseJump)
-            quadGoToF.Res = goto_Jump + 1   //salta al quad despues del GOTO (que es el else)
-            ast.Cuadruplos.Update(falseJump, quadGoToF)
+            if(err != nil){
+                return nil, err
+            }
+
+            //llenar el GOTOF
+            quad_GOTOF := ast.PJumps.Pop()
+            value_GOTOF := quad_GOTO + 1
+            err = ast.Fill_QuadJumps(quad_GOTOF, value_GOTOF)
+
+            if(err!=nil){
+                return nil, err
+            }
+
         } else {
-            // Solo Pop del GOTOF (condición)
-            falseJump := ast.PJumps.Pop()
-            quadGoToF := ast.Cuadruplos.GetItem(falseJump)
-            quadGoToF.Res = ast.Cuadruplos.Size()
-            ast.Cuadruplos.Update(falseJump, quadGoToF)
+            //si no hay else, llenar solo GOTOF
+            quad_GOTOF := ast.PJumps.Pop()
+            value_GOTOF := ast.Cuadruplos.Size()
+            err := ast.Fill_QuadJumps(quad_GOTOF, value_GOTOF)
+
+            if(err!=nil){
+                return nil, err
+            }
         }
-        
         return nil, nil
     }()
 		},
 	},
 	ProdTabEntry{
 		String: `CONDITION : lparen EXPRESION rparen	<< func() (Attrib, error){
-        //validar condiction
-        cond := ast.Operandos.Pop()
-        tipo := ast.Tipos.Pop()
+        err := ast.GenerateQuad_GOTOF()
 
-        err := ast.VerificarCondicion(tipo)
         if(err != nil){
             return nil, err
         }
-
-        //Generar cuadruplo GoToF
-        quad := ast.NewQuadruple("GOTOF", cond, 0, 0)
-        ast.Cuadruplos.Enqueue(quad)
-
-        //Guardar el indice del cuadruplo para regresar a llenarlo
-        ast.PJumps.Push(ast.Cuadruplos.Size() - 1)
-
+        
         return nil, nil
     }() >>`,
 		Id:         "CONDITION",
-		NTType:     36,
-		Index:      61,
+		NTType:     34,
+		Index:      58,
 		NumSymbols: 3,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error){
-        //validar condiction
-        cond := ast.Operandos.Pop()
-        tipo := ast.Tipos.Pop()
+        err := ast.GenerateQuad_GOTOF()
 
-        err := ast.VerificarCondicion(tipo)
         if(err != nil){
             return nil, err
         }
-
-        //Generar cuadruplo GoToF
-        quad := ast.NewQuadruple("GOTOF", cond, 0, 0)
-        ast.Cuadruplos.Enqueue(quad)
-
-        //Guardar el indice del cuadruplo para regresar a llenarlo
-        ast.PJumps.Push(ast.Cuadruplos.Size() - 1)
-
+        
         return nil, nil
     }()
 		},
@@ -1181,8 +1175,8 @@ var productionsTable = ProdTab{
         return true, nil
     }() >>`,
 		Id:         "ELSE_BODY",
-		NTType:     37,
-		Index:      62,
+		NTType:     35,
+		Index:      59,
 		NumSymbols: 3,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error){
@@ -1195,8 +1189,8 @@ var productionsTable = ProdTab{
         return false, nil
     }() >>`,
 		Id:         "ELSE_BODY",
-		NTType:     37,
-		Index:      63,
+		NTType:     35,
+		Index:      60,
 		NumSymbols: 0,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error){
@@ -1206,20 +1200,26 @@ var productionsTable = ProdTab{
 	},
 	ProdTabEntry{
 		String: `ELSE_JUMP : empty	<< func() (Attrib, error){
-        quad := ast.NewQuadruple("GOTO", 0, 0, 0)
-        ast.Cuadruplos.Enqueue(quad)
-        ast.PJumps.Push(ast.Cuadruplos.Size() - 1) //size - 1 agarra el quad GOTO que se acaba de hacer
+        err := ast.GenerateQuad_GOTO()
+
+        if(err != nil){
+            return nil, err
+        }
+        
         return nil, nil
     }() >>`,
 		Id:         "ELSE_JUMP",
-		NTType:     38,
-		Index:      64,
+		NTType:     36,
+		Index:      61,
 		NumSymbols: 0,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error){
-        quad := ast.NewQuadruple("GOTO", 0, 0, 0)
-        ast.Cuadruplos.Enqueue(quad)
-        ast.PJumps.Push(ast.Cuadruplos.Size() - 1) //size - 1 agarra el quad GOTO que se acaba de hacer
+        err := ast.GenerateQuad_GOTO()
+
+        if(err != nil){
+            return nil, err
+        }
+        
         return nil, nil
     }()
 		},
@@ -1227,8 +1227,8 @@ var productionsTable = ProdTab{
 	ProdTabEntry{
 		String: `CYCLE : WHILE_START CONDITION do Body WHILE_END semicolon	<<  >>`,
 		Id:         "CYCLE",
-		NTType:     39,
-		Index:      65,
+		NTType:     37,
+		Index:      62,
 		NumSymbols: 6,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return X[0], nil
@@ -1236,70 +1236,82 @@ var productionsTable = ProdTab{
 	},
 	ProdTabEntry{
 		String: `WHILE_START : while	<< func() (Attrib, error){
-        ast.PJumps.Push(ast.Cuadruplos.Size())  //marca inicio de while
+        ast.PJumps.Push(ast.Cuadruplos.Size())  //quad de lo que hace la condicion
         return nil, nil
     }() >>`,
 		Id:         "WHILE_START",
-		NTType:     40,
-		Index:      66,
+		NTType:     38,
+		Index:      63,
 		NumSymbols: 1,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error){
-        ast.PJumps.Push(ast.Cuadruplos.Size())  //marca inicio de while
+        ast.PJumps.Push(ast.Cuadruplos.Size())  //quad de lo que hace la condicion
         return nil, nil
     }()
 		},
 	},
 	ProdTabEntry{
 		String: `WHILE_END : empty	<< func()(Attrib, error){
-        //returnJump := ast.PJumps.Pop() - 1
-        //falseJump := ast.PJumps.Pop() +1
+        quad_GOTOF := ast.PJumps.Pop()
+        quad_whileSTART := ast.PJumps.Pop()
 
-        falseJump := ast.PJumps.Pop()   //el GOTOF
-        returnJump := ast.PJumps.Pop()  //el inicio del ciclo
+        //llenar GOTO (que regresa al while)
+        op_code := ast.CodigoNum_Operador["GOTO"]
+        quadGO_TO := ast.NewQuadruple(op_code, 0, 0, quad_whileSTART)
+        ast.Cuadruplos.Enqueue(quadGO_TO)
 
-        //GOTO para regresar al inicio del ciclo
-        quadGoTo := ast.NewQuadruple("GOTO", 0, 0, returnJump)
-        ast.Cuadruplos.Enqueue(quadGoTo)
+        //llenar GOTOF
+        value_GOTOF := ast.Cuadruplos.Size()
+        err := ast.Fill_QuadJumps(quad_GOTOF, value_GOTOF)
 
-        //BackPatch al GOTOF para salir del ciclo
-        quadGoToF := ast.Cuadruplos.GetItem(falseJump)
-        quadGoToF.Res = ast.Cuadruplos.Size()
-        ast.Cuadruplos.Update(falseJump, quadGoToF)
+        if(err!=nil){
+            return nil, err
+        }
 
         return nil, nil
     }() >>`,
 		Id:         "WHILE_END",
-		NTType:     41,
-		Index:      67,
+		NTType:     39,
+		Index:      64,
 		NumSymbols: 0,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func()(Attrib, error){
-        //returnJump := ast.PJumps.Pop() - 1
-        //falseJump := ast.PJumps.Pop() +1
+        quad_GOTOF := ast.PJumps.Pop()
+        quad_whileSTART := ast.PJumps.Pop()
 
-        falseJump := ast.PJumps.Pop()   //el GOTOF
-        returnJump := ast.PJumps.Pop()  //el inicio del ciclo
+        //llenar GOTO (que regresa al while)
+        op_code := ast.CodigoNum_Operador["GOTO"]
+        quadGO_TO := ast.NewQuadruple(op_code, 0, 0, quad_whileSTART)
+        ast.Cuadruplos.Enqueue(quadGO_TO)
 
-        //GOTO para regresar al inicio del ciclo
-        quadGoTo := ast.NewQuadruple("GOTO", 0, 0, returnJump)
-        ast.Cuadruplos.Enqueue(quadGoTo)
+        //llenar GOTOF
+        value_GOTOF := ast.Cuadruplos.Size()
+        err := ast.Fill_QuadJumps(quad_GOTOF, value_GOTOF)
 
-        //BackPatch al GOTOF para salir del ciclo
-        quadGoToF := ast.Cuadruplos.GetItem(falseJump)
-        quadGoToF.Res = ast.Cuadruplos.Size()
-        ast.Cuadruplos.Update(falseJump, quadGoToF)
+        if(err!=nil){
+            return nil, err
+        }
 
         return nil, nil
     }()
 		},
 	},
 	ProdTabEntry{
-		String: `F_CALL : id lparen EXPRESION_STATEMENT rparen semicolon	<<  >>`,
+		String: `F_CALL : FUNC_CALL_START lparen EXPRESION_STATEMENT rparen semicolon	<<  >>`,
 		Id:         "F_CALL",
-		NTType:     42,
-		Index:      68,
+		NTType:     40,
+		Index:      65,
 		NumSymbols: 5,
+		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
+			return X[0], nil
+		},
+	},
+	ProdTabEntry{
+		String: `FUNC_CALL_START : id	<<  >>`,
+		Id:         "FUNC_CALL_START",
+		NTType:     41,
+		Index:      66,
+		NumSymbols: 1,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return X[0], nil
 		},
@@ -1307,8 +1319,8 @@ var productionsTable = ProdTab{
 	ProdTabEntry{
 		String: `EXPRESION_STATEMENT : EXPRESION MAS_EXPRESIONES	<<  >>`,
 		Id:         "EXPRESION_STATEMENT",
-		NTType:     43,
-		Index:      69,
+		NTType:     42,
+		Index:      67,
 		NumSymbols: 2,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return X[0], nil
@@ -1317,8 +1329,8 @@ var productionsTable = ProdTab{
 	ProdTabEntry{
 		String: `EXPRESION_STATEMENT : empty	<<  >>`,
 		Id:         "EXPRESION_STATEMENT",
-		NTType:     43,
-		Index:      70,
+		NTType:     42,
+		Index:      68,
 		NumSymbols: 0,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return nil, nil
@@ -1327,8 +1339,8 @@ var productionsTable = ProdTab{
 	ProdTabEntry{
 		String: `MAS_EXPRESIONES : comma EXPRESION MAS_EXPRESIONES	<<  >>`,
 		Id:         "MAS_EXPRESIONES",
-		NTType:     44,
-		Index:      71,
+		NTType:     43,
+		Index:      69,
 		NumSymbols: 3,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return X[0], nil
@@ -1337,8 +1349,8 @@ var productionsTable = ProdTab{
 	ProdTabEntry{
 		String: `MAS_EXPRESIONES : empty	<<  >>`,
 		Id:         "MAS_EXPRESIONES",
-		NTType:     44,
-		Index:      72,
+		NTType:     43,
+		Index:      70,
 		NumSymbols: 0,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return nil, nil
@@ -1358,8 +1370,8 @@ var productionsTable = ProdTab{
         return nil, nil
     }() >>`,
 		Id:         "PRINT",
-		NTType:     45,
-		Index:      73,
+		NTType:     44,
+		Index:      71,
 		NumSymbols: 5,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error){
@@ -1390,8 +1402,8 @@ var productionsTable = ProdTab{
         return lista, nil
     }() >>`,
 		Id:         "LISTA_PRINT",
-		NTType:     46,
-		Index:      74,
+		NTType:     45,
+		Index:      72,
 		NumSymbols: 2,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error){
@@ -1422,8 +1434,8 @@ var productionsTable = ProdTab{
         return direccion, nil
     }() >>`,
 		Id:         "EXPRESION_PRINT",
-		NTType:     47,
-		Index:      75,
+		NTType:     46,
+		Index:      73,
 		NumSymbols: 1,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error){
@@ -1442,22 +1454,20 @@ var productionsTable = ProdTab{
 	},
 	ProdTabEntry{
 		String: `EXPRESION_PRINT : cte_string	<< func() (Attrib, error){
-       // valor := string(X[0].(*token.Token).Lit)
-        //ast.Operandos.Push(valor)
+        valor := string(X[0].(*token.Token).Lit)
 
-        direccion := ast.Prog_MemoryManager.GetStringConstMem()
+        direccion := ast.Declare_Constant(valor,"string")
         return direccion,nil
     }() >>`,
 		Id:         "EXPRESION_PRINT",
-		NTType:     47,
-		Index:      76,
+		NTType:     46,
+		Index:      74,
 		NumSymbols: 1,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error){
-       // valor := string(X[0].(*token.Token).Lit)
-        //ast.Operandos.Push(valor)
+        valor := string(X[0].(*token.Token).Lit)
 
-        direccion := ast.Prog_MemoryManager.GetStringConstMem()
+        direccion := ast.Declare_Constant(valor,"string")
         return direccion,nil
     }()
 		},
@@ -1473,8 +1483,8 @@ var productionsTable = ProdTab{
         return lista, nil
     }() >>`,
 		Id:         "EXPRESIONES_PRINT",
-		NTType:     48,
-		Index:      77,
+		NTType:     47,
+		Index:      75,
 		NumSymbols: 3,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error) {
@@ -1493,8 +1503,8 @@ var productionsTable = ProdTab{
         return []int{}, nil
     }() >>`,
 		Id:         "EXPRESIONES_PRINT",
-		NTType:     48,
-		Index:      78,
+		NTType:     47,
+		Index:      76,
 		NumSymbols: 0,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error) {

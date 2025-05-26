@@ -1,4 +1,5 @@
-/* Lexical Items */
+/* Lexico */
+
 //Palabras reservadas
 program    : 'p' 'r' 'o' 'g' 'r' 'a' 'm';
 main       : 'm' 'a' 'i' 'n';
@@ -39,48 +40,46 @@ _char: 'a'-'z' | 'A'-'Z' | '0'-'9' | '!' | '#' | '$' | '%' | '&' | '\'' | '(' | 
 !whitespace: ' '|'\t'|'\n'|'\r';
 
 
-/* Syntax Part */
+/* Sintaxis */
 
-//DONE 
 Programa:
-    DECLARAR_PROGRAMA FUNCS_PROG main Body end    ;
+    DECLARA_PROG FUNCS_PROG main Body end    ;
 
-//DONE: Declara el programa en el dir de funciones
-DECLARAR_PROGRAMA:
+DECLARA_PROG:
     program id semicolon VARS_PROG
     <<
     func() (Attrib, error){
-        nombrePrograma := "program" + string($1.(*token.Token).Lit)
+        nombre_prog := string($1.(*token.Token).Lit)
 
-        //agregar "program xyz" a directorio de funciones
-        _, err := ast.DeclararFuncion(
-            nombrePrograma,             // Nombre de la función
-            []ast.VariableInfo{},       // Parámetros vacios
-            $3.(*ast.HashMap),          // Variables locales
+        //agregar prog a FunctionDir
+        _, err := ast.Declare_Function(
+            nombre_prog,                // nombre
+            []ast.VariableInfo{},       // sin params
+            $3.(*ast.HashMap),          // vars globales
         )
 
         if err != nil {
             return nil, err
         }
 
+        //agregar tabla vacia de temps y de ctes
+
         return nil, nil
     }()
     >>;
 
-//DONE
-VARS_PROG: //ESTAS SON VARS GLOBALES //TENGO QUE REPETIR LA MISMA REGLA CON VARS_FUNC
+VARS_PROG:
     VARS   
     <<
     func() (Attrib, error) {
-        //lista de variables desde VARIABLES
-        variables := $0.([]ast.VariableInfo)
+        variables := $0.([]ast.VariableInfo)    //slice de variables (name,type)
 
-        globalVarsMap, err := ast.DeclaracionVar(variables)
+        variables_globales, err := ast.Declare_GlobalVars(variables)
         if err != nil {
             return nil, err
         }
 
-        return globalVarsMap, nil
+        return variables_globales, nil
     }()
     >>;
 
@@ -100,14 +99,13 @@ VARIABLES:
     ID_LIST colon TYPE semicolon MAS_VARIABLES          
    <<
    func() (Attrib, error) {
-        //crear la lista inicial con identificadores y tipo
-        variables := []ast.VariableInfo{}
-        
-        for _, id := range $0.([]string) {
-            variables = append(variables, ast.VariableInfo{Name: id, Type: $2.(string)})
-        }
+        //crear SLICE (no mapa) de vars
+        id_list := $0.([]string)
+        type_vars := $2.(string)
 
-        //agregar las variables adicionales de MAS_VARIABLES
+        variables := ast.Create_VarList(id_list, type_vars)
+
+        //agregar las variables adicionales
         additionalVars := $4.([]ast.VariableInfo)
         variables = append(variables, additionalVars...)
 
@@ -125,8 +123,12 @@ ID_LIST:
     id MAS_IDS     
     <<
     func() (Attrib, error){
-        ids := append([]string{string($0.(*token.Token).Lit)}, $1.([]string)...)
-        return ids, nil
+        id := string($0.(*token.Token).Lit)
+        mas_ids := $1.([]string)
+
+        id_list := append([]string{id}, mas_ids...)
+
+        return id_list, nil
     }()
     >>;      
 
@@ -143,7 +145,7 @@ TYPE:
     float       <<"float", nil>>;
 
 FUNCS:
-    FUNC_PRIMERA_PARTE lbraket VARS_FUNC CUERPO_FUNC     
+    DECLARA_FUNC lbraket VARS_FUNC Body rbraket semicolon     
     <<
         func() (Attrib, error){
             ast.CurrentFunction = nil
@@ -151,49 +153,86 @@ FUNCS:
         }()
     >>;
 
-FUNC_PRIMERA_PARTE:
-    void id lparen ID_LIST_PARAMS rparen
+DECLARA_FUNC:
+    void id lparen HAY_PARAMS rparen
     <<
         func() (Attrib, error){
-            // Llamar a la función DeclararFuncion para agregar una nueva funcion
-            fun, err := ast.DeclararFuncion(
-            string($1.(*token.Token).Lit), // Nombre de la función
-            $3.([]ast.VariableInfo),      // Parámetros
-            //$6.(*ast.HashMap),            // Variables locales
-            ast.NewHashMap(),                //tabla de variables temporalmente vacia
+            nombre_fun := string($1.(*token.Token).Lit)
+            parametros := $3.([]ast.VariableInfo)
+            local_varMap := ast.NewHashMap()
+
+            _, err := ast.Declare_Function(
+                nombre_fun,
+                parametros,
+                local_varMap,                //tabla de variables vacia
             )
 
             if err != nil {
                 return nil, err
             }
 
-            ast.CurrentFunction = fun
+            //ast.CurrentFunction = funcion
 
             return nil, nil
         }()
     >>;
 
-CUERPO_FUNC:
-    Body rbraket semicolon      
-    <<$0, nil>>;
+
+HAY_PARAMS:
+    PARAMETROS      <<$0, nil>>;
+
+HAY_PARAMS:
+    empty           <<[]ast.VariableInfo{}, nil>>;
+
+PARAMETROS:
+    PARAM MAS_PARAMS    
+    <<
+    func() (Attrib, error){
+        param := $0.(ast.VariableInfo)
+        mas_params := $1.([]ast.VariableInfo)
+
+        parametros := append([]ast.VariableInfo {param}, mas_params...)
+
+        return parametros, nil
+    }()
+    >>;
+
+PARAM:
+    id colon TYPE       
+    <<
+    func() (Attrib, error) {
+        parametro := ast.VariableInfo {
+            Name: string($0.(*token.Token).Lit),    //nombre
+            Type: $2.(string),                       //tipo
+                                                    //memoria?
+        }
+        return parametro, nil
+    }()
+    >>;
+
+MAS_PARAMS:
+    comma PARAMETROS    <<$1, nil>>;
+
+MAS_PARAMS:
+    empty               <<[]ast.VariableInfo{}, nil>>;
 
 VARS_FUNC:
     VARS    
     <<
     func() (Attrib, error){
-        //Obtener la lista de variables desde VARIABLES
+
+        parametros := ast.CurrentFunction.Parameters
         variables := $0.([]ast.VariableInfo)
 
-        // Registrar las variables en la tabla local de la función actual
-        //localVarsMap, err := ast.DeclaracionVarLocal(variables)
+        //lista de params y vars locales
+        variables_locales := append(parametros, variables...)
 
-        err := ast.InsertarVariableLocal(variables)
+        err := ast.Declare_LocalVars(variables_locales)
 
         if err != nil {
             return nil, err
         }
 
-        //return localVarsMap, nil
         return nil, nil
     }()
     >>;
@@ -201,37 +240,6 @@ VARS_FUNC:
 VARS_FUNC:
 empty       <<nil, nil>>;
 
-ID_LIST_PARAMS:
-    PARAMS MAS_PARAMS      
-    <<
-    func() (Attrib, error){
-        params := append([]ast.VariableInfo{$0.(ast.VariableInfo)}, $1.([]ast.VariableInfo)...)
-        return params, nil
-    }()
-    >>;
-
-ID_LIST_PARAMS:   
-    empty               <<[]ast.VariableInfo{}, nil>>;
-
-MAS_PARAMS:
-    comma PARAMS MAS_PARAMS         
-    <<
-    func() (Attrib, error){
-        params := append([]ast.VariableInfo{$1.(ast.VariableInfo)}, $2.([]ast.VariableInfo)...)
-        return params, nil
-    }()
-    >>;
-
-MAS_PARAMS:
-    empty       <<[]ast.VariableInfo{}, nil>>;
-
-PARAMS:
-    id colon TYPE    
-    <<
-    func() (Attrib, error) {
-        return ast.VariableInfo{Name: string($0.(*token.Token).Lit), Type: $2.(string)}, nil
-    }()
-    >>;
 
 Body:
     lbrace STATEMENT_PROG rbrace        ;
@@ -287,8 +295,13 @@ EXPRESION:
     <<
     func() (Attrib, error){
 
-        err := ast.GenerateQuadrupleForExp()
-        
+        //checar si hay operadores-operandos
+        err := ast.IsStackEmpty()
+        if err != nil {
+            return nil, err
+        }
+
+        err = ast.GenerateQuadrupleForExp()
         if err != nil {
             return nil, err
         }
@@ -321,12 +334,19 @@ OP_REL:
     >>;
 
 EXP:
-    TERMINO        <<$0, nil>>;
+    TERMINO        ;
 
 EXP:
-    TERMINO PLUS_OP TERMINO     
+    TERMINO PLUS_MINUS TERMINO     
     <<
     func() (Attrib, error){
+
+        //checar si hay operadores-operandos
+        err := ast.IsStackEmpty()
+        if err != nil {
+            return nil, err
+        }
+
         operador := ast.Operadores.Top()
 
         if(operador == "+" || operador == "-") {
@@ -340,46 +360,38 @@ EXP:
     }()
     >>;
 
-PLUS_OP:
-    plus
-    <<func() (Attrib, error){
+PLUS_MINUS:
+    plus        
+    <<
+    func() (Attrib, error){
         ast.Operadores.Push("+")
         return nil, nil
     }()
     >>;
 
-EXP:
-    TERMINO MINUS_OP TERMINO  
+PLUS_MINUS:
+    minus        
     <<
     func() (Attrib, error){
-        operador := ast.Operadores.Top()
-
-        if(operador == "+" || operador == "-") {
-            err := ast.GenerateQuadrupleForExp()
-            if err != nil {
-                return nil, err
-            }
-            return nil, nil
-        }
-        return nil, nil 
-    }()
-    >>;
-
-MINUS_OP:
-    minus
-    <<func() (Attrib, error){
         ast.Operadores.Push("-")
         return nil, nil
     }()
     >>;
 
 TERMINO:
-    FACTOR   <<$0, nil>>;
+    FACTOR      ;
 
 TERMINO:
-    FACTOR MULT_OP FACTOR      
+    FACTOR MULT_DIV FACTOR      
     <<
     func() (Attrib, error){
+
+        //checar si hay operadores-operandos
+        err := ast.IsStackEmpty()
+        if err != nil {
+            return nil, err
+        }
+
         operador := ast.Operadores.Top()
 
         if(operador == "*" || operador == "/") {
@@ -393,57 +405,45 @@ TERMINO:
     }()
     >>;
 
-MULT_OP:
-    multiply
-    <<func() (Attrib, error){
+MULT_DIV:
+    multiply        
+    <<
+    func() (Attrib, error){
         ast.Operadores.Push("*")
         return nil, nil
     }()
     >>;
 
-TERMINO:
-    FACTOR DIV_OP FACTOR    
+MULT_DIV:
+    divide        
     <<
     func() (Attrib, error){
-        operador := ast.Operadores.Top()
-
-        if(operador == "*" || operador == "/") {
-            err := ast.GenerateQuadrupleForExp()
-            if err != nil {
-                return nil, err
-            }
-            return nil, nil
-        }
-        return nil, nil 
-    }()
-    >>;
-
-DIV_OP:
-    divide
-    <<func() (Attrib, error){
         ast.Operadores.Push("/")
         return nil, nil
     }()
     >>;
-
 
 FACTOR:
     FONDO_FALSO EXPRESION rparen   
     <<
     func() (Attrib, error){
 
-        for !ast.Operadores.IsEmpty(){
+        //checar si hay operadores-operandos
+        err := ast.IsStackEmpty()
+        if err != nil {
+            return nil, err
+        }
 
-            top := ast.Operadores.Top()
-            if top == "(" {
-                ast.Operadores.Pop()
-                break
-            }
+        operador := ast.Operadores.Top()
+
+        for( operador != "(" ){
             err := ast.GenerateQuadrupleForExp()
             if err != nil {
                 return nil, err
             }
         }
+        ast.Operadores.Pop()
+        
         return nil, nil
     }()
     >>;
@@ -458,13 +458,10 @@ FONDO_FALSO:
     >>;
 
 FACTOR:
-    FACTOR_OPERADOR ID_CTE   <<$1,nil>>;
+    FACTOR_OPERADOR ID_CTE   ;
 
 FACTOR_OPERADOR:
-    PLUS_OP      <<$0, nil>>;
-
-FACTOR_OPERADOR:
-    MINUS_OP     <<$0, nil>>;
+    PLUS_MINUS      ;
     
 FACTOR_OPERADOR:
     empty      ;
@@ -473,17 +470,16 @@ ID_CTE:
     id      
     <<
     func() (Attrib, error){
-        //Verificacion de variable no declarada
-        nombre := string($0.(*token.Token).Lit)
 
-        //Buscar variable
-        varInfo, error := ast.BuscarVariable(nombre)
+        nombre_var := string($0.(*token.Token).Lit)
+
+        //verificacion de variable
+        varInfo, error := ast.BuscarVariable(nombre_var)
         if (error != nil){
             return nil, error
         }
 
-        //Agregar a pila de Operandos
-        //ast.Operandos.Push(varInfo.Name)
+        //si si existe, agregarla a los stacks
         ast.Operandos.Push(varInfo.Address)
         ast.Tipos.Push(varInfo.Type)
         
@@ -495,13 +491,12 @@ ID_CTE:
     CTE  
     <<
     func() (Attrib, error){
-        cte := $0.([]string) // Obtener la lista devuelta por CTE
-        //valor := cte[0]
+        cte := $0.([]string) //slice con info de la cte
+        valor := cte[0]
         tipo := cte[1]
 
-        direccion := ast.Prog_MemoryManager.GetConstVarMem(tipo)
+        direccion := ast.Declare_Constant(valor, tipo)
 
-        //ast.Operandos.Push(valor)
         ast.Operandos.Push(direccion)
         ast.Tipos.Push(tipo)
 
@@ -514,7 +509,8 @@ CTE:
     <<
     func() (Attrib, error) {
         valor := string($0.(*token.Token).Lit)
-        return []string{valor, "int"}, nil
+        cte_int := []string {valor, "int"}
+        return cte_int, nil
     }()
     >>;
 
@@ -523,7 +519,8 @@ CTE:
     <<
     func() (Attrib, error) {
         valor := string($0.(*token.Token).Lit)
-        return []string{valor, "float"}, nil
+        cte_float := []string {valor, "float"}
+        return cte_float, nil
     }()
     >>;
 
@@ -534,26 +531,35 @@ IF:
         hayElse := $3.(bool)
 
         if(hayElse){
-            goto_Jump := ast.PJumps.Pop()   //indice del goto que salta al else
-            falseJump := ast.PJumps.Pop()
 
-            //Llenar GOTO: saltar el else
-            quadGoto := ast.Cuadruplos.GetItem(goto_Jump) 
-            quadGoto.Res = ast.Cuadruplos.Size() 
-            ast.Cuadruplos.Update(goto_Jump, quadGoto) 
+            //llenar el GOTO
+            quad_GOTO := ast.PJumps.Pop()
+            value_GOTO := ast.Cuadruplos.Size()
+            err := ast.Fill_QuadJumps(quad_GOTO, value_GOTO)
 
-            //Llenar el GOTOF: apunta al inicio del else
-            quadGoToF := ast.Cuadruplos.GetItem(falseJump)
-            quadGoToF.Res = goto_Jump + 1   //salta al quad despues del GOTO (que es el else)
-            ast.Cuadruplos.Update(falseJump, quadGoToF)
+            if(err != nil){
+                return nil, err
+            }
+
+            //llenar el GOTOF
+            quad_GOTOF := ast.PJumps.Pop()
+            value_GOTOF := quad_GOTO + 1
+            err = ast.Fill_QuadJumps(quad_GOTOF, value_GOTOF)
+
+            if(err!=nil){
+                return nil, err
+            }
+
         } else {
-            // Solo Pop del GOTOF (condición)
-            falseJump := ast.PJumps.Pop()
-            quadGoToF := ast.Cuadruplos.GetItem(falseJump)
-            quadGoToF.Res = ast.Cuadruplos.Size()
-            ast.Cuadruplos.Update(falseJump, quadGoToF)
+            //si no hay else, llenar solo GOTOF
+            quad_GOTOF := ast.PJumps.Pop()
+            value_GOTOF := ast.Cuadruplos.Size()
+            err := ast.Fill_QuadJumps(quad_GOTOF, value_GOTOF)
+
+            if(err!=nil){
+                return nil, err
+            }
         }
-        
         return nil, nil
     }()
     >>;
@@ -562,22 +568,12 @@ CONDITION:
     lparen EXPRESION rparen 
     <<
     func() (Attrib, error){
-        //validar condiction
-        cond := ast.Operandos.Pop()
-        tipo := ast.Tipos.Pop()
+        err := ast.GenerateQuad_GOTOF()
 
-        err := ast.VerificarCondicion(tipo)
         if(err != nil){
             return nil, err
         }
-
-        //Generar cuadruplo GoToF
-        quad := ast.NewQuadruple("GOTOF", cond, 0, 0)
-        ast.Cuadruplos.Enqueue(quad)
-
-        //Guardar el indice del cuadruplo para regresar a llenarlo
-        ast.PJumps.Push(ast.Cuadruplos.Size() - 1)
-
+        
         return nil, nil
     }()
     >>;
@@ -602,9 +598,12 @@ ELSE_JUMP:
     empty   
     <<
     func() (Attrib, error){
-        quad := ast.NewQuadruple("GOTO", 0, 0, 0)
-        ast.Cuadruplos.Enqueue(quad)
-        ast.PJumps.Push(ast.Cuadruplos.Size() - 1) //size - 1 agarra el quad GOTO que se acaba de hacer
+        err := ast.GenerateQuad_GOTO()
+
+        if(err != nil){
+            return nil, err
+        }
+        
         return nil, nil
     }()
     >>;
@@ -617,7 +616,7 @@ WHILE_START:
     while   
     <<
     func() (Attrib, error){
-        ast.PJumps.Push(ast.Cuadruplos.Size())  //marca inicio de while
+        ast.PJumps.Push(ast.Cuadruplos.Size())  //quad de lo que hace la condicion
         return nil, nil
     }()
     >>;
@@ -626,24 +625,37 @@ WHILE_END:
     empty   
     <<
     func()(Attrib, error){
-        falseJump := ast.PJumps.Pop()   //el GOTOF
-        returnJump := ast.PJumps.Pop()  //el inicio del ciclo
+        quad_GOTOF := ast.PJumps.Pop()
+        quad_whileSTART := ast.PJumps.Pop()
 
-        //GOTO para regresar al inicio del ciclo
-        quadGoTo := ast.NewQuadruple("GOTO", 0, 0, returnJump)
-        ast.Cuadruplos.Enqueue(quadGoTo)
+        //llenar GOTO (que regresa al while)
+        op_code := ast.CodigoNum_Operador["GOTO"]
+        quadGO_TO := ast.NewQuadruple(op_code, 0, 0, quad_whileSTART)
+        ast.Cuadruplos.Enqueue(quadGO_TO)
 
-        //BackPatch al GOTOF para salir del ciclo
-        quadGoToF := ast.Cuadruplos.GetItem(falseJump)
-        quadGoToF.Res = ast.Cuadruplos.Size()
-        ast.Cuadruplos.Update(falseJump, quadGoToF)
+        //llenar GOTOF
+        value_GOTOF := ast.Cuadruplos.Size()
+        err := ast.Fill_QuadJumps(quad_GOTOF, value_GOTOF)
+
+        if(err!=nil){
+            return nil, err
+        }
 
         return nil, nil
     }()
     >>;
 
 F_CALL:
-    id lparen EXPRESION_STATEMENT rparen semicolon                ;
+    FUNC_CALL_START lparen EXPRESION_STATEMENT rparen semicolon                ;
+
+FUNC_CALL_START:
+    id      ;
+    //<<
+    //func() (Attrib, error){
+    //    id := $1.(string)
+        
+    //}()
+    //>>;
 
 EXPRESION_STATEMENT:
     EXPRESION MAS_EXPRESIONES     ;
@@ -712,10 +724,9 @@ EXPRESION_PRINT:
     cte_string          
     <<
     func() (Attrib, error){
-       // valor := string($0.(*token.Token).Lit)
-        //ast.Operandos.Push(valor)
+        valor := string($0.(*token.Token).Lit)
 
-        direccion := ast.Prog_MemoryManager.GetStringConstMem()
+        direccion := ast.Declare_Constant(valor,"string")
         return direccion,nil
     }()
     >>;

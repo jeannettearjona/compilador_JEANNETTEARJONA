@@ -52,3 +52,11 @@ func (m *HashMap) Contains(key string) bool {
 	_, exists := m.data[key]
 	return exists
 }
+
+func (h *HashMap) Keys() []string {
+	keys := make([]string, 0, len(h.data))
+	for key := range h.data {
+		keys = append(keys, key)
+	}
+	return keys
+}
