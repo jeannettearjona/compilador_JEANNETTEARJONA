@@ -60,3 +60,7 @@ func (h *HashMap) Keys() []string {
 	}
 	return keys
 }
+
+func (h *HashMap) Size() int {
+	return len(h.data)
+}

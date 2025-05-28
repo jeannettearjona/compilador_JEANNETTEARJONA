@@ -9,9 +9,14 @@ type VariableInfo struct {
 }
 
 type FunctionInfo struct {
-	Name       string
-	Parameters []VariableInfo
-	VarTable   *HashMap
+	Name              string
+	Parameters        []VariableInfo
+	VarTable          *HashMap
+	Address           int // newww
+	Counter_LocalVars int
+	Counter_Params    int
+	Quad_Cont         int //donde inicia la funcion
+	Counter_Temps     int
 }
 
 var GlobalVarTable = NewHashMap()
@@ -55,15 +60,30 @@ func Declare_Function(fun_name string, params []VariableInfo, localVars *HashMap
 		return nil, fmt.Errorf("funcion '%s' ya está declarada en FunctionDirectory", fun_name)
 	}
 
+	//count de parametros
+	num_params := len(params)
+
+	//count de variables locales
+
+	//obtener la dirección de memoria
+	direccion := Prog_MemoryManager.GetGlobalVarMem("void")
+
 	funcion := &FunctionInfo{
-		Name:       fun_name,
-		Parameters: params,
-		VarTable:   localVars,
+		Name:              fun_name,
+		Parameters:        params,
+		VarTable:          localVars,
+		Address:           direccion,
+		Counter_LocalVars: 0,
+		Counter_Params:    num_params,
+		Quad_Cont:         0,
+		Counter_Temps:     0,
 	}
 
 	FunctionDirectory.Add(fun_name, *funcion)
 
 	CurrentFunction = funcion
+
+	Prog_MemoryManager.ResetTemps()
 
 	return funcion, nil
 }
@@ -85,17 +105,26 @@ func Declare_LocalVars(variables []VariableInfo) error {
 
 		CurrentFunction.VarTable.Add(variable.Name, variable)
 	}
+	CurrentFunction.Counter_LocalVars = CurrentFunction.VarTable.Size() - CurrentFunction.Counter_Params
+
 	return nil
 }
 
 func Declare_Constant(value, tipo string) int {
 	if !ConstantsVarTable.Contains(value) {
+		//obtener la direccion de memoria de cte
 		direccion := Prog_MemoryManager.GetConstVarMem(tipo)
-		ConstantsVarTable.Add(value, direccion)
+		variable := VariableInfo{
+			Name:    value,
+			Type:    tipo,
+			Address: direccion,
+		}
+		//agregar la variable a la tabla de constantes
+		ConstantsVarTable.Add(variable.Name, variable)
 		return direccion
 	}
-	direccion, _ := ConstantsVarTable.Get(value)
-	return direccion.(int)
+	var_info, _ := ConstantsVarTable.Get(value)
+	return var_info.(VariableInfo).Address
 }
 
 func FinalizarFuncion() {
@@ -134,6 +163,13 @@ func BuscarVariable(var_name string) (VariableInfo, error) {
 	return VariableInfo{}, fmt.Errorf("variable '%s' no encontrada", var_name)
 }
 
+func BuscarFuncion(fun_name string) error {
+	if !FunctionDirectory.Contains((fun_name)) {
+		return fmt.Errorf("función '%s' no existe", fun_name)
+	}
+	return nil
+}
+
 func IsStackEmpty() error {
 	if Operadores.IsEmpty() || Operandos.IsEmpty() {
 		return fmt.Errorf("stacks de operadores-operandos están vacíos")
@@ -142,7 +178,7 @@ func IsStackEmpty() error {
 	return nil
 }
 
-func GenerateQuadrupleForExp() error {
+func GenerateQuadrupleForExp() (int, error) {
 
 	//pop de lado izq y der de la operacion
 	right_operand := Operandos.Pop()
@@ -156,7 +192,7 @@ func GenerateQuadrupleForExp() error {
 	resultType, err := DefaultSemanticCube.GetResultType(left_type, right_type, op)
 
 	if err != nil {
-		return fmt.Errorf("error: %s", err)
+		return 0, fmt.Errorf("error: %s", err)
 	}
 
 	temp := Prog_MemoryManager.GetTempVarMem(resultType)
@@ -169,7 +205,7 @@ func GenerateQuadrupleForExp() error {
 	Operandos.Push(temp)
 	Tipos.Push(resultType)
 
-	return nil
+	return temp, nil
 }
 
 func GenerateQuadrupleForAssign(variable VariableInfo) error {

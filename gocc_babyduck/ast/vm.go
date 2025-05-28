@@ -12,88 +12,134 @@ type VirtualMachine struct {
 	FunDir     *HashMap
 }
 
-func Fill_VM_Memory(cte_table *HashMap) map[int]interface{} {
+func Cast_Value(val_name, val_type string) interface{} {
+	switch val_type {
+	case "int":
+		val, _ := strconv.Atoi(val_name)
+		return val
+	case "float":
+		val, _ := strconv.ParseFloat(val_name, 64)
+		return val
+	case "string":
+		return val_name
+	default:
+		panic(fmt.Sprintf("Tipo de dato '%s' no soportado", val_type))
+	}
+}
+
+func CopyCtes(cte_table *HashMap) map[int]interface{} {
+
 	memory := make(map[int]interface{})
 
-	for _, valor_cte := range cte_table.Keys() { //itera sobre las claves de la tabla de constantes 5, 3.14, hola
-		memory_dir, _ := cte_table.Get(valor_cte) //devuelve la dirección de memoria, dirAny = 8000
-		dir := memory_dir.(int)
+	for _, key := range cte_table.Keys() { // itera sobre las claves 2, 1,5, "hola"
+		cte_data, _ := cte_table.Get(key)
 
-		var cte interface{} //cte: int, float, string
+		cte_value := cte_data.(VariableInfo).Name //valor de la constante
+		cte_type := cte_data.(VariableInfo).Type  //tipo de la constante
+		dir := cte_data.(VariableInfo).Address    //direccion de memoria
 
-		//como las keys (valor_cte) son strings, se convierte al tipo correspondiente usando su direccion virtual
-		if dir >= 8000 && dir < 9000 { //ctes int
-			cte_int, _ := strconv.Atoi(valor_cte)
-			cte = cte_int
-		} else if dir >= 9000 && dir < 10000 { //ctes float
-			cte_float, _ := strconv.ParseFloat(valor_cte, 64)
-			cte = cte_float
-		} else {
-			cte = valor_cte //ctes string
-		}
-
-		memory[dir] = cte //a memoria[1000] se le asigna el valor de la cte
+		val := Cast_Value(cte_value, cte_type) //convierte el valor a su tipo correspondiente
+		memory[dir] = val                      // a memory["5"] se le asigna la dirección de memoria
 	}
 	return memory
 }
 
-// Inicializa la VM con los cuádruplos y la memoria cargada
+// crea la VM
 func NewVirtualMachine(quads *Queue, cte_table *HashMap, fun_dir *HashMap) *VirtualMachine {
 
-	memory := Fill_VM_Memory(cte_table) // Carga la memoria con las constantes
+	memory := CopyCtes(cte_table) //carga ctes
 
 	vm := &VirtualMachine{
 		Memory:     memory,
 		Cuadruplos: quads,
 		IP:         0,
-		FunDir:     fun_dir,
+		FunDir:     fun_dir, //??
 	}
 
 	return vm
+}
+
+func isFloat(val interface{}) bool {
+	_, ok := val.(float64)
+	return ok
+}
+
+func toFloat(val interface{}) float64 {
+	switch v := val.(type) {
+	case int:
+		return float64(v)
+	case float64:
+		return v
+	default:
+		panic("No se puede convertir a float64")
+	}
 }
 
 func (vm *VirtualMachine) Run() {
 
 	for vm.IP < vm.Cuadruplos.Size() {
 		quad := vm.Cuadruplos.GetItem(vm.IP)
-		//quad = operador izq der res
-		izq := vm.Memory[quad.Izq]
-		der := vm.Memory[quad.Der]
+
+		izq := vm.Memory[quad.Izq] //obtengo lo que hay en direccion izq 2
+		der := vm.Memory[quad.Der] //obtengo lo que hay en direccion der 1.5
 
 		switch quad.Operador {
 		case 1: //+
-			vm.Memory[quad.Res] = izq.(int) + der.(int)
+			if isFloat(izq) || isFloat(der) {
+				vm.Memory[quad.Res] = toFloat(izq) + toFloat(der)
+			} else {
+				vm.Memory[quad.Res] = izq.(int) + der.(int)
+			}
 		case 2: //-
-			vm.Memory[quad.Res] = izq.(int) - der.(int)
+			if isFloat(izq) || isFloat(der) {
+				vm.Memory[quad.Res] = toFloat(izq) - toFloat(der)
+			} else {
+				vm.Memory[quad.Res] = izq.(int) - der.(int)
+			}
 		case 3: //*
-			vm.Memory[quad.Res] = izq.(int) * der.(int)
+			if isFloat(izq) || isFloat(der) {
+				vm.Memory[quad.Res] = toFloat(izq) * toFloat(der)
+			} else {
+				vm.Memory[quad.Res] = izq.(int) * der.(int)
+			}
 		case 4: // /
 			if izq.(int) == 0 {
 				panic("division por cero")
+			} else if isFloat(izq) || isFloat(der) {
+				vm.Memory[quad.Res] = toFloat(izq) / toFloat(der)
+			} else {
+				vm.Memory[quad.Res] = izq.(int) / der.(int)
 			}
-			vm.Memory[quad.Res] = izq.(int) / der.(int)
 		case 5: // >
-			if izq.(int) > der.(int) {
-				vm.Memory[quad.Res] = 1
+			if isFloat(izq) || isFloat(der) {
+				vm.Memory[quad.Res] = toFloat(izq) > toFloat(der)
 			} else {
-				vm.Memory[quad.Res] = 0
+				vm.Memory[quad.Res] = izq.(int) > der.(int)
 			}
-		case 6: // >
-			if izq.(int) < der.(int) {
-				vm.Memory[quad.Res] = 1
+		case 6: // <
+			if isFloat(izq) || isFloat(der) {
+				vm.Memory[quad.Res] = toFloat(izq) < toFloat(der)
 			} else {
-				vm.Memory[quad.Res] = 0
+				vm.Memory[quad.Res] = izq.(int) < der.(int)
 			}
 		case 7: // =
 			vm.Memory[quad.Res] = izq
 		case 8: // !=
-			if izq != der {
-				vm.Memory[quad.Res] = 1
+			if isFloat(izq) || isFloat(der) {
+				vm.Memory[quad.Res] = toFloat(izq) != toFloat(der)
 			} else {
-				vm.Memory[quad.Res] = 0
+				vm.Memory[quad.Res] = izq.(int) != der.(int)
 			}
 		case 9: //print
 			fmt.Println(izq)
+		case 10: //GOTOF
+			condicion := izq.(bool)
+			if !condicion {
+				vm.IP = quad.Res
+				continue
+			}
+		case 11: //GOTO
+			vm.IP = quad.Res
 		default:
 			panic("Operador no reconocido")
 		}

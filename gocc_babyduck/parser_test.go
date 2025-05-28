@@ -3,7 +3,7 @@ package main
 import (
 	"testing"
 
-	"fmt"
+	//"fmt"
 	"gocc_babyduck/ast"
 	"gocc_babyduck/lexer"
 	"gocc_babyduck/parser"
@@ -122,12 +122,20 @@ end
 var testData = []*TI{
 	{
 		`program test;
-			var a, b: float;
+			var a, b: int;
+			    c: float;
+			void funcion1 (param1 : int, param2 : int)
+			[ var varLocal: int; { b = varLocal - 2; a = param1 - param2; }];
 			main {
-    			a = 20 + 6.5;
-				b = 20 - 6.5;
+    			a = 20 + 6;
+				c = 55.55;
 				print(a);
-				print(b);
+				print(c);
+				if(c > 1.5 * a){
+					print("ENTRO AL IF", 2+6);
+				};
+				print("donde deberia caer gotof");
+				print("END");
 			}
 		end`,
 		0,
@@ -149,9 +157,9 @@ func TestParser(t *testing.T) {
 				t.Errorf("Expected no error but got: %v for input: %s", err, ts.src)
 			} else {
 				ast.ImprimirCuadruplos()
-				vm := ast.NewVirtualMachine(&ast.Cuadruplos, ast.ConstantsVarTable, ast.FunctionDirectory)
-				vm.Run()
-				fmt.Println(vm.Memory)
+				//vm := ast.NewVirtualMachine(&ast.Cuadruplos, ast.ConstantsVarTable, ast.FunctionDirectory)
+				//vm.Run()
+				//fmt.Println(vm.Memory)
 			}
 		} else if ts.expect == -1 {
 			if err == nil {

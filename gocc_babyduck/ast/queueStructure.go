@@ -5,9 +5,6 @@ type Quadruple struct {
 	Izq      int
 	Der      int
 	Res      int
-	//Izq      string
-	//Der      string
-	//Res      string
 }
 
 func NewQuadruple(op int, izq int, der int, res int) Quadruple {

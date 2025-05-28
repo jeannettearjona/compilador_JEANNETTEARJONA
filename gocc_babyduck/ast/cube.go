@@ -80,22 +80,6 @@ var DefaultSemanticCube = SemanticCube{
 			"float": "bool",
 		},
 	},
-	">=": {
-		"int": {
-			"int": "bool",
-		},
-		"float": {
-			"float": "bool",
-		},
-	},
-	"<=": {
-		"int": {
-			"int": "bool",
-		},
-		"float": {
-			"float": "bool",
-		},
-	},
 	"!=": {
 		"int": {
 			"int": "bool",

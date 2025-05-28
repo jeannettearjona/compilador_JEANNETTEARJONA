@@ -5,6 +5,7 @@ type TipoDato struct {
 	Float  int
 	Bool   int
 	String int
+	Void   int
 }
 
 type MemoryManager struct {
@@ -28,34 +29,42 @@ const (
 	Ci = 8000
 	Cf = 9000
 	Cs = 10000
+
+	VOID = 100
 )
 
 const (
-	SUMA  = 1
-	RESTA = 2
-	MULT  = 3
-	DIV   = 4
-	GT    = 5
-	LT    = 6
-	EQ    = 7
-	NEQ   = 8
-	PRINT = 9
-	GOTOF = 10
-	GOTO  = 11
+	SUMA    = 1
+	RESTA   = 2
+	MULT    = 3
+	DIV     = 4
+	GT      = 5
+	LT      = 6
+	EQ      = 7
+	NEQ     = 8
+	PRINT   = 9
+	GOTOF   = 10
+	GOTO    = 11
+	ERA     = 12
+	ENDFUNC = 13
+	END     = 14
 )
 
 var CodigoNum_Operador = map[string]int{
-	"+":     SUMA,
-	"-":     RESTA,
-	"*":     MULT,
-	"/":     DIV,
-	">":     GT,
-	"<":     LT,
-	"=":     EQ,
-	"!=":    NEQ,
-	"print": PRINT,
-	"GOTOF": GOTOF,
-	"GOTO":  GOTO,
+	"+":       SUMA,
+	"-":       RESTA,
+	"*":       MULT,
+	"/":       DIV,
+	">":       GT,
+	"<":       LT,
+	"=":       EQ,
+	"!=":      NEQ,
+	"print":   PRINT,
+	"GOTOF":   GOTOF,
+	"GOTO":    GOTO,
+	"ERA":     ERA,
+	"ENDFUNC": ENDFUNC,
+	"END":     END,
 }
 
 func NewMemoryManager() *MemoryManager {
@@ -63,6 +72,7 @@ func NewMemoryManager() *MemoryManager {
 		Global: TipoDato{
 			Int:   Gi,
 			Float: Gf,
+			Void:  VOID,
 		},
 		Local: TipoDato{
 			Int:   Li,
@@ -90,6 +100,10 @@ func (mm *MemoryManager) GetGlobalVarMem(dataType string) int {
 	case "float":
 		dir_vir := mm.Global.Float
 		mm.Global.Float++
+		return dir_vir
+	case "void":
+		dir_vir := mm.Global.Void
+		mm.Global.Void++
 		return dir_vir
 	default:
 		panic("tipo de dato no soportado en MEMORIA GLOBAL")
@@ -147,4 +161,14 @@ func (mm *MemoryManager) GetConstVarMem(dataType string) int {
 	default:
 		panic("tipo de dato no soportado en MEMORIA CTES")
 	}
+}
+
+func (mm *MemoryManager) Get_TotalTempCount() int {
+	return (mm.Temp.Int - Ti) + (mm.Temp.Float - Tf) + (mm.Temp.Bool - Tb)
+}
+
+func (mm *MemoryManager) ResetTemps() {
+	mm.Temp.Int = Ti
+	mm.Temp.Float = Tf
+	mm.Temp.Bool = Tb
 }

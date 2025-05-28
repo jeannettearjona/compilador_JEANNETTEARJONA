@@ -43,10 +43,19 @@ _char: 'a'-'z' | 'A'-'Z' | '0'-'9' | '!' | '#' | '$' | '%' | '&' | '\'' | '(' | 
 /* Sintaxis */
 
 Programa:
-    DECLARA_PROG FUNCS_PROG main Body end    ;
+    DECLARA_PROG FUNCS_PROG DECLARE_MAIN Body end    
+    <<
+    func() (Attrib, error){
+        op_code := ast.CodigoNum_Operador["END"]
+        endProg_quad := ast.NewQuadruple(op_code, 0, 0, 0)
+        ast.Cuadruplos.Enqueue(endProg_quad)
+
+        return nil, nil
+    }()
+    >>;
 
 DECLARA_PROG:
-    program id semicolon VARS_PROG
+    program id semicolon GOTO_MAIN VARS_PROG
     <<
     func() (Attrib, error){
         nombre_prog := string($1.(*token.Token).Lit)
@@ -55,7 +64,7 @@ DECLARA_PROG:
         _, err := ast.Declare_Function(
             nombre_prog,                // nombre
             []ast.VariableInfo{},       // sin params
-            $3.(*ast.HashMap),          // vars globales
+            $4.(*ast.HashMap),          // vars globales
         )
 
         if err != nil {
@@ -63,6 +72,48 @@ DECLARA_PROG:
         }
 
         //agregar tabla vacia de temps y de ctes
+
+        return nil, nil
+    }()
+    >>;
+
+GOTO_MAIN:
+    empty       
+    <<
+    func()(Attrib, error){
+        err := ast.GenerateQuad_GOTO()
+        if(err != nil){
+            return nil, err
+        }
+        return nil, nil
+    }()
+    >>;
+
+DECLARE_MAIN:
+    main       
+    <<
+    func()(Attrib, error){
+        //agrega main a dirfun
+        nombre_fun := string($0.(*token.Token).Lit)
+
+        _, err := ast.Declare_Function(
+            nombre_fun,
+            []ast.VariableInfo{},
+            ast.NewHashMap(),                
+        )
+
+        if err != nil {
+            return nil, err
+        }
+
+        //goto main quad (osea el primer quad)
+        firstQuad_index := ast.PJumps.Pop()
+        startQuad := ast.Cuadruplos.Size()
+
+        err = ast.Fill_QuadJumps(firstQuad_index, startQuad)
+        if(err!=nil){
+            return nil, err
+        }
 
         return nil, nil
     }()
@@ -149,6 +200,10 @@ FUNCS:
     <<
         func() (Attrib, error){
             ast.CurrentFunction = nil
+            op_code := ast.CodigoNum_Operador["ENDFUNC"]
+            endFunc_quad := ast.NewQuadruple(op_code, 0, 0, 0)
+            ast.Cuadruplos.Enqueue(endFunc_quad)
+
             return nil, nil
         }()
     >>;
@@ -233,6 +288,8 @@ VARS_FUNC:
             return nil, err
         }
 
+        ast.CurrentFunction.Quad_Cont = ast.Cuadruplos.Size()
+
         return nil, nil
     }()
     >>;
@@ -301,11 +358,11 @@ EXPRESION:
             return nil, err
         }
 
-        err = ast.GenerateQuadrupleForExp()
+        dir_temp, err := ast.GenerateQuadrupleForExp()
         if err != nil {
             return nil, err
         }
-        return nil, nil
+        return dir_temp, nil
     }()
     >>;
 
@@ -350,11 +407,11 @@ EXP:
         operador := ast.Operadores.Top()
 
         if(operador == "+" || operador == "-") {
-            err := ast.GenerateQuadrupleForExp()
+            dir_temp, err := ast.GenerateQuadrupleForExp()
             if err != nil {
                 return nil, err
             }
-            return nil, nil
+            return dir_temp, nil
         }
         return nil, nil 
     }()
@@ -395,11 +452,11 @@ TERMINO:
         operador := ast.Operadores.Top()
 
         if(operador == "*" || operador == "/") {
-            err := ast.GenerateQuadrupleForExp()
+            dir_temp, err := ast.GenerateQuadrupleForExp()
             if err != nil {
                 return nil, err
             }
-            return nil, nil
+            return dir_temp, nil
         }
         return nil, nil 
     }()
@@ -437,7 +494,7 @@ FACTOR:
         operador := ast.Operadores.Top()
 
         for( operador != "(" ){
-            err := ast.GenerateQuadrupleForExp()
+            _, err := ast.GenerateQuadrupleForExp()
             if err != nil {
                 return nil, err
             }
@@ -646,28 +703,73 @@ WHILE_END:
     >>;
 
 F_CALL:
-    FUNC_CALL_START lparen EXPRESION_STATEMENT rparen semicolon                ;
+    ERA_FUNC lparen PARAMS rparen semicolon                ;
 
-FUNC_CALL_START:
-    id      ;
+ERA_FUNC:
+    id      
+    <<
+    func() (Attrib, error){
+        nombre_fun := $0.(string)
+
+        //validar que exista la funcion
+        err := ast.BuscarFuncion(nombre_fun)
+        if (err != nil){
+            return nil, err
+        }
+
+        //quad
+        //***como mis quads son de ints tuve que convertir ERA y nombre de funcion a direcciones virtuales
+
+        op_code := ast.CodigoNum_Operador["ERA"]
+        fun_info, _ := ast.FunctionDirectory.Get(nombre_fun)
+        fun_dir := fun_info.(*ast.FunctionInfo).Address
+        quadERA := ast.NewQuadruple(op_code, fun_dir, 0, 0)
+        ast.Cuadruplos.Enqueue(quadERA)
+        
+        return nil, nil
+    }()
+    >>;
+
+PARAMS:
+    EXPRESION_STATEMENT         ;
     //<<
     //func() (Attrib, error){
-    //    id := $1.(string)
-        
+    //    params := $0.([]int)
+
+    //    for i, param := range params {
+    //        ***********************************
+    //    }
     //}()
-    //>>;
+   // >>;
 
 EXPRESION_STATEMENT:
-    EXPRESION MAS_EXPRESIONES     ;
+    EXPRESION MAS_EXPRESIONES     
+    <<
+    func() (Attrib, error){
+        param := $0.(int)
+        mas_params := $1.([]int)
+
+        parametros := append([]int{param}, mas_params...)
+        return parametros, nil
+    }()
+    >>;
 
 EXPRESION_STATEMENT:  
-    empty      ;
+    empty      <<[]int{}, nil>>;
 
 MAS_EXPRESIONES:
-    comma EXPRESION MAS_EXPRESIONES     ;
+    comma EXPRESION MAS_EXPRESIONES     
+    <<
+    func() (Attrib, error){
+        exp := $1.(int)
+        mas_exp := $2.([]int)
+        lista_expresiones := append([]int {exp}, mas_exp...)
+        return lista_expresiones, nil
+    }()
+    >>;
 
 MAS_EXPRESIONES:   
-    empty       ;
+    empty       <<[]int{}, nil>>;
 
 PRINT:
     print lparen LISTA_PRINT rparen semicolon      
