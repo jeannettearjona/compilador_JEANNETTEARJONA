@@ -12,23 +12,25 @@ type FunctionInfo struct {
 	Name              string
 	Parameters        []VariableInfo
 	VarTable          *HashMap
-	Address           int // newww
+	Address           int
 	Counter_LocalVars int
 	Counter_Params    int
-	Quad_Cont         int //donde inicia la funcion
-	Counter_Temps     int
+	FunStart_Quad     int //donde inicia la funcion
+	Counter_Temps     int //??
 }
 
 var GlobalVarTable = NewHashMap()
-var FunctionDirectory = NewHashMap()
 var ConstantsVarTable = NewHashMap()
-
-//var CurrentFunction *FunctionInfo
+var FunctionDirectory = NewHashMap()
 var CurrentFunction *FunctionInfo = nil
 var Prog_MemoryManager = NewMemoryManager()
 
+var ParamCounter int
+
 func Create_VarList(id_list []string, type_vars string) []VariableInfo {
+	//lista de objetos VariableInfo de tamaño de la cantidad de ids
 	variables := make([]VariableInfo, len(id_list))
+
 	for i, id := range id_list {
 		variables[i] = VariableInfo{
 			Name: id,
@@ -40,12 +42,14 @@ func Create_VarList(id_list []string, type_vars string) []VariableInfo {
 
 func Declare_GlobalVars(variables []VariableInfo) (*HashMap, error) {
 
+	//recorre lista de variables
 	for _, variable := range variables {
+		//checa si la variable ya existe
 		if GlobalVarTable.Contains(variable.Name) {
 			return nil, fmt.Errorf("variable '%s' ya declarada en GlobalVarTable", variable.Name)
 		}
 
-		//obtener la dirección de memoria
+		//obtener la dirección de memoria de var global
 		direccion := Prog_MemoryManager.GetGlobalVarMem(variable.Type)
 		variable.Address = direccion
 
@@ -55,18 +59,19 @@ func Declare_GlobalVars(variables []VariableInfo) (*HashMap, error) {
 }
 
 func Declare_Function(fun_name string, params []VariableInfo, localVars *HashMap) (*FunctionInfo, error) {
-	// Verificar si la función ya está declarada
+	//checar si la funcion ya existe
 	if FunctionDirectory.Contains(fun_name) {
-		return nil, fmt.Errorf("funcion '%s' ya está declarada en FunctionDirectory", fun_name)
+		return nil, fmt.Errorf("funcion '%s' ya esta declarada en FunctionDirectory", fun_name)
 	}
+
+	//obtener direccion de memoria para funcion
+	direccion := Prog_MemoryManager.GetGlobalVarMem("void")
 
 	//count de parametros
 	num_params := len(params)
 
-	//count de variables locales
-
-	//obtener la dirección de memoria
-	direccion := Prog_MemoryManager.GetGlobalVarMem("void")
+	//donde empieza la funcion (una linea despues de la declaracion)
+	//start_quad := Cuadruplos.Size()
 
 	funcion := &FunctionInfo{
 		Name:              fun_name,
@@ -75,15 +80,13 @@ func Declare_Function(fun_name string, params []VariableInfo, localVars *HashMap
 		Address:           direccion,
 		Counter_LocalVars: 0,
 		Counter_Params:    num_params,
-		Quad_Cont:         0,
+		FunStart_Quad:     0,
 		Counter_Temps:     0,
 	}
 
-	FunctionDirectory.Add(fun_name, *funcion)
-
+	FunctionDirectory.Add(fun_name, funcion)
 	CurrentFunction = funcion
-
-	Prog_MemoryManager.ResetTemps()
+	Prog_MemoryManager.ResetTemps() //?????
 
 	return funcion, nil
 }
@@ -99,14 +102,15 @@ func Declare_LocalVars(variables []VariableInfo) error {
 			return fmt.Errorf("variable '%s' ya declarada en la funcion '%s'", variable.Name, CurrentFunction.Name)
 		}
 
-		//obtener la dirección de memoria
-		direccion := Prog_MemoryManager.GetLocalVarMem(variable.Type)
-		variable.Address = direccion
+		if variable.Address == 0 {
+			//obtener la dirección de memoria
+			direccion := Prog_MemoryManager.GetLocalVarMem(variable.Type)
+			variable.Address = direccion
+		}
 
 		CurrentFunction.VarTable.Add(variable.Name, variable)
 	}
-	CurrentFunction.Counter_LocalVars = CurrentFunction.VarTable.Size() - CurrentFunction.Counter_Params
-
+	//CurrentFunction.Counter_LocalVars = CurrentFunction.VarTable.Size() - CurrentFunction.Counter_Params
 	return nil
 }
 
@@ -127,10 +131,6 @@ func Declare_Constant(value, tipo string) int {
 	return var_info.(VariableInfo).Address
 }
 
-func FinalizarFuncion() {
-	CurrentFunction = nil
-}
-
 func ResetSemanticState() {
 	GlobalVarTable = NewHashMap()
 	FunctionDirectory = NewHashMap()
@@ -148,9 +148,17 @@ var PJumps StackInt
 func BuscarVariable(var_name string) (VariableInfo, error) {
 	//buscar en locales
 	if CurrentFunction != nil {
+		//buscar en la tabla de variables locales
 		if CurrentFunction.VarTable.Contains(var_name) {
 			varInfo, _ := CurrentFunction.VarTable.Get(var_name)
 			return varInfo.(VariableInfo), nil
+		}
+
+		//buscar en la tabla de parametros
+		for _, param := range CurrentFunction.Parameters {
+			if param.Name == var_name {
+				return param, nil
+			}
 		}
 	}
 
@@ -260,7 +268,7 @@ func GenerateQuad_GOTO() error {
 	Cuadruplos.Enqueue(quad)
 
 	//indice del GOTO
-	PJumps.Push(Cuadruplos.Size() - 1)
+	PJumps.Push(Cuadruplos.Size() - 1) //pushea el indice del quad GOTO
 	return nil
 }
 
@@ -288,10 +296,101 @@ func ImprimirCuadruplos() {
 
 }
 
+func GenerateQuad_ERA(fun_name string) error {
+
+	fun_info, _ := FunctionDirectory.Get(fun_name)
+	fun_address := fun_info.(*FunctionInfo).Address
+
+	op_code := CodigoNum_Operador["ERA"]
+	quad := NewQuadruple(op_code, fun_address, 0, 0)
+	Cuadruplos.Enqueue(quad)
+
+	//indice del ERA
+	PJumps.Push(Cuadruplos.Size() - 1)
+
+	//
+	funcion := fun_info.(*FunctionInfo)
+	CurrentFunction = funcion
+
+	ParamCounter = 0
+
+	return nil
+}
+
 func VerificarCondicion(tipo string) error {
 
 	if tipo != "bool" {
 		return fmt.Errorf("error: la condicion no es de tipo booleano")
 	}
+	return nil
+}
+
+func ValidarYGenerarParametros(expectedParams []VariableInfo) error {
+	//recibe los parametros esperados y los compara con los que se reciben
+	if Operandos.Size() != len(expectedParams) || Tipos.Size() != len(expectedParams) {
+		return fmt.Errorf("faltan argumentos para la función")
+	}
+
+	//stacks en orden
+	var Params_EnOrden StackInt
+	var Tipos_EnOrden Stack
+	var ParamDirs_EnOrden StackInt
+
+	//validacion de parametros
+	for i := len(expectedParams) - 1; i >= 0; i-- {
+
+		argument := Operandos.Pop()
+		argType := Tipos.Pop()
+		expectedType := expectedParams[i].Type
+
+		//nuevo nuevo
+		param_dir := expectedParams[i].Address
+		ParamDirs_EnOrden.Push(param_dir)
+		//------
+
+		//checa que sean del mismo tipo
+		if argType != expectedType {
+			return fmt.Errorf("tipo incorrecto en parámetro %d: se esperaba %s, se recibió %s", i+1, expectedType, argType)
+		}
+
+		//si todo bien
+		Params_EnOrden.Push(argument)
+		Tipos_EnOrden.Push(argType)
+	}
+
+	//generacion de cuadruplos con los parametros en orden
+	for !Params_EnOrden.IsEmpty() {
+		//si si son
+		param := Params_EnOrden.Pop()
+		param_dir := ParamDirs_EnOrden.Pop()
+		op := CodigoNum_Operador["parametro"]
+
+		//par := Prog_MemoryManager.GetLocalVarMem("param")
+		quad := NewQuadruple(op, param, 0, param_dir)
+		Cuadruplos.Enqueue(quad)
+
+		ParamCounter++
+	}
+
+	if !Operandos.IsEmpty() || !Tipos.IsEmpty() {
+		return fmt.Errorf("demasiados argumentos en la llamada a la función")
+	}
+
+	return nil
+}
+
+func GenerateQuad_GOSUB() error {
+	if CurrentFunction == nil {
+		return fmt.Errorf("no hay una función actual activa para generar GOSUB")
+	}
+	fun_address := CurrentFunction.Address
+	start_fun := CurrentFunction.FunStart_Quad
+	op_code := CodigoNum_Operador["GOSUB"]
+	quad := NewQuadruple(op_code, fun_address, 0, start_fun)
+	Cuadruplos.Enqueue(quad)
+
+	CurrentFunction = nil
+	ParamCounter = 0
+
 	return nil
 }

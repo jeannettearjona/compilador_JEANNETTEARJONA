@@ -42,3 +42,8 @@ func (s *Stack) Print() {
 		println("El stack esta vacio")
 	}
 }
+
+// Size
+func (s *Stack) Size() int {
+	return len(s.items)
+}

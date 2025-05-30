@@ -3,7 +3,7 @@ package main
 import (
 	"testing"
 
-	//"fmt"
+	"fmt"
 	"gocc_babyduck/ast"
 	"gocc_babyduck/lexer"
 	"gocc_babyduck/parser"
@@ -119,15 +119,16 @@ end
 	},
 }*/
 
-var testData = []*TI{
+/*var testData = []*TI{
 	{
 		`program test;
 			var a, b: int;
 			    c: float;
-			void funcion1 (param1 : int, param2 : int)
-			[ var varLocal: int; { b = varLocal - 2; a = param1 - param2; }];
+			void funcion1 (param1 : int, param2 : int, param3: float)
+			[ var varLocal: int; { varLocal = 4; b = varLocal - 2; print(b); a = param1 - param2; print(a);}];
 			main {
     			a = 20 + 6;
+				b = 18;
 				c = 55.55;
 				print(a);
 				print(c);
@@ -135,12 +136,108 @@ var testData = []*TI{
 					print("ENTRO AL IF", 2+6);
 				};
 				print("donde deberia caer gotof");
+				funcion1(10, 5, 3.2);
 				print("END");
 			}
 		end`,
 		0,
 	},
+}*/
+
+/*var testData = []*TI{
+	{
+		`program testFactorial;
+		var n, resultado: int;
+
+		void factorial(num: int)
+		[
+			var i, result: int;
+			{
+				result = 1;
+				i = 1;
+				while (i < num+1) do {
+					result = result * i;
+					i = i + 1;
+				};
+				resultado = result;
+			}
+		];
+
+		void printFactorial()
+		[
+		{
+			print("El factorial es", resultado);
+		}
+		];
+
+		main {
+			n = 5;
+			resultado = 0;
+			factorial(n);
+			printFactorial();
+		}
+	end`,
+		0,
+	},
+}*/
+
+var testData = []*TI{
+	{
+		`program test8;
+			var y: int;
+			void funcion() 
+			[ var x: int;
+				{print("func", y);}
+			];
+						
+			void second() 
+			[ var x: int;
+				{funcion(); 
+				x = 9;}
+			];
+						
+			main {
+				y = 10;
+							
+				second();
+			}
+			end`,
+		0,
+	},
 }
+
+/*var testData = []*TI{
+	{
+		`program testFibonacci;
+		var n, resultado: int;
+
+		void fibonacciIter(num: int)
+		[
+			var a, b, i, temp: int;
+			{
+				a = 0;
+				b = 1;
+				i = 0;
+				while (i < num) do {
+					temp = b;
+					b = a + b;
+					a = temp;
+					i = i + 1;
+				};
+				resultado = a;
+			}
+		];
+
+		main {
+			n = 10;
+			resultado = 0;
+			fibonacciIter(n);
+			print("Fibonacci de", n, "es", resultado);
+		}
+	end`,
+		0,
+	},
+}*/
 
 func TestParser(t *testing.T) {
 	p := parser.NewParser()
@@ -157,9 +254,9 @@ func TestParser(t *testing.T) {
 				t.Errorf("Expected no error but got: %v for input: %s", err, ts.src)
 			} else {
 				ast.ImprimirCuadruplos()
-				//vm := ast.NewVirtualMachine(&ast.Cuadruplos, ast.ConstantsVarTable, ast.FunctionDirectory)
-				//vm.Run()
-				//fmt.Println(vm.Memory)
+				vm := ast.NewVirtualMachine(&ast.Cuadruplos, ast.ConstantsVarTable, ast.FunctionDirectory)
+				vm.Run()
+				fmt.Println(vm.Memory)
 			}
 		} else if ts.expect == -1 {
 			if err == nil {

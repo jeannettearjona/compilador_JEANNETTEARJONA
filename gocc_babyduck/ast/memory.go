@@ -6,6 +6,7 @@ type TipoDato struct {
 	Bool   int
 	String int
 	Void   int
+	Param  int
 }
 
 type MemoryManager struct {
@@ -31,40 +32,45 @@ const (
 	Cs = 10000
 
 	VOID = 100
+	par  = 50
 )
 
 const (
-	SUMA    = 1
-	RESTA   = 2
-	MULT    = 3
-	DIV     = 4
-	GT      = 5
-	LT      = 6
-	EQ      = 7
-	NEQ     = 8
-	PRINT   = 9
-	GOTOF   = 10
-	GOTO    = 11
-	ERA     = 12
-	ENDFUNC = 13
-	END     = 14
+	SUMA      = 1
+	RESTA     = 2
+	MULT      = 3
+	DIV       = 4
+	GT        = 5
+	LT        = 6
+	EQ        = 7
+	NEQ       = 8
+	PRINT     = 9
+	GOTOF     = 10
+	GOTO      = 11
+	ERA       = 12
+	ENDFUNC   = 13
+	END       = 14
+	parametro = 15
+	GOSUB     = 16
 )
 
 var CodigoNum_Operador = map[string]int{
-	"+":       SUMA,
-	"-":       RESTA,
-	"*":       MULT,
-	"/":       DIV,
-	">":       GT,
-	"<":       LT,
-	"=":       EQ,
-	"!=":      NEQ,
-	"print":   PRINT,
-	"GOTOF":   GOTOF,
-	"GOTO":    GOTO,
-	"ERA":     ERA,
-	"ENDFUNC": ENDFUNC,
-	"END":     END,
+	"+":         SUMA,
+	"-":         RESTA,
+	"*":         MULT,
+	"/":         DIV,
+	">":         GT,
+	"<":         LT,
+	"=":         EQ,
+	"!=":        NEQ,
+	"print":     PRINT,
+	"GOTOF":     GOTOF,
+	"GOTO":      GOTO,
+	"ERA":       ERA,
+	"ENDFUNC":   ENDFUNC,
+	"END":       END,
+	"parametro": parametro,
+	"GOSUB":     GOSUB,
 }
 
 func NewMemoryManager() *MemoryManager {
@@ -77,6 +83,7 @@ func NewMemoryManager() *MemoryManager {
 		Local: TipoDato{
 			Int:   Li,
 			Float: Lf,
+			Param: par,
 		},
 		Temp: TipoDato{
 			Int:   Ti,
@@ -119,6 +126,10 @@ func (mm *MemoryManager) GetLocalVarMem(dataType string) int {
 	case "float":
 		dir_vir := mm.Local.Float
 		mm.Local.Float++
+		return dir_vir
+	case "param":
+		dir_vir := mm.Local.Param
+		mm.Local.Param++
 		return dir_vir
 	default:
 		panic("tipo de dato no soportado en MEMORIA LOCAL")

@@ -40,7 +40,7 @@ _char: 'a'-'z' | 'A'-'Z' | '0'-'9' | '!' | '#' | '$' | '%' | '&' | '\'' | '(' | 
 !whitespace: ' '|'\t'|'\n'|'\r';
 
 
-/* Sintaxis */
+/* SINTAXIS */
 
 Programa:
     DECLARA_PROG FUNCS_PROG DECLARE_MAIN Body end    
@@ -71,8 +71,6 @@ DECLARA_PROG:
             return nil, err
         }
 
-        //agregar tabla vacia de temps y de ctes
-
         return nil, nil
     }()
     >>;
@@ -81,6 +79,7 @@ GOTO_MAIN:
     empty       
     <<
     func()(Attrib, error){
+        //Genera 1er quad GOTO 0 0 main (tiene pending el jump de main)
         err := ast.GenerateQuad_GOTO()
         if(err != nil){
             return nil, err
@@ -123,8 +122,10 @@ VARS_PROG:
     VARS   
     <<
     func() (Attrib, error) {
-        variables := $0.([]ast.VariableInfo)    //slice de variables (name,type)
+        //recibe slice de variables (name,type)
+        variables := $0.([]ast.VariableInfo)
 
+        //declara las variables GLOBALES
         variables_globales, err := ast.Declare_GlobalVars(variables)
         if err != nil {
             return nil, err
@@ -150,10 +151,10 @@ VARIABLES:
     ID_LIST colon TYPE semicolon MAS_VARIABLES          
    <<
    func() (Attrib, error) {
-        //crear SLICE (no mapa) de vars
         id_list := $0.([]string)
         type_vars := $2.(string)
 
+        //crear SLICE de variables del mismo tipo
         variables := ast.Create_VarList(id_list, type_vars)
 
         //agregar las variables adicionales
@@ -196,7 +197,7 @@ TYPE:
     float       <<"float", nil>>;
 
 FUNCS:
-    DECLARA_FUNC lbraket VARS_FUNC Body rbraket semicolon     
+    DECLARA_FUNC lbraket VARS_FUNC INSERT_COUNTERS Body rbraket semicolon     
     <<
         func() (Attrib, error){
             ast.CurrentFunction = nil
@@ -214,20 +215,23 @@ DECLARA_FUNC:
         func() (Attrib, error){
             nombre_fun := string($1.(*token.Token).Lit)
             parametros := $3.([]ast.VariableInfo)
-            local_varMap := ast.NewHashMap()
+            local_varMap := ast.NewHashMap()            //crea una tabla de variables locales
 
             _, err := ast.Declare_Function(
                 nombre_fun,
                 parametros,
                 local_varMap,                //tabla de variables vacia
             )
-
             if err != nil {
                 return nil, err
             }
 
-            //ast.CurrentFunction = funcion
-
+            //agregar params aqui a la tabla local porque que tal si la func no tiene local vars entonces params nunca van a estar en la tabla local
+            err = ast.Declare_LocalVars(parametros)
+            if err != nil {
+                return nil, err
+            }
+            
             return nil, nil
         }()
     >>;
@@ -246,6 +250,7 @@ PARAMETROS:
         param := $0.(ast.VariableInfo)
         mas_params := $1.([]ast.VariableInfo)
 
+        //lista de params (objetos de VariableInfo)
         parametros := append([]ast.VariableInfo {param}, mas_params...)
 
         return parametros, nil
@@ -256,11 +261,18 @@ PARAM:
     id colon TYPE       
     <<
     func() (Attrib, error) {
+
+        nombre_param := string($0.(*token.Token).Lit)
+        type_param := $2.(string)
+        dir_param := ast.Prog_MemoryManager.GetLocalVarMem("param")
+
+        //construye el parametro (como objeto de tipo VariableInfo)
         parametro := ast.VariableInfo {
-            Name: string($0.(*token.Token).Lit),    //nombre
-            Type: $2.(string),                       //tipo
-                                                    //memoria?
+            Name: nombre_param,     
+            Type: type_param,            
+            Address: dir_param,
         }
+
         return parametro, nil
     }()
     >>;
@@ -276,20 +288,12 @@ VARS_FUNC:
     <<
     func() (Attrib, error){
 
-        parametros := ast.CurrentFunction.Parameters
         variables := $0.([]ast.VariableInfo)
-
-        //lista de params y vars locales
-        variables_locales := append(parametros, variables...)
-
-        err := ast.Declare_LocalVars(variables_locales)
+        err := ast.Declare_LocalVars(variables)
 
         if err != nil {
             return nil, err
         }
-
-        ast.CurrentFunction.Quad_Cont = ast.Cuadruplos.Size()
-
         return nil, nil
     }()
     >>;
@@ -297,6 +301,21 @@ VARS_FUNC:
 VARS_FUNC:
 empty       <<nil, nil>>;
 
+INSERT_COUNTERS:
+    empty       
+    <<
+    func() (Attrib, error){
+
+        //inserta num total de variables locales
+        num_localVars := ast.CurrentFunction.VarTable.Size() - ast.CurrentFunction.Counter_Params
+        ast.CurrentFunction.Counter_LocalVars = num_localVars
+
+        //inserta start quad
+        ast.CurrentFunction.FunStart_Quad = ast.Cuadruplos.Size()
+
+        return nil, nil
+    }()
+    >>      ;
 
 Body:
     lbrace STATEMENT_PROG rbrace        ;
@@ -703,73 +722,71 @@ WHILE_END:
     >>;
 
 F_CALL:
-    ERA_FUNC lparen PARAMS rparen semicolon                ;
-
-ERA_FUNC:
-    id      
+    ERA PARAMS rparen semicolon             
     <<
     func() (Attrib, error){
-        nombre_fun := $0.(string)
+        err := ast.GenerateQuad_GOSUB()
+        if(err != nil){
+            return nil, err
+        }
+
+        return nil, nil
+    }()
+    >>;
+
+ERA:
+    id lparen      
+    <<
+    func() (Attrib, error){
+        nombre_fun := string($0.(*token.Token).Lit)
 
         //validar que exista la funcion
         err := ast.BuscarFuncion(nombre_fun)
         if (err != nil){
             return nil, err
-        }
+        }        
 
-        //quad
-        //***como mis quads son de ints tuve que convertir ERA y nombre de funcion a direcciones virtuales
+        err = ast.GenerateQuad_ERA(nombre_fun)
+        if (err != nil){
+            return nil, err
+        } 
 
-        op_code := ast.CodigoNum_Operador["ERA"]
-        fun_info, _ := ast.FunctionDirectory.Get(nombre_fun)
-        fun_dir := fun_info.(*ast.FunctionInfo).Address
-        quadERA := ast.NewQuadruple(op_code, fun_dir, 0, 0)
-        ast.Cuadruplos.Enqueue(quadERA)
+       // ast.ParamCounter = 0
+
         
         return nil, nil
     }()
     >>;
 
 PARAMS:
-    EXPRESION_STATEMENT         ;
-    //<<
-    //func() (Attrib, error){
-    //    params := $0.([]int)
+    EXPRESION_STATEMENT         
+    <<
+    func() (Attrib, error){
+        //if ast.CurrentFunction == nil {
+        //    return nil, errors.New("No hay función activa para llamada.")
+        //}
 
-    //    for i, param := range params {
-    //        ***********************************
-    //    }
-    //}()
-   // >>;
+        parameters := ast.CurrentFunction.Parameters
+        err := ast.ValidarYGenerarParametros(parameters)
+        if err != nil {
+            return nil, err
+        }
+
+        return nil, nil
+    }()
+    >>;
 
 EXPRESION_STATEMENT:
-    EXPRESION MAS_EXPRESIONES     
-    <<
-    func() (Attrib, error){
-        param := $0.(int)
-        mas_params := $1.([]int)
-
-        parametros := append([]int{param}, mas_params...)
-        return parametros, nil
-    }()
-    >>;
+    EXPRESION MAS_EXPRESIONES     ;
 
 EXPRESION_STATEMENT:  
-    empty      <<[]int{}, nil>>;
+    empty      ;
 
 MAS_EXPRESIONES:
-    comma EXPRESION MAS_EXPRESIONES     
-    <<
-    func() (Attrib, error){
-        exp := $1.(int)
-        mas_exp := $2.([]int)
-        lista_expresiones := append([]int {exp}, mas_exp...)
-        return lista_expresiones, nil
-    }()
-    >>;
+    comma EXPRESION MAS_EXPRESIONES     ;
 
 MAS_EXPRESIONES:   
-    empty       <<[]int{}, nil>>;
+    empty       ;
 
 PRINT:
     print lparen LISTA_PRINT rparen semicolon      
