@@ -195,10 +195,16 @@ func (vm *VirtualMachine) Run() {
 
 		case 12: //ERA
 			func_name := izq.(string)
+			//fmt.Println("== ERA: Preparando llamada a", func_name)
 
 			//obtener el objeto de functionInfo
-			func_data, _ := vm.FunDir.Get(func_name)
+			func_data, ok := vm.FunDir.Get(func_name)
+			if !ok {
+				panic("Función no encontrada en el directorio: " + func_name)
+			}
 			func_info := func_data.(*FunctionInfo)
+			//fmt.Println("Variables locales:", func_info.VarTable)
+			//fmt.Println("Parámetros esperados:", func_info.Parameters)
 
 			vm.PendingMemory = make(map[int]interface{})
 
@@ -223,7 +229,7 @@ func (vm *VirtualMachine) Run() {
 				panic("No hay funciones en la pila de llamadas")
 			}
 			// DEBUG: Imprimir memoria local antes de restaurar
-			fmt.Println("Memoria local antes de restaurar global:", vm.ActiveMemory)
+			//fmt.Println("Memoria local antes de restaurar global:", vm.ActiveMemory)
 
 			n := len(vm.LocalStack) - 1
 			vm.ActiveMemory = vm.LocalStack[n] //restaura la memoria activa
@@ -231,7 +237,7 @@ func (vm *VirtualMachine) Run() {
 			m := len(vm.Callstack) - 1
 			vm.IP = vm.Callstack[m]         //restaura la direccion de retorno
 			vm.Callstack = vm.Callstack[:m] //elimina la direccion de retorno
-			fmt.Print("Regresa de la funcion a la direccion de memoria: ", vm.IP, "\n")
+			//fmt.Print("Regresa de la funcion a la direccion de memoria: ", vm.IP, "\n")
 			continue
 		case 14: //END
 			return
@@ -252,14 +258,14 @@ func (vm *VirtualMachine) Run() {
 
 			// NUEVO??? Guarda la memoria activa actual
 			vm.LocalStack = append(vm.LocalStack, vm.ActiveMemory)
-			fmt.Println("Memoria local guardada LO QUE HABIA EN ACTIVE MEMORY:", vm.ActiveMemory)
+			//fmt.Println("Memoria local guardada LO QUE HABIA EN ACTIVE MEMORY:", vm.ActiveMemory)
 
 			//activa la memoria local preparada
 			vm.ActiveMemory = vm.PendingMemory
-			fmt.Println("Memoria activa:", vm.ActiveMemory)
+			//fmt.Println("Memoria activa:", vm.ActiveMemory)
 			vm.PendingMemory = nil
 			vm.IP = func_info.FunStart_Quad //cambia la direccion de memoria a la funcion
-			fmt.Println("Llamada a la funcion, nueva direccion de memoria:", vm.IP)
+			//fmt.Println("Llamada a la funcion, nueva direccion de memoria:", vm.IP)
 			//fmt.Print("La direccion de la funcion que va a llamar es: ", func_info.Address, "\n")
 			//return
 			continue

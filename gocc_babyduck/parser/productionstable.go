@@ -97,7 +97,8 @@ var productionsTable = ProdTab{
 	ProdTabEntry{
 		String: `GOTO_MAIN : empty	<< func()(Attrib, error){
         //Genera 1er quad GOTO 0 0 main (tiene pending el jump de main)
-        err := ast.GenerateQuad_GOTO()
+        //err := ast.GenerateQuad_GOTO()
+        err := ast.GenerateQuad_TOMAIN()
         if(err != nil){
             return nil, err
         }
@@ -110,7 +111,8 @@ var productionsTable = ProdTab{
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func()(Attrib, error){
         //Genera 1er quad GOTO 0 0 main (tiene pending el jump de main)
-        err := ast.GenerateQuad_GOTO()
+        //err := ast.GenerateQuad_GOTO()
+        err := ast.GenerateQuad_TOMAIN()
         if(err != nil){
             return nil, err
         }
@@ -134,8 +136,9 @@ var productionsTable = ProdTab{
         }
 
         //goto main quad (osea el primer quad)
-        firstQuad_index := ast.PJumps.Pop()
-        startQuad := ast.Cuadruplos.Size()
+        //firstQuad_index := ast.PJumps.Pop()
+        firstQuad_index := ast.MainADDRESS
+        startQuad := ast.Cuadruplos.Size()  //si esta bien el 11
 
         err = ast.Fill_QuadJumps(firstQuad_index, startQuad)
         if(err!=nil){
@@ -164,8 +167,9 @@ var productionsTable = ProdTab{
         }
 
         //goto main quad (osea el primer quad)
-        firstQuad_index := ast.PJumps.Pop()
-        startQuad := ast.Cuadruplos.Size()
+        //firstQuad_index := ast.PJumps.Pop()
+        firstQuad_index := ast.MainADDRESS
+        startQuad := ast.Cuadruplos.Size()  //si esta bien el 11
 
         err = ast.Fill_QuadJumps(firstQuad_index, startQuad)
         if(err!=nil){
@@ -586,7 +590,7 @@ var productionsTable = ProdTab{
 	},
 	ProdTabEntry{
 		String: `INSERT_COUNTERS : empty	<< func() (Attrib, error){
-        
+
         //inserta num total de variables locales
         num_localVars := ast.CurrentFunction.VarTable.Size() - ast.CurrentFunction.Counter_Params
         ast.CurrentFunction.Counter_LocalVars = num_localVars
@@ -602,7 +606,7 @@ var productionsTable = ProdTab{
 		NumSymbols: 0,
 		ReduceFunc: func(X []Attrib, C interface{}) (Attrib, error) {
 			return func() (Attrib, error){
-        
+
         //inserta num total de variables locales
         num_localVars := ast.CurrentFunction.VarTable.Size() - ast.CurrentFunction.Counter_Params
         ast.CurrentFunction.Counter_LocalVars = num_localVars

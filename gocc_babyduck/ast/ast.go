@@ -26,6 +26,7 @@ var CurrentFunction *FunctionInfo = nil
 var Prog_MemoryManager = NewMemoryManager()
 
 var ParamCounter int
+var MainADDRESS int
 
 func Create_VarList(id_list []string, type_vars string) []VariableInfo {
 	//lista de objetos VariableInfo de tamaño de la cantidad de ids
@@ -269,6 +270,14 @@ func GenerateQuad_GOTO() error {
 
 	//indice del GOTO
 	PJumps.Push(Cuadruplos.Size() - 1) //pushea el indice del quad GOTO
+	return nil
+}
+
+func GenerateQuad_TOMAIN() error {
+	op_code := CodigoNum_Operador["GOTO"]
+	quad := NewQuadruple(op_code, 0, 0, 0)
+	Cuadruplos.Enqueue(quad)
+	MainADDRESS = Cuadruplos.Size() - 1 //guarda el indice del GOTO a main
 	return nil
 }
 

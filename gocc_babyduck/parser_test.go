@@ -181,32 +181,38 @@ end
 	},
 }*/
 
-var testData = []*TI{
+/*var testData = []*TI{
 	{
 		`program test8;
 			var y: int;
-			void funcion() 
-			[ var x: int;
-				{print("func", y);}
+			void funcion(param1: int)
+			[ var z: int;
+				{
+					print("func", y);
+				}
 			];
-						
-			void second() 
+
+			void second(param2: int)
 			[ var x: int;
-				{funcion(); 
-				x = 9;}
+				{
+				x = 9;
+				print("second", x);
+				funcion(6);
+				}
 			];
-						
+
 			main {
 				y = 10;
-							
-				second();
+
+				second(2);
+
 			}
 			end`,
 		0,
 	},
-}
+}*/
 
-/*var testData = []*TI{
+var testData = []*TI{
 	{
 		`program testFibonacci;
 		var n, resultado: int;
@@ -237,7 +243,7 @@ var testData = []*TI{
 	end`,
 		0,
 	},
-}*/
+}
 
 func TestParser(t *testing.T) {
 	p := parser.NewParser()
