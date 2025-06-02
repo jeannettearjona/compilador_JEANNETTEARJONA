@@ -23,6 +23,9 @@ var GlobalVarTable = NewHashMap()
 var ConstantsVarTable = NewHashMap()
 var FunctionDirectory = NewHashMap()
 var CurrentFunction *FunctionInfo = nil
+
+var CurrentCalledFunction *FunctionInfo
+
 var Prog_MemoryManager = NewMemoryManager()
 
 var ParamCounter int
@@ -149,6 +152,7 @@ var PJumps StackInt
 func BuscarVariable(var_name string) (VariableInfo, error) {
 	//buscar en locales
 	if CurrentFunction != nil {
+
 		//buscar en la tabla de variables locales
 		if CurrentFunction.VarTable.Contains(var_name) {
 			varInfo, _ := CurrentFunction.VarTable.Get(var_name)
@@ -161,6 +165,7 @@ func BuscarVariable(var_name string) (VariableInfo, error) {
 				return param, nil
 			}
 		}
+
 	}
 
 	//buscar en globales
@@ -319,7 +324,8 @@ func GenerateQuad_ERA(fun_name string) error {
 
 	//
 	funcion := fun_info.(*FunctionInfo)
-	CurrentFunction = funcion
+	CurrentCalledFunction = funcion
+	//CurrentFunction = funcion
 
 	ParamCounter = 0
 
@@ -335,6 +341,7 @@ func VerificarCondicion(tipo string) error {
 }
 
 func ValidarYGenerarParametros(expectedParams []VariableInfo) error {
+	fmt.Printf("llego a ValidarYGenerarParametros con %d parametros esperados\n", len(expectedParams))
 	//recibe los parametros esperados y los compara con los que se reciben
 	if Operandos.Size() != len(expectedParams) || Tipos.Size() != len(expectedParams) {
 		return fmt.Errorf("faltan argumentos para la función")
@@ -389,16 +396,28 @@ func ValidarYGenerarParametros(expectedParams []VariableInfo) error {
 }
 
 func GenerateQuad_GOSUB() error {
-	if CurrentFunction == nil {
+	if CurrentCalledFunction == nil {
 		return fmt.Errorf("no hay una función actual activa para generar GOSUB")
 	}
-	fun_address := CurrentFunction.Address
+	/*fun_address := CurrentFunction.Address
 	start_fun := CurrentFunction.FunStart_Quad
 	op_code := CodigoNum_Operador["GOSUB"]
 	quad := NewQuadruple(op_code, fun_address, 0, start_fun)
 	Cuadruplos.Enqueue(quad)
 
 	CurrentFunction = nil
+	ParamCounter = 0*/
+
+	fun_address := CurrentCalledFunction.Address
+	start_fun := CurrentCalledFunction.FunStart_Quad
+	op_code := CodigoNum_Operador["GOSUB"]
+	quad := NewQuadruple(op_code, fun_address, 0, start_fun)
+	Cuadruplos.Enqueue(quad)
+
+	// Ahora sí cambiamos el contexto
+	CurrentFunction = CurrentCalledFunction
+	CurrentCalledFunction = nil
+
 	ParamCounter = 0
 
 	return nil

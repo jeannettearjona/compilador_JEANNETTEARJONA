@@ -1518,7 +1518,8 @@ var productionsTable = ProdTab{
         //    return nil, errors.New("No hay función activa para llamada.")
         //}
 
-        parameters := ast.CurrentFunction.Parameters
+        //parameters := ast.CurrentFunction.Parameters
+        parameters := ast.CurrentCalledFunction.Parameters
         err := ast.ValidarYGenerarParametros(parameters)
         if err != nil {
             return nil, err
@@ -1536,7 +1537,8 @@ var productionsTable = ProdTab{
         //    return nil, errors.New("No hay función activa para llamada.")
         //}
 
-        parameters := ast.CurrentFunction.Parameters
+        //parameters := ast.CurrentFunction.Parameters
+        parameters := ast.CurrentCalledFunction.Parameters
         err := ast.ValidarYGenerarParametros(parameters)
         if err != nil {
             return nil, err

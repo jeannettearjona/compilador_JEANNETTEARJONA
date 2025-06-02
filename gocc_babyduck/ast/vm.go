@@ -19,14 +19,14 @@ func getDefault(typ string) interface{} {
 }
 
 type VirtualMachine struct {
-	Memory        map[int]interface{}
+	Memory        map[int]interface{} // memoria global
 	Cuadruplos    *Queue
-	IP            int
+	IP            int //apuntador de quad actual
 	FunDir        *HashMap
-	ActiveMemory  map[int]interface{}   //funcion activa
-	LocalStack    []map[int]interface{} //local stack
-	Callstack     []int                 //para guardar las direcciones de memoria de las funciones ???
-	PendingMemory map[int]interface{}   //construccion de la memoria local pendiente
+	ActiveMemory  map[int]interface{}   //funcion activa (active = pending)
+	LocalStack    []map[int]interface{} //mapa de memorias locales
+	Callstack     []int                 //para guardar las direcciones a donde tiene que volver
+	PendingMemory map[int]interface{}   //donde se construye la memoria local pendiente
 }
 
 func Cast_Value(val_name, val_type string) interface{} {
@@ -79,10 +79,11 @@ func NewVirtualMachine(quads *Queue, cte_table *HashMap, fun_dir *HashMap) *Virt
 
 	//crea instancia de vm
 	vm := &VirtualMachine{
-		Memory:     memory,
-		Cuadruplos: quads,
-		IP:         0,
-		FunDir:     fun_dir,
+		Memory:       memory,
+		Cuadruplos:   quads,
+		IP:           0,
+		FunDir:       fun_dir,
+		ActiveMemory: memory,
 	}
 
 	return vm
@@ -195,17 +196,15 @@ func (vm *VirtualMachine) Run() {
 
 		case 12: //ERA
 			func_name := izq.(string)
-			//fmt.Println("== ERA: Preparando llamada a", func_name)
 
-			//obtener el objeto de functionInfo
+			//busca la funcion en el directorio
 			func_data, ok := vm.FunDir.Get(func_name)
 			if !ok {
 				panic("Función no encontrada en el directorio: " + func_name)
 			}
 			func_info := func_data.(*FunctionInfo)
-			//fmt.Println("Variables locales:", func_info.VarTable)
-			//fmt.Println("Parámetros esperados:", func_info.Parameters)
 
+			//crea un nuevo map
 			vm.PendingMemory = make(map[int]interface{})
 
 			//inicializa params
@@ -219,35 +218,24 @@ func (vm *VirtualMachine) Run() {
 				vm.PendingMemory[varInfo.Address] = getDefault(varInfo.Type)
 			}
 
-			//for i := 0; i < func_info.Counter_Temps; i++ {
-			// Puedes usar 5000+i si sabes que todos los temps empiezan ahí
-			//	vm.PendingMemory[5000+i] = 0 // o nil si no te importa el tipo
-			//}
-
 		case 13: //ENDFUNC
-			if len(vm.Callstack) == 0 {
-				panic("No hay funciones en la pila de llamadas")
-			}
-			// DEBUG: Imprimir memoria local antes de restaurar
-			//fmt.Println("Memoria local antes de restaurar global:", vm.ActiveMemory)
-
-			n := len(vm.LocalStack) - 1
+			n := len(vm.LocalStack) - 1        //ultimo elemento de mapa de memorias (ult memoria)
 			vm.ActiveMemory = vm.LocalStack[n] //restaura la memoria activa
-			vm.LocalStack = vm.LocalStack[:n]  //elimina la memoria local de la funcion
-			m := len(vm.Callstack) - 1
+			vm.LocalStack = vm.LocalStack[:n]  //elimina la memoria local mapa de memorias (copia todos desde el hasta n NO INCLUSIVE)
+
+			m := len(vm.Callstack) - 1      //ultimo elemento de callstack (ultima direccion de retorno)
 			vm.IP = vm.Callstack[m]         //restaura la direccion de retorno
 			vm.Callstack = vm.Callstack[:m] //elimina la direccion de retorno
-			//fmt.Print("Regresa de la funcion a la direccion de memoria: ", vm.IP, "\n")
 			continue
+
 		case 14: //END
 			return
 
 		case 15: //parametro
-			vm.PendingMemory[quad.Res] = vm.Memory[quad.Izq] //asigna el parametro a la memoria pendiente
+			vm.PendingMemory[quad.Res] = vm.ActiveMemory[quad.Izq]
 
 		case 16: //GOSUB
 			func_name := izq.(string)
-			fmt.Println("llamada a la funcion:", func_name)
 
 			//obtener el objeto de functionInfo
 			func_data, _ := vm.FunDir.Get(func_name)
@@ -256,18 +244,16 @@ func (vm *VirtualMachine) Run() {
 			//guarda dir de retorno (sig. quad despues de GOSUB)
 			vm.Callstack = append(vm.Callstack, vm.IP+1)
 
-			// NUEVO??? Guarda la memoria activa actual
+			//guarda la memoria activa actual
 			vm.LocalStack = append(vm.LocalStack, vm.ActiveMemory)
-			//fmt.Println("Memoria local guardada LO QUE HABIA EN ACTIVE MEMORY:", vm.ActiveMemory)
 
 			//activa la memoria local preparada
 			vm.ActiveMemory = vm.PendingMemory
-			//fmt.Println("Memoria activa:", vm.ActiveMemory)
+			fmt.Print("la memoria activa para la funcion ", func_name, " es: ", vm.ActiveMemory, "\n")
+
 			vm.PendingMemory = nil
-			vm.IP = func_info.FunStart_Quad //cambia la direccion de memoria a la funcion
-			//fmt.Println("Llamada a la funcion, nueva direccion de memoria:", vm.IP)
-			//fmt.Print("La direccion de la funcion que va a llamar es: ", func_info.Address, "\n")
-			//return
+			vm.IP = func_info.FunStart_Quad //ahora va a ir a la direccion donde empieza la funcion
+
 			continue
 
 		default:

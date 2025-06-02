@@ -1,9 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 
-	"fmt"
 	"gocc_babyduck/ast"
 	"gocc_babyduck/lexer"
 	"gocc_babyduck/parser"
@@ -13,6 +13,39 @@ type TI struct {
 	src    string // El código o fragmento de entrada
 	expect int64  // El valor esperado del resultado
 }
+
+/*var testData = []*TI{
+	{
+		`program Recursion;
+
+			var n, result: int;
+
+			void factorial(x: int) [
+			var temp: int;
+    		{
+        		if (x < 1) {
+            		if (x > -1) {
+                		result = 1;
+            		};
+        		} else {
+            		n = x - 1;
+            		factorial(n);
+            		result = result * x;
+        		};
+    		}
+			];
+
+			main {
+    			n = 5;
+    			result = 1;
+    			factorial(n);
+    			print("El factorial es:", result);
+			}
+
+			end`,
+		0,
+	},
+}*/
 
 /*var testData = []*TI{
 	{
@@ -144,10 +177,18 @@ end
 	},
 }*/
 
+// TEST FACTORIAL
 /*var testData = []*TI{
 	{
 		`program testFactorial;
 		var n, resultado: int;
+
+		void printFactorial(res: int)
+		[
+		{
+			print("El factorial es", res);
+		}
+		];
 
 		void factorial(num: int)
 		[
@@ -160,59 +201,64 @@ end
 					i = i + 1;
 				};
 				resultado = result;
+				printFactorial(result);
+
+				print("regreso a factorial");
+
 			}
 		];
 
-		void printFactorial()
-		[
-		{
-			print("El factorial es", resultado);
-		}
-		];
-
 		main {
-			n = 5;
+			n = 7;
 			resultado = 0;
 			factorial(n);
-			printFactorial();
+			print("FIN: Regreso a main");
 		}
 	end`,
 		0,
 	},
 }*/
 
-/*var testData = []*TI{
+// TEST IF-ELSE CON LLAMADA A FUNCION ANIADA
+var testData = []*TI{
 	{
 		`program test8;
 			var y: int;
 			void funcion(param1: int)
 			[ var z: int;
 				{
-					print("func", y);
+					z=22+22;
+					if(param1 > z){
+						print("funcion IF", param1);
+					}
+					else {
+						print("funcion ELSE", y);
+					};
+					print("func", y + z);
 				}
 			];
 
 			void second(param2: int)
 			[ var x: int;
 				{
-				x = 9;
+				x = 9 + param2;
 				print("second", x);
 				funcion(6);
 				}
 			];
 
 			main {
-				y = 10;
+				y = 2;
 
-				second(2);
+				second(y);
 
 			}
 			end`,
 		0,
 	},
-}*/
+}
 
-var testData = []*TI{
+/*var testData = []*TI{
 	{
 		`program testFibonacci;
 		var n, resultado: int;
@@ -235,7 +281,7 @@ var testData = []*TI{
 		];
 
 		main {
-			n = 10;
+			n = 20;
 			resultado = 0;
 			fibonacciIter(n);
 			print("Fibonacci de", n, "es", resultado);
@@ -243,7 +289,7 @@ var testData = []*TI{
 	end`,
 		0,
 	},
-}
+}*/
 
 func TestParser(t *testing.T) {
 	p := parser.NewParser()
@@ -257,18 +303,19 @@ func TestParser(t *testing.T) {
 
 		if ts.expect == 0 {
 			if err != nil {
-				t.Errorf("Expected no error but got: %v for input: %s", err, ts.src)
+				t.Errorf("expected no error but got: %v for input: %s", err, ts.src)
 			} else {
 				ast.ImprimirCuadruplos()
+				fmt.Print("--------------------------------------------------\n")
 				vm := ast.NewVirtualMachine(&ast.Cuadruplos, ast.ConstantsVarTable, ast.FunctionDirectory)
 				vm.Run()
-				fmt.Println(vm.Memory)
+				//fmt.Println(vm.Memory)
 			}
 		} else if ts.expect == -1 {
 			if err == nil {
-				t.Errorf("Expected error but got none for input: %s", ts.src)
+				t.Errorf("expected error but got none for input: %s", ts.src)
 			} else {
-				t.Logf("Correctly got expected error: %v", err)
+				t.Logf("correctly got expected error: %v", err)
 			}
 		}
 	}
