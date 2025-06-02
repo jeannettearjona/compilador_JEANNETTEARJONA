@@ -220,7 +220,7 @@ end
 }*/
 
 // TEST IF-ELSE CON LLAMADA A FUNCION ANIADA
-var testData = []*TI{
+/*var testData = []*TI{
 	{
 		`program test8;
 			var y: int;
@@ -256,9 +256,9 @@ var testData = []*TI{
 			end`,
 		0,
 	},
-}
+}*/
 
-/*var testData = []*TI{
+var testData = []*TI{
 	{
 		`program testFibonacci;
 		var n, resultado: int;
@@ -289,7 +289,7 @@ var testData = []*TI{
 	end`,
 		0,
 	},
-}*/
+}
 
 func TestParser(t *testing.T) {
 	p := parser.NewParser()
